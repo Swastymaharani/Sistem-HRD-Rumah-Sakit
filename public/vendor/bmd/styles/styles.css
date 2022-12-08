@@ -1,0 +1,120 @@
+/*styles*/
+@font-face {
+    font-family: "Poppins Regular";
+    src: url("../assets/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+    font-family: "Poppins Semibold";
+    src: url("../assets/fonts/Poppins-SemiBold.ttf");
+}
+@font-face {
+    font-family: "Poppins Bold";
+    src: url("../assets/fonts/Poppins-Bold.ttf");
+}
+@font-face {
+    font-family: "Cocogoose";
+    src: url("../assets/fonts/Cocogoose.ttf");
+}
+input{
+    border: none;
+    background: none;
+    outline: none;
+    font-family: "Poppins Regular";
+}
+div{
+    font-family: "Poppins Regular";
+}
+
+/*Prequisite Style*/
+body.lock{
+    overflow: hidden;
+}
+h1{
+    font-size: 3rem;
+    font-family: "Cocogoose";
+}
+h2{
+    font-size: 2.4rem;
+    font-family: "Cocogoose";
+}
+h3{
+    font-size: 1.5rem;
+    font-family: "Poppins Semibold";
+    margin-bottom: 1rem;
+}
+h4{
+    font-size: 1rem;
+    font-family: "Poppins Semibold";
+    margin-bottom: .5rem;
+}
+div{
+    line-height: 1.5;
+    color: inherit;
+}
+p{
+    font-family: "Poppins Regular";
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+input, textarea{
+    font-family: "Poppins Regular";
+    font-size: 1rem;
+}
+a, button{
+    font-family: "Poppins Semibold";
+    color: var(--black);
+    font-size: 1rem;
+    transition: ease 1s color;
+    cursor: pointer;
+}
+.filter select{
+    width: 100%;
+    font-family: "Poppins Regular";
+    color: var(--gray);
+    font-size: 16px;
+    padding: 8px 24px;
+    outline: none;
+    border: 1px solid var(--light-gray);
+    border-radius: var(--br);
+    cursor: pointer;
+}
+.doc-card .doc-name{
+    font-family: "Poppins Semibold";
+    /* margin-bottom: 1rem; */
+}
+.f-card .f-name{
+    font-family: "Poppins Semibold";
+    margin-bottom: 0;
+}
+.galeri .g-title{
+    font-family: "Poppins Semibold";
+    margin-bottom: 1rem;
+}
+footer .nav-col li{
+    font-family: "Poppins Regular";
+    margin-bottom: 1rem;
+}
+
+footer .nav-col li a{
+    font-family: "Poppins Regular";
+}
+.menu li a{
+    font-family: "Poppins Regular";
+    /* color: var(--white); */
+    color: var(--black);
+}
+
+label{
+    cursor : auto !important;
+    font-size:12px !important;
+}
+
+.select2-selection--single {
+  height: 100% !important;
+}
+.select2-selection__rendered{
+  word-wrap: break-word !important;
+  text-overflow: inherit !important;
+  white-space: normal !important;
+}
+
