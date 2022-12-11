@@ -149,7 +149,6 @@ function store(){
                 success:function(data){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
-                            /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {
                                 window.location.replace("{{ url('crud') }}");
                             }
