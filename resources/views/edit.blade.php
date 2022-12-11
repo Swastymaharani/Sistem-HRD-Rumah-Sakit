@@ -57,7 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form action="{{ route('crud.update', $data->id)}}" method="POST">
+        <form name="formPendaftaran" action="{{ route('crud.update', $data->id)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
@@ -84,7 +84,7 @@
                         @enderror
                     </div>
                     <div class="mb-3 row">
-                        <div class="col-sm-5"><button type="submit" class="btn btn-primary" name="submit">Simpan</button></div>
+                        <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update("","")' class='btn btn-primary'>Simpan</a></div>
                     </div>
                 </div>
             </div>
@@ -92,3 +92,76 @@
     </div>
     <!-- </div> -->
 @endsection
+@push('script')
+<script>
+
+function update(){
+    if (document.forms["formPendaftaran"]["nim"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'NIM Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nim"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["nama"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["alamat"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Alamat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["alamat"].focus();
+        return false;
+    }
+
+    // buttonsmdisable(elm);
+    CustomSwal.fire({
+        icon:'question',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Batal',
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+                url:"{{route('crud.update', $data->id)}}/",
+                data:{
+                    _method:"POST",
+                    _token:"{{csrf_token()}}",
+                    nim:$("#nim").val(),
+                    nama:$("#nama").val(),
+                    alamat:$("#alamat").val()
+                },
+                type:"POST",
+                dataType:"JSON",
+                success:function(data){
+                    if(data.success == 1){
+                        CustomSwal.fire('Sukses', data.msg, 'success');
+                        window.location.replace("{{ url('crud') }}");
+                    }else{
+                        CustomSwal.fire('Gagal', data.msg, 'error');
+                    }
+                },
+                error:function(error){
+                    CustomSwal.fire('Gagal', 'terjadi kesalahan sistem', 'error');
+                    console.log(error.XMLHttpRequest);
+                }
+            });
+        }else{
+            
+        }
+    });
+}
+</script>
+@endpush
