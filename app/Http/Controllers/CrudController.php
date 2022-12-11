@@ -53,45 +53,59 @@ class CrudController extends Controller
     }
 
     public function save(Request $request){
-        $request->validate([
-            'nim'=>'required|unique:mahasiswas,nim',
-            'nama'=>'required',
-            'alamat'=>'required'
-        ],
+    //     $request->validate([
+    //         'nim'=>'required|unique:mahasiswas,nim',
+    //         'nama'=>'required',
+    //         'alamat'=>'required'
+    //     ],
 
-        [
-            'nim.required'=>'Nim Wajib Diisi',
-            'nim.unique'=>'Nim yang dimasukan sudah ada',
-            'nama.required'=>'Nama Wajib Diisi',
-            'alamat.required'=>'Alamat Wajib Diisi'
-        ]
+    //     [
+    //         'nim.required'=>'Nim Wajib Diisi',
+    //         'nim.unique'=>'Nim yang dimasukan sudah ada',
+    //         'nama.required'=>'Nama Wajib Diisi',
+    //         'alamat.required'=>'Alamat Wajib Diisi'
+    //     ]
             
-    );
+    // );
 
-        $data = Mahasiswa::create($request->all());
+        // $data = Mahasiswa::create($request->all());
         $icon = 'ni ni-dashlite';
         $subtitle = 'Mahasiswa';
 
-        return redirect()->route('crud.list',compact('subtitle','icon'))->with('success', 'Success!');
+        // return redirect()->route('crud.list',compact('subtitle','icon'))->with('success', 'Success!');
+
+        if(Mahasiswa::create($request->all())){
+            $response = array('success'=>1,'msg'=>'Berhasil menambah data');
+        }else{
+            $response = array('success'=>2,'msg'=>'Gagal menambah data');
+        }
+        return $response;
     }
 
     public function update(Request $request, $id){
-        $request->validate([
-            'nama'=>'required',
-            'alamat'=>'required'
-        ],
+        // $request->validate([
+        //     'nama'=>'required',
+        //     'alamat'=>'required'
+        // ],
 
-        [
-            'nama.required'=>'Nama Wajib Diisi',
-            'alamat.required'=>'Alamat Wajib Diisi'
-        ]
-        );
+        // [
+        //     'nama.required'=>'Nama Wajib Diisi',
+        //     'alamat.required'=>'Alamat Wajib Diisi'
+        // ]
+        // );
 
-        $data = Mahasiswa::find($request->id);
-        $data->update($request->all());
-        $data->save();
-        $icon = 'ni ni-dashlite';
-        $subtitle = 'Mahasiswa';
-        return redirect()->route('crud.list',compact('subtitle','icon'));
+        $data = Mahasiswa::find($id);
+        // $data->update($request->all());
+        // $data->save();
+        // $icon = 'ni ni-dashlite';
+        // $subtitle = 'Mahasiswa';
+        // return redirect()->route('crud.list',compact('subtitle','icon'));
+
+        if($data->fill($request->all())->save()){
+            $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
+        }else{
+            $response = array('success'=>2,'msg'=>'Gagal mengedit data');
+        }
+        return $response;
     }
 }
