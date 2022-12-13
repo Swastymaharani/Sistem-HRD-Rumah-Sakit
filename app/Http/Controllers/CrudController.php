@@ -12,7 +12,7 @@ class CrudController extends Controller
         $icon = 'ni ni-dashlite';
         $subtitle = 'Mahasiswa';
         $table_id = 'tbmahasiswa';
-        return view('crud',compact('subtitle','table_id','icon'));
+        return view('crudmahasiswa.crud',compact('subtitle','table_id','icon'));
     }
 
     public function listData(Request $request){
@@ -42,14 +42,14 @@ class CrudController extends Controller
     public function create(){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Data Mahasiswa';
-        return view('create',compact('subtitle','icon'));
+        return view('crudmahasiswa.create',compact('subtitle','icon'));
     }
 
     public function edit(Request $request, $id){
         $data = Mahasiswa::find($request->id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Data Mahasiswa';
-        return view('edit',compact('subtitle','icon','data'));
+        return view('crudmahasiswa.edit',compact('subtitle','icon','data'));
     }
 
     public function save(Request $request){
