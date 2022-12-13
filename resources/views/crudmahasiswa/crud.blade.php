@@ -59,13 +59,12 @@
                             <th width="10%">Alamat</th>
                             <th width="10%">Aksi</th>
                         </thead>
-                        <tbody></tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-<!-- </div> -->
+
 
 @endsection
 @push('script')

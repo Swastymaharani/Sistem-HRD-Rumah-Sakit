@@ -22,7 +22,7 @@
                                 <li class="nk-menu-item">
                                     <a href="{{URL('/crud')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-                                        <span class="nk-menu-text">CRUD Example</span>
+                                        <span class="nk-menu-text">CRUD Pegawai</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">

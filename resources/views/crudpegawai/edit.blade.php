@@ -21,6 +21,7 @@
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
+
     </div>
     <div class="row gy-3 d-none" id="loaderspin">
         <div class="col-md-12">
@@ -55,36 +56,35 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/crud/save') }}" method="POST">
+        {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
+        <form name="formPendaftaran" action="{{ route('crud.update', $data->id)}}" method="POST">
             @csrf
+            {{-- @method('PUT') --}}
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="nim" class="col-sm-2 col-form-label">NIM</label>
-                        <input type="text" class="form-control @error("nim") is-invalid @enderror" name="nim" value="{{ old("nim") }}" id="nim" >
+                        <input type="text" class="form-control @error("nim") is-invalid @enderror" name='nim' value="{{ $data->nim }}" id="nim">
                         @error('nim')
                              <div class="invalid-feedback"> {{ $message }}</div>
                         @enderror
                     </div>
-                   
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                        <input type="text" class="form-control @error("nama") is-invalid @enderror" name='nama' value="{{ old('nama') }}" id="nama" >
+                        <input type="text" class="form-control @error("nama") is-invalid @enderror" name='nama' value="{{ $data->nama }}" id="nama">
                         @error('nama')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                             <div class="invalid-feedback"> {{ $message }}</div>
                         @enderror
                     </div>
-
                     <div class="mb-3 row">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" name='alamat' value="{{ old('alamat') }}" id="alamat" >
+                        <input type="text" class="form-control @error("alamat") is-invalid @enderror" name='alamat' value="{{ $data->alamat }}" id="alamat">
                         @error('alamat')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                             <div class="invalid-feedback"> {{ $message }}</div>
                         @enderror
                     </div>
-                    
                     <div class="mb-3 row">
-                        <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
+                        <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update("","")' class='btn btn-primary'>Simpan</a></div>
                     </div>
                 </div>
             </div>
@@ -95,35 +95,34 @@
 @push('script')
 <script>
 
-
-function store(){
+function update(){
     if (document.forms["formPendaftaran"]["nim"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'NIM Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["nim"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["nama"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Nama Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["nama"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["alamat"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Alamat Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["alamat"].focus();
-            return false;
-        }
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'NIM Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nim"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["nama"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["alamat"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Alamat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["alamat"].focus();
+        return false;
+    }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
@@ -136,13 +135,13 @@ function store(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/crud/save')}}",
+                url:"{{route('crud.update', $data->id)}}/",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
                     nim:$("#nim").val(),
                     nama:$("#nama").val(),
-                    alamat:$("#alamat").val(),
+                    alamat:$("#alamat").val()
                 },
                 type:"POST",
                 dataType:"JSON",
@@ -153,17 +152,17 @@ function store(){
                                 window.location.replace("{{ url('crud') }}");
                             }
                         });
-                    }
-                    else
-                    {
+                    }else{
                         CustomSwal.fire('Gagal', data.msg, 'error');
                     }
                 },
                 error:function(error){
                     CustomSwal.fire('Gagal', 'terjadi kesalahan sistem', 'error');
                     console.log(error.XMLHttpRequest);
-                },
+                }
             });
+        }else{
+            
         }
     });
 }
