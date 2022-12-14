@@ -95,7 +95,7 @@
                             <th>File NPWP</th>
                             <th>Status Nikah ID </th>
                             <th>Status Daftar ID</th>
-                            {{-- <th width="10%">Aksi</th> --}}
+                            <th>Aksi</th>
                             
                         </thead>
                         
@@ -402,13 +402,13 @@ $(document).ready(function() {
                 searchable: true,
                 class: 'text-left'
             },
-            // {
-            //     data: 'aksi',
-            //     name: 'aksi',
-            //     orderable: false,
-            //     searchable: false,
-            //     class: 'text-center'
-            // }
+            {
+                data: 'aksi',
+                name: 'aksi',
+                orderable: false,
+                searchable: false,
+                class: 'text-center'
+            }
         ],
     });
     

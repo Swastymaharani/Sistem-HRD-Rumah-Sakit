@@ -61,26 +61,17 @@
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="nim" class="col-sm-2 col-form-label">NIM</label>
-                        <input type="text" class="form-control @error("nim") is-invalid @enderror" name="nim" value="{{ old("nim") }}" id="nim" >
-                        @error('nim')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name="nim" value="{{ old("nim") }}" id="nim" >
                     </div>
                    
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                        <input type="text" class="form-control @error("nama") is-invalid @enderror" name='nama' value="{{ old('nama') }}" id="nama" >
-                        @error('nama')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='nama' value="{{ old('nama') }}" id="nama" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" name='alamat' value="{{ old('alamat') }}" id="alamat" >
-                        @error('alamat')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="alamat" >
                     </div>
                     
                     <div class="mb-3 row">
