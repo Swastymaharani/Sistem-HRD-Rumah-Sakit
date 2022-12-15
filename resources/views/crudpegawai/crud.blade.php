@@ -52,7 +52,7 @@
             <div class="card-body">
                 {{-- <div class="table-responsive"> --}}
                 <div>
-                    <table id="{{$table_id}}" class="display nowrap" style="width:100%">
+                    <table id="{{$table_id}}" class="table table-striped table-bordered nowrap" style="width:100%">
                         <thead id="{{$table_id}}" style="color:#526484; font-size:11px;">
                             
                             <th>No.</th>
@@ -96,7 +96,6 @@
                             <th>Status Nikah ID </th>
                             <th>Status Daftar ID</th>
                             <th>Aksi</th>
-                            
                         </thead>
                         
                     </table>
@@ -109,11 +108,11 @@
 @endsection
 @push('script')
 <script>
-var table;
-
-
-$(document).ready(function() {
-    table = $('#{{$table_id}}').DataTable({
+    var table;
+    
+    
+    $(document).ready(function() {
+        table = $('#{{$table_id}}').DataTable({
         scrollX: true,
         processing:true,
         autoWidth: true,

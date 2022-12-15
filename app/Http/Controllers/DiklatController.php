@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\JenisDiklat;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Diklat;
 
-class JenisDiklatController extends Controller
+class DiklatController extends Controller
 {
     public function index(){
         $icon = 'ni ni-dashlite';
-        $subtitle = 'Jenis Diklat';
-        $table_id = 'm_jenis_diklat';
-        return view('crudjenisdiklat.crud',compact('subtitle','table_id','icon'));
+        $subtitle = 'Diklat';
+        $table_id = 'm_diklat';
+        return view('cruddiklat.crud',compact('subtitle','table_id','icon'));
     }
 
     public function listData(Request $request){
-        $data = JenisDiklat::all();
+        $data = Diklat::all();
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
@@ -31,7 +31,7 @@ class JenisDiklatController extends Controller
     }
 
     public function deleteData(Request $request){
-        if(JenisDiklat::destroy($request->id)){
+        if(Diklat::destroy($request->id)){
             $response = array('success'=>1,'msg'=>'Berhasil hapus data');
         }else{
             $response = array('success'=>2,'msg'=>'Gagal menghapus data');
@@ -46,14 +46,14 @@ class JenisDiklatController extends Controller
     }
 
     public function edit(Request $request, $id){
-        $data = JenisDiklat::find($request->id);
+        $data = Diklat::find($request->id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Data Jenis Diklat';
         return view('crudjenisdiklat.edit',compact('subtitle','icon','data'));
     }
 
     public function save(Request $request){
-        if(JenisDiklat::create($request->all())){
+        if(Diklat::create($request->all())){
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }else{
             $response = array('success'=>2,'msg'=>'Gagal menambah data');
@@ -62,7 +62,7 @@ class JenisDiklatController extends Controller
     }
 
     public function update(Request $request, $id){
-        $data = JenisDiklat::find($id);
+        $data = Diklat::find($id);
         if($data->fill($request->all())->save()){
             $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
         }else{
