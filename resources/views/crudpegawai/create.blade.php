@@ -60,11 +60,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="id" class="col-sm-2 col-form-label">ID</label>
-                        <input type="numeric" class="form-control" name="id" value="{{ old("id") }}" id="id" >
-                    </div>
-                   
-                    <div class="mb-3 row">
                         <label for="kode" class="col-sm-2 col-form-label">Kode</label>
                         <input type="text" class="form-control" name='kode' value="{{ old('kode') }}" id="kode" >
                     </div>
@@ -76,129 +71,88 @@
 
                     <div class="mb-3 row">
                         <label for="kode_bpjs" class="col-sm-2 col-form-label">Kode BPJS</label>
-                        <input type="text" class="form-control" name='kode_bpjs' value="{{ old('kode_bpjs') }}" id="no_induk" >
+                        <input type="text" class="form-control" name='kode_bpjs' value="{{ old('kode_bpjs') }}" id="kode_bpjs" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                        <input type="text" class="form-control" name='nama' value="{{ old('nama') }}" id="no_induk" >
+                        <input type="text" class="form-control" name='nama' value="{{ old('nama') }}" id="nama" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="nama_tercetak" class="col-sm-2 col-form-label">Nama Tercetak</label>
-                        <input type="text" class="form-control" name='nama_tercetak' value="{{ old('nama_tercetak') }}" id="no_induk" >
+                        <input type="text" class="form-control" name='nama_tercetak' value="{{ old('nama_tercetak') }}" id="nama_tercetak" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="gelar_depan" class="col-sm-2 col-form-label">Gelar Depan</label>
-                        <input type="text" class="form-control" name='gelar_depan' value="{{ old('gelar_depan') }}" id="no_induk" >
+                        <input type="text" class="form-control" name='gelar_depan' value="{{ old('gelar_depan') }}" id="gelar_depan" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="gelar_belakang" class="col-sm-2 col-form-label">Gelar Belakang</label>
-                        <input type="text" class="form-control" name='gelar_belakang' value="{{ old('gelar_belakang') }}" id="no_induk" >
+                        <input type="text" class="form-control" name='gelar_belakang' value="{{ old('gelar_belakang') }}" id="gelar_belakang" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="jabatan_fungsional_terakhir" class="col-sm-2 col-form-label">Jabatan Fungsional Terakhir</label>
+                        <input type="text" class="form-control" name='jabatan_fungsional_terakhir' value="{{ old('jabatan_fungsional_terakhir') }}" id="jabatan_fungsional_terakhir" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                        <input type="text" class="form-control" name='tempat_lahir' value="{{ old('tempat_lahir') }}" id="tempat_lahir" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="tanggal_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                        <input type="date" class="form-control" name='tanggal_lahir' value="{{ old('tanggal_lahir') }}" id="tanggal_lahir" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="Alamat" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="dusun" class="col-sm-2 col-form-label">Dusun</label>
+                        <input type="text" class="form-control" name='dusun' value="{{ old('dusun') }}" id="dusun" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="kodepos" class="col-sm-2 col-form-label">Kode Pos</label>
+                        <input type="text" class="form-control" name='kodepos' value="{{ old('kodepos') }}" id="kodepos" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="nik" class="col-sm-2 col-form-label">NIK</label>
+                        <input type="numeric" class="form-control" name='nik' value="{{ old('nik') }}" id="nik" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="npwp" class="col-sm-2 col-form-label">NPWP</label>
+                        <input type="text" class="form-control" name='npwp' value="{{ old('npwp') }}" id="npwp" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="file_photo" class="col-sm-2 col-form-label">File Foto</label>
+                        <input type="text" class="form-control" name='file_photo' value="{{ old('file_photo') }}" id="file_photo" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="file_ktp" class="col-sm-2 col-form-label">File KTP</label>
+                        <input type="text" class="form-control" name='file_ktp' value="{{ old('file_ktp') }}" id="file_ktp" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="file_kk" class="col-sm-2 col-form-label">File KK</label>
+                        <input type="text" class="form-control" name='file_kk' value="{{ old('file_kk') }}" id="file_kk" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                        <label for="file_npwp" class="col-sm-2 col-form-label">File NPWP</label>
+                        <input type="text" class="form-control" name='file_npwp' value="{{ old('file_npwp') }}" id="file_npwp" >
                     </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
 
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
@@ -215,22 +169,22 @@
 
 function store(){
         // var nim = document.getElementById("nim").value;
-        if (document.forms["formPendaftaran"]["nim"].value == "") {
+        if (document.forms["formPendaftaran"]["kode"].value == "") {
                 CustomSwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'NIM Tidak Boleh Kosong',
+                    text: 'Kode Tidak Boleh Kosong',
                 })
-                document.forms["formPendaftaran"]["nim"].focus();
+                document.forms["formPendaftaran"]["kode"].focus();
                 return false;
             }
-        if (document.forms["formPendaftaran"]["nim"].value =="") {
+        if (document.forms["formPendaftaran"]["kode_bpjs"].value =="") {
                 CustomSwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'NIM Sudah Ada',
+                    text: 'Kode BPJS Tidak Boleh Kosong',
                 })
-                document.forms["formPendaftaran"]["nim"].focus();
+                document.forms["formPendaftaran"]["kode_bpjs"].focus();
                 return false;
         }  
             if (document.forms["formPendaftaran"]["nama"].value == "") {
@@ -242,6 +196,60 @@ function store(){
                 document.forms["formPendaftaran"]["nama"].focus();
                 return false;
             }
+            if (document.forms["formPendaftaran"]["nama_tercetak"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Nama Tercetak Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["nama_tercetak"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["gelar_depan"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Gelar Depan Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["gelar_depan"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["gelar_belakang"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Gelar Belakang Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["gelar_belakang"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["jabatan_fungsional_terakhir"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Jabatan Fungsional Terakhir Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["jabatan_fungsional_terakhir"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["tempat_lahir"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Tempat Lahir Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["tempat_lahir"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["tanggal_lahir"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Tanggal Lahir Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["tanggal_lahir"].focus();
+                return false;
+            }
             if (document.forms["formPendaftaran"]["alamat"].value == "") {
                 CustomSwal.fire({
                     icon: 'error',
@@ -249,6 +257,78 @@ function store(){
                     text: 'Alamat Tidak Boleh Kosong',
                 })
                 document.forms["formPendaftaran"]["alamat"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["dusun"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Dusun Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["dusun"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["kodepos"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Kode Pos Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["kodepos"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["nik"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'NIK Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["nik"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["npwp"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'NPWP Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["npwp"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["file_photo"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'File Foto Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["file_photo"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'File KTP Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["file_ktp"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["file_kk"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'File KK Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["file_kk"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'File NPWP Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["file_npwp"].focus();
                 return false;
             }
 
