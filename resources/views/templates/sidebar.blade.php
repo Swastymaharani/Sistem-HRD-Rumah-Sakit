@@ -20,7 +20,7 @@
                                     <h6 class="overline-title text-primary-alt">Master Data</h6>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/crud')}}" class="nk-menu-link">
+                                    <a href="{{URL('/pegawai')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
                                         <span class="nk-menu-text">CRUD Pegawai</span>
                                     </a>
@@ -38,9 +38,9 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/crud4')}}" class="nk-menu-link">
+                                    <a href="{{URL('/crud')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
-                                        <span class="nk-menu-text">Example 4</span>
+                                        <span class="nk-menu-text">CRUD Mahasiswa</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-heading">

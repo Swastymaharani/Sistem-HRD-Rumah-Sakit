@@ -74,7 +74,17 @@ class CrudController extends Controller
 
         // return redirect()->route('crud.list',compact('subtitle','icon'))->with('success', 'Success!');
 
-        if(Mahasiswa::create($request->all())){
+        
+        $data = Mahasiswa::create([
+            'nim' => $request-> input('nim'),
+            // 'description'=> $request-> input('description'),
+            // 'age'=> $request-> input('age'),
+            // 'feet'=> $request-> input('feet'),
+            // 'sound'=> $request-> input('sound'),
+            // 'image'=> $newImageName,
+        ]);
+        
+        if($data){
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }else{
             $response = array('success'=>2,'msg'=>'Gagal menambah data');

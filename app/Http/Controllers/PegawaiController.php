@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pegawai;
+use Symfony\Component\Console\Input\Input;
 use Yajra\DataTables\Facades\DataTables;
 
 class PegawaiController extends Controller
@@ -23,7 +24,7 @@ class PegawaiController extends Controller
                 ->addColumn('aksi', function($data){
                     $aksi = "";
                     $aksi .= "<a title='Riwayat Diklat' href='#' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
-                    $aksi .= "<a title='Edit Data' href='/crud/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    $aksi .= "<a title='Edit Data' href='/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->kode}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-kode='{$data->kode}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;
                 })
@@ -54,7 +55,23 @@ class PegawaiController extends Controller
     }
 
     public function save(Request $request){
-        if(Pegawai::create($request->all())){
+        // $kode = $request;
+        // // $content = Input::get( 'message' );
+
+        // $pegawai = new Pegawai();
+        // $pegawai->kode = $request;
+        // // $comment->comment_content = $content;
+        // $pegawai->save();
+        $data = Pegawai::create([
+            'nama' => $request-> input('nama'),
+            // 'description'=> $request-> input('description'),
+            // 'age'=> $request-> input('age'),
+            // 'feet'=> $request-> input('feet'),
+            // 'sound'=> $request-> input('sound'),
+            // 'image'=> $newImageName,
+        ]);
+
+        if($data){
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }else{
             $response = array('success'=>2,'msg'=>'Gagal menambah data');

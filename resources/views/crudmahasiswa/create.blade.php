@@ -67,7 +67,7 @@
                         @enderror
                     </div>
                    
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <input type="text" class="form-control @error("nama") is-invalid @enderror" name='nama' value="{{ old('nama') }}" id="nama" >
                         @error('nama')
@@ -81,7 +81,7 @@
                         @error('alamat')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                     
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
@@ -107,38 +107,38 @@ function store(){
                 document.forms["formPendaftaran"]["nim"].focus();
                 return false;
             }
-        if (document.forms["formPendaftaran"]["nim"].value =="") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'NIM Sudah Ada',
-                })
-                document.forms["formPendaftaran"]["nim"].focus();
-                return false;
-        }  
-            if (document.forms["formPendaftaran"]["nama"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["nama"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["alamat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Alamat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["alamat"].focus();
-                return false;
-            }
+        // if (document.forms["formPendaftaran"]["nim"].value =="") {
+        //         CustomSwal.fire({
+        //             icon: 'error',
+        //             title: 'Oops...',
+        //             text: 'NIM Sudah Ada',
+        //         })
+        //         document.forms["formPendaftaran"]["nim"].focus();
+        //         return false;
+        // }  
+            // if (document.forms["formPendaftaran"]["nama"].value == "") {
+            //     CustomSwal.fire({
+            //         icon: 'error',
+            //         title: 'Oops...',
+            //         text: 'Nama Tidak Boleh Kosong',
+            //     })
+            //     document.forms["formPendaftaran"]["nama"].focus();
+            //     return false;
+            // }
+            // if (document.forms["formPendaftaran"]["alamat"].value == "") {
+            //     CustomSwal.fire({
+            //         icon: 'error',
+            //         title: 'Oops...',
+            //         text: 'Alamat Tidak Boleh Kosong',
+            //     })
+            //     document.forms["formPendaftaran"]["alamat"].focus();
+            //     return false;
+            // }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nim"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
@@ -151,8 +151,8 @@ function store(){
                     _method:"POST",
                     _token:"{{csrf_token()}}",
                     nim:$("#nim").val(),
-                    nama:$("#nama").val(),
-                    alamat:$("#alamat").val(),
+                    // nama:$("#nama").val(),
+                    // alamat:$("#alamat").val(),
                 },
                 type:"POST",
                 dataType:"JSON",
