@@ -2,6 +2,8 @@
 
 // use App\Http\Controllers\CrudController;
 use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\JenisDiklatController;
+// use App\Http\Controllers\DiklatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +38,22 @@ Route::get('/crud/{id}/edit',[PegawaiController::class,'edit'])->name('crud.edit
 Route::delete('/crud/{id}',[PegawaiController::class,'deleteData'])->name('crud.delete');
 Route::post('/crud/save', [PegawaiController::class,'save'])->name('crud.save');
 Route::post('/crud/{id}/update',[PegawaiController::class,'update'])->name('crud.update');
-
-
 Route::post('/crud/listData',[PegawaiController::class,'listData'])->name('crud.listData');
+
+// Route CRUD Jenis Diklat
+Route::get('/jenisdiklat',[JenisDiklatController::class,'index'])->name('diklat.list');
+// Route::get('/crud/create',[JenisDiklatController::class,'create'])->name('crud.create');
+// Route::get('/crud/{id}/edit',[JenisDiklatController::class,'edit'])->name('crud.edit');
+// Route::delete('/crud/{id}',[JenisDiklatController::class,'deleteData'])->name('crud.delete');
+// Route::post('/crud/store', [JenisDiklatController::class,'store'])->name('crud.srote');
+// Route::post('/crud/{id}/update',[JenisDiklatController::class,'update'])->name('crud.update');
+// Route::post('/crud/listData',[JenisDiklatController::class,'listData'])->name('crud.listData');
+
+// Route CRUD Diklat
+// Route::get('/diklat',[DiklatController::class,'index'])->name('mdiklat.list');
+// Route::get('/crud/create',[DiklatController::class,'create'])->name('crud.create');
+// Route::get('/crud/{id}/edit',[DiklatController::class,'edit'])->name('crud.edit');
+// Route::delete('/crud/{id}',[DiklatController::class,'deleteData'])->name('crud.delete');
+// Route::post('/crud/simpan', [DiklatController::class,'simpan'])->name('crud.simpan');
+// Route::post('/crud/{id}/update',[DiklatController::class,'update'])->name('crud.update');
+// Route::post('/crud/listData',[DiklatController::class,'listData'])->name('crud.listData');
