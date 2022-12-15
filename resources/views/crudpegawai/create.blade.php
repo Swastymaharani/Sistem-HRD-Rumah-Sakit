@@ -60,20 +60,146 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="nim" class="col-sm-2 col-form-label">NIM</label>
-                        <input type="text" class="form-control" name="nim" value="{{ old("nim") }}" id="nim" >
+                        <label for="id" class="col-sm-2 col-form-label">ID</label>
+                        <input type="numeric" class="form-control" name="id" value="{{ old("id") }}" id="id" >
                     </div>
                    
                     <div class="mb-3 row">
-                        <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                        <input type="text" class="form-control" name='nama' value="{{ old('nama') }}" id="nama" >
+                        <label for="kode" class="col-sm-2 col-form-label">Kode</label>
+                        <input type="text" class="form-control" name='kode' value="{{ old('kode') }}" id="kode" >
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="alamat" >
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
                     </div>
-                    
+
+                    <div class="mb-3 row">
+                        <label for="kode_bpjs" class="col-sm-2 col-form-label">Kode BPJS</label>
+                        <input type="text" class="form-control" name='kode_bpjs' value="{{ old('kode_bpjs') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="nama" class="col-sm-2 col-form-label">Nama</label>
+                        <input type="text" class="form-control" name='nama' value="{{ old('nama') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="nama_tercetak" class="col-sm-2 col-form-label">Nama Tercetak</label>
+                        <input type="text" class="form-control" name='nama_tercetak' value="{{ old('nama_tercetak') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="gelar_depan" class="col-sm-2 col-form-label">Gelar Depan</label>
+                        <input type="text" class="form-control" name='gelar_depan' value="{{ old('gelar_depan') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="gelar_belakang" class="col-sm-2 col-form-label">Gelar Belakang</label>
+                        <input type="text" class="form-control" name='gelar_belakang' value="{{ old('gelar_belakang') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div>
+
+
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
                     </div>
