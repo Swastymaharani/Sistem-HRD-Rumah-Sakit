@@ -41,14 +41,14 @@ class JenisDiklatController extends Controller
 
     public function create(){
         $icon = 'ni ni-dashlite';
-        $subtitle = 'Tambah Jenis Data Diklat';
+        $subtitle = 'Tambah Data Jenis Diklat';
         return view('crudjenisdiklat.create',compact('subtitle','icon'));
     }
 
     public function edit(Request $request, $id){
         $data = JenisDiklat::find($request->id);
         $icon = 'ni ni-dashlite';
-        $subtitle = 'Edit Jenis Data Diklat';
+        $subtitle = 'Edit Data Jenis Diklat';
         return view('crudjenisdiklat.edit',compact('subtitle','icon','data'));
     }
 

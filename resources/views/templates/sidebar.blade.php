@@ -28,13 +28,13 @@
                                 <li class="nk-menu-item">
                                     <a href="{{URL('/jenisdiklat')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
-                                        <span class="nk-menu-text">Example 2</span>
+                                        <span class="nk-menu-text">CRUD Jenis Diklat</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/crud3')}}" class="nk-menu-link">
+                                    <a href="{{URL('/diklat')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-linux-server"></em></span>
-                                        <span class="nk-menu-text">Example 3</span>
+                                        <span class="nk-menu-text">CRUD Diklat</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">

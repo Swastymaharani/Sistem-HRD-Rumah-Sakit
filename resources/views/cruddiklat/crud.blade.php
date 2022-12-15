@@ -56,8 +56,10 @@
                         <thead id="{{$table_id}}" style="color:#526484; font-size:11px;">
                             
                             <th>No.</th>
-                            <th>Jenis Diklat ID</th>
-                            <th>Nama Jenis Diklat</th>
+                            <th>ID</th>
+                            <th>No Urut</th>
+                            <th>Nama Diklat</th>
+                            <th>Jenis Diklat</th>
                             {{-- <th width="10%">Aksi</th> --}}
                             
                         </thead>
@@ -84,7 +86,7 @@ $(document).ready(function() {
         serverSide: true,
         dom: '<"row justify-between g-2 "<"col-7 col-sm-4 text-left"f><"col-5 col-sm-8 text-right"<"datatable-filter"<"d-flex justify-content-end g-2" l>>>><" my-3"t><"row align-items-center"<"col-5 col-sm-12 col-md-6 text-left text-md-left"i><"col-5 col-sm-12 col-md-6 text-md-right"<"d-flex justify-content-end "p>>>',
         ajax: {
-            url: '{{ route("diklat.list") }}',
+            url: '{{ route("mdiklat.list") }}',
             type:"POST",
             data: function(params) {
                 params._token = "{{ csrf_token() }}";
@@ -93,15 +95,29 @@ $(document).ready(function() {
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },         
             {
-                data: 'jenis_diklat_id',
-                name: 'jenis_diklat_id',
+                data: 'id_diklat',
+                name: 'id_diklat',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
             },
             {
-                data: 'nama_jenis_diklat',
-                name: 'nama_jenis_diklat',
+                data: 'no_urut',
+                name: 'no_urut',
+                orderable: true,
+                searchable: true,
+                class: 'text-left'
+            },
+            {
+                data: 'nama_diklat',
+                name: 'nama_diklat',
+                orderable: true,
+                searchable: true,
+                class: 'text-left'
+            },
+            {
+                data: 'jenis_diklat_id',
+                name: 'jenis_diklat_id',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
@@ -132,7 +148,7 @@ function deleteData(id,name,elm){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/jenisdiklat')}}/",
+                url:"{{url('/diklat')}}/"+id,
                 data:{
                     _method:"DELETE",
                     _token:"{{csrf_token()}}"
