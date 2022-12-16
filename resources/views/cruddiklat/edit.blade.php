@@ -63,26 +63,25 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="nim" class="col-sm-2 col-form-label">NIM</label>
-                        <input type="text" class="form-control @error("nim") is-invalid @enderror" name='nim' value="{{ $data->nim }}" id="nim">
-                        @error('nim')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <label for="id_diklat" class="col-sm-2 col-form-label">ID Diklat</label>
+                        <input type="text" class="form-control" name='id_diklat' value="{{ $data->id_diklat }}" id="id_diklat" >
                     </div>
+
                     <div class="mb-3 row">
-                        <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                        <input type="text" class="form-control @error("nama") is-invalid @enderror" name='nama' value="{{ $data->nama }}" id="nama">
-                        @error('nama')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <label for="no_urut" class="col-sm-2 col-form-label">No. Urut</label>
+                        <input type="text" class="form-control" name='no_urut' value="{{ $data->no_urut }}" id="no_urut" >
                     </div>
+
                     <div class="mb-3 row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control @error("alamat") is-invalid @enderror" name='alamat' value="{{ $data->alamat }}" id="alamat">
-                        @error('alamat')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <label for="nama_diklat" class="col-sm-2 col-form-label">Nama Diklat</label>
+                        <input type="text" class="form-control" name='nama_diklat' value="{{ $data->nama_diklat }}" id="nama_diklat" >
                     </div>
+
+                    <div class="mb-3 row">
+                        <label for="jenis_diklat_id" class="col-sm-2 col-form-label">Jenis Diklat</label>
+                        <input type="text" class="form-control" name='jenis_diklat_id' value="{{ $data->jenis_diklat_id }}" id="jenis_diklat_id" >
+                    </div>
+
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update("","")' class='btn btn-primary'>Simpan</a></div>
                     </div>
@@ -96,33 +95,42 @@
 <script>
 
 function update(){
-    if (document.forms["formPendaftaran"]["nim"].value == "") {
-        CustomSwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'NIM Tidak Boleh Kosong',
-        })
-        document.forms["formPendaftaran"]["nim"].focus();
-        return false;
-    }
-    if (document.forms["formPendaftaran"]["nama"].value == "") {
-        CustomSwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Nama Tidak Boleh Kosong',
-        })
-        document.forms["formPendaftaran"]["nama"].focus();
-        return false;
-    }
-    if (document.forms["formPendaftaran"]["alamat"].value == "") {
-        CustomSwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Alamat Tidak Boleh Kosong',
-        })
-        document.forms["formPendaftaran"]["alamat"].focus();
-        return false;
-    }
+    if (document.forms["formPendaftaran"]["id_diklat"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'ID Diklat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["id_diklat"].focus();
+                return false;
+            }
+        if (document.forms["formPendaftaran"]["no_urut"].value =="") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No Urut Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["no_urut"].focus();
+                return false;
+        }  
+            if (document.forms["formPendaftaran"]["nama_diklat"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Nama Diklat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["nama_diklat"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["jenis_diklat_id"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Jenis Diklat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
+                return false;
+            }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
@@ -135,7 +143,7 @@ function update(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{route('crud.update', $data->id)}}/",
+                url:"{{route('crud.updatediklat', $data->id)}}/",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
