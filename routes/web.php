@@ -4,7 +4,7 @@
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\JenisDiklatController;
 use App\Http\Controllers\DiklatController;
-// use App\Http\Controllers\DiklatController;
+use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,29 +17,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/',function(){
-//     return redirect('/crud');
-// });
-// Route::get('/crud',[CrudController::class,'index'])->name('crud.list');
-// Route::get('/crud/create',[CrudController::class,'create'])->name('crud.create');
-// Route::get('/crud/{id}/edit',[CrudController::class,'edit'])->name('crud.edit');
-// Route::delete('/crud/{id}',[CrudController::class,'deleteData'])->name('crud.delete');
-// Route::post('/crud/save', [CrudController::class,'save'])->name('crud.save');
-// Route::post('/crud/{id}/update',[CrudController::class,'update'])->name('crud.update');
 
-
-// Route::post('/crud/listData',[CrudController::class,'listData'])->name('crud.listData');
+Route::get('/crud',[CrudController::class,'index'])->name('crud.list');
+Route::get('/crud/create',[CrudController::class,'create'])->name('crud.create');
+Route::get('/crud/{id}/edit',[CrudController::class,'edit'])->name('crud.edit');
+Route::delete('/crud/{id}',[CrudController::class,'deleteData'])->name('crud.delete');
+Route::post('/crud/save', [CrudController::class,'save'])->name('crud.save');
+Route::post('/crud/{id}/update',[CrudController::class,'update'])->name('crud.update');
+Route::post('/crud/listData',[CrudController::class,'listData'])->name('crud.listData');
 
 Route::get('/',function(){
-    return redirect('/crud');
+    return redirect('/pegawai');
 });
-Route::get('/crud',[PegawaiController::class,'index'])->name('crud.list');
-Route::post('/crud/listData',[PegawaiController::class,'listData'])->name('crud.listData');
-Route::get('/crud/create',[PegawaiController::class,'create'])->name('crud.create');
-Route::get('/crud/{id}/edit',[PegawaiController::class,'edit'])->name('crud.edit');
-Route::delete('/crud/{id}',[PegawaiController::class,'deleteData'])->name('crud.delete');
-Route::post('/crud/save', [PegawaiController::class,'save'])->name('crud.save');
-Route::post('/crud/{id}/update',[PegawaiController::class,'update'])->name('crud.update');
+Route::get('/pegawai',[PegawaiController::class,'index'])->name('pegawai.list');
+Route::post('/pegawai/listData',[PegawaiController::class,'listData'])->name('pegawai.listData');
+Route::get('/pegawai/create',[PegawaiController::class,'create'])->name('pegawai.create');
+Route::get('/pegawai/{id}/edit',[PegawaiController::class,'edit'])->name('pegawai.edit');
+Route::delete('/pegawai/{id}',[PegawaiController::class,'deleteData'])->name('pegawai.delete');
+Route::post('/pegawai/save', [PegawaiController::class,'save'])->name('pegawai.save');
+Route::post('/pegawai/{id}/update',[PegawaiController::class,'update'])->name('pegawai.update');
 
 // Route CRUD Jenis Diklat
 Route::get('/jenisdiklat',[JenisDiklatController::class,'index'])->name('jenisDiklat.list');
