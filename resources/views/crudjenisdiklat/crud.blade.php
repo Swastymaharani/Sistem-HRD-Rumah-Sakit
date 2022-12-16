@@ -19,7 +19,7 @@
     </div>
     <div class="nk-fmg-actions">
         <div class="btn-group">
-            <a href="{{ route('crud.create') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Data</span></a>
+            <a href="{{ route('jenisDiklat.create') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Jenis Diklat</span></a>
         </div>
     </div>
 </div>
@@ -58,7 +58,7 @@
                             <th>No.</th>
                             <th>Jenis Diklat ID</th>
                             <th>Nama Jenis Diklat</th>
-                            {{-- <th>Aksi</th> --}}
+                            <th>Aksi</th>
                             
                         </thead>
                         
@@ -106,13 +106,13 @@ $(document).ready(function() {
                 searchable: true,
                 class: 'text-left'
             },
-            // {
-            //     data: 'aksi',
-            //     name: 'aksi',
-            //     orderable: false,
-            //     searchable: false,
-            //     class: 'text-center'
-            // }
+            {
+                data: 'aksi',
+                name: 'aksi',
+                orderable: false,
+                searchable: false,
+                class: 'text-center'
+            }
         ],
     });
     

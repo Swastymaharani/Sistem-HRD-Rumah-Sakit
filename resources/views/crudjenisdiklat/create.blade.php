@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault">Modal Default</button> -->
                 <!-- <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDefault"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-success" onclick="filtershow()"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
-                <a href="{{ route('crud.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
+                <a href="{{ route('jenisDiklat.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/crud/save') }}" method="POST">
+        <form name="formPendaftaran" action="{{ url('/jenisdiklat/save') }}" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -106,7 +106,7 @@ function store(){
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama_jenis_diklat"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
@@ -114,13 +114,12 @@ function store(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/crud/store')}}",
+                url:"{{url('/jenisdiklat/save')}}",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    nim:$("#nim").val(),
-                    nama:$("#nama").val(),
-                    alamat:$("#alamat").val(),
+                    jenis_diklat_id:$("#jenis_diklat_id").val(),
+                    nama_jenis_diklat:$("#nama_jenis_diklat").val(),
                 },
                 type:"POST",
                 dataType:"JSON",
@@ -128,7 +127,7 @@ function store(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('crud') }}");
+                                window.location.replace("{{ url('jenisdiklat') }}");
                             }
                         });
                     }

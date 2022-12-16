@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault">Modal Default</button> -->
                 <!-- <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDefault"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-success" onclick="filtershow()"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
-                <a href="{{ route('crud.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
+                <a href="{{ route('jenisDiklat.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
@@ -57,7 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" action="{{ route('crud.update', $data->id)}}" method="POST">
+        <form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->id)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
@@ -107,7 +107,7 @@ function update(){
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama_jenis_diklat"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
@@ -115,13 +115,12 @@ function update(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{route('crud.updatejdiklat', $data->id)}}/",
+                url:"{{route('jenisDiklat.update', $data->id)}}/",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    nim:$("#nim").val(),
-                    nama:$("#nama").val(),
-                    alamat:$("#alamat").val()
+                    jenis_diklat_id:$("#jenis_diklat_id").val(),
+                    nama_jenis_diklat:$("#nama_jenis_diklat").val(),
                 },
                 type:"POST",
                 dataType:"JSON",

@@ -20,13 +20,13 @@ class JenisDiklatController extends Controller
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
-                // ->addColumn('aksi', function($data){
-                //     $aksi = "";
-                //     $aksi .= "<a title='Edit Data' href='/crud/".$data->jenis_diklat_id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-                //     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->jenis_diklat_id}\",\"{$data->nama_jenis_diklat}\",this)' class='btn btn-md btn-danger' data-jenis_diklat_id='{$data->jenis_diklat_id}' data-nama_jenis_diklat='{$data->nama_jenis_diklat}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
-                //     return $aksi;
-                // })
-                // ->rawColumns(['aksi'])
+                ->addColumn('aksi', function($data){
+                    $aksi = "";
+                    $aksi .= "<a title='Edit Data' href='/jenisdiklat/".$data->jenis_diklat_id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->jenis_diklat_id}\",\"{$data->nama_jenis_diklat}\",this)' class='btn btn-md btn-danger' data-jenis_diklat_id='{$data->jenis_diklat_id}' data-nama_jenis_diklat='{$data->nama_jenis_diklat}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
+                    return $aksi;
+                })
+                ->rawColumns(['aksi'])
                 ->make(true);
     }
 

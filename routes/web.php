@@ -41,11 +41,11 @@ Route::post('/pegawai/{id}/update',[PegawaiController::class,'update'])->name('p
 // Route CRUD Jenis Diklat
 Route::get('/jenisdiklat',[JenisDiklatController::class,'index'])->name('jenisDiklat.list');
 Route::post('/jenisdiklat/listdata',[JenisDiklatController::class,'listData'])->name('jenisDiklat.listData');
-// Route::get('/crud/create',[JenisDiklatController::class,'create'])->name('crud.create');
-// Route::get('/crud/{id}/edit',[JenisDiklatController::class,'edit'])->name('crud.edit');
-// Route::delete('/crud/{id}',[JenisDiklatController::class,'deleteData'])->name('crud.delete');
-Route::post('/crud/store', [JenisDiklatController::class,'store'])->name('crud.store');
-Route::post('/crud/{id}/update',[JenisDiklatController::class,'update'])->name('crud.updatejdiklat');
+Route::get('/jenisdiklat/create',[JenisDiklatController::class,'create'])->name('jenisDiklat.create');
+Route::get('/jenisdiklat/{id}/edit',[JenisDiklatController::class,'edit'])->name('jenisDiklat.edit');
+Route::delete('/jenisdiklat/{id}',[JenisDiklatController::class,'deleteData'])->name('jenisDiklat.delete');
+Route::post('/jenisdiklat/save', [JenisDiklatController::class,'save'])->name('jenisDiklat.store');
+Route::post('/jenisdiklat/{id}/update',[JenisDiklatController::class,'update'])->name('jenisDiklat.update');
 
 // Route CRUD Diklat
 Route::get('/diklat',[DiklatController::class,'index'])->name('diklat.list');
