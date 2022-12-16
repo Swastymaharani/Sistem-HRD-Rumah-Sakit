@@ -55,11 +55,11 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/crud/save') }}" method="POST">
+        <form name="formPendaftaran" action="{{ url('/diklat') }}" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">
-                <div class="mb-3 row">
+                    <div class="mb-3 row">
                         <label for="id_diklat" class="col-sm-2 col-form-label">ID Diklat</label>
                         <input type="text" class="form-control" name='id_diklat' value="{{ old('id_diklat') }}" id="id_diklat" >
                     </div>
