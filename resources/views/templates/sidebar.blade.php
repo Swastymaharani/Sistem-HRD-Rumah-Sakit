@@ -38,9 +38,9 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/crud')}}" class="nk-menu-link">
+                                    <a href="{{URL('/riwayatdiklat')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-coins"></em></span>
-                                        <span class="nk-menu-text">CRUD Mahasiswa</span>
+                                        <span class="nk-menu-text">CRUD Riwayat Diklat</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-heading">

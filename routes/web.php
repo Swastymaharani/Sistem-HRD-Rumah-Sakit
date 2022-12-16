@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Route CRUD mahasiswa
 Route::get('/crud',[CrudController::class,'index'])->name('crud.list');
 Route::get('/crud/create',[CrudController::class,'create'])->name('crud.create');
 Route::get('/crud/{id}/edit',[CrudController::class,'edit'])->name('crud.edit');
@@ -26,6 +26,7 @@ Route::post('/crud/save', [CrudController::class,'save'])->name('crud.save');
 Route::post('/crud/{id}/update',[CrudController::class,'update'])->name('crud.update');
 Route::post('/crud/listData',[CrudController::class,'listData'])->name('crud.listData');
 
+//Route CRUD pegawai
 Route::get('/',function(){
     return redirect('/pegawai');
 });
