@@ -53,8 +53,13 @@ class JenisDiklatController extends Controller
     }
 
     public function save(Request $request){
-        if(JenisDiklat::create($request->all())){
+        $jenisDiklat = JenisDiklat::all();
+
+        if($jenisDiklat->nama_jenis_diklat!=$request->input('nama_jenis_diklat')){
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
+            JenisDiklat::create([
+                'nama_jenis_diklat' => $request-> input('nama_jenis_diklat'),
+            ]);
         }else{
             $response = array('success'=>2,'msg'=>'Gagal menambah data');
         }
