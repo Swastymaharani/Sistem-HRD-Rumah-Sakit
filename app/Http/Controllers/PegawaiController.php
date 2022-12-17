@@ -63,12 +63,23 @@ class PegawaiController extends Controller
         // // $comment->comment_content = $content;
         // $pegawai->save();
         $data = Pegawai::create([
-            'nama' => $request-> input('nama'),
-            // 'description'=> $request-> input('description'),
-            // 'age'=> $request-> input('age'),
-            // 'feet'=> $request-> input('feet'),
-            // 'sound'=> $request-> input('sound'),
-            // 'image'=> $newImageName,
+            'kode'          => $request-> input('kode'),
+            // 'no_induk'      => $request-> input('no_induk'),
+            // 'kode_bpjs'     => $request-> input('kode_bpjs'),
+            'nama'          => $request-> input('nama'),
+            // 'nama_tercetak' => $request-> input('nama_tercetak'),
+            // 'gelar_depan'   => $request-> input('gelar_depan'),
+            // 'gelar_belakang'=> $request-> input('gelar_belakang'),
+            // 'tempat_lahir'  => $request-> input('tempat_lahir'),
+            // 'tanggal_lahir' => $request-> input('tanggal_lahir'),
+            // 'alamat'        => $request-> input('alamat'),
+            // 'dusun'         => $request-> input('dusun'),
+            // 'kodepos'       => $request-> input('kodepos'),
+            // 'nik'           => $request-> input('nik'),
+            // 'npwp'          => $request-> input('npwp'),
+            // 'file_photo'    => $request-> input('file_photo'),
+            // 'file_kk'       => $request-> input('file_kk'),
+            // 'file_npwp'     => $request-> input('file_npwp'),
         ]);
 
         if($data){

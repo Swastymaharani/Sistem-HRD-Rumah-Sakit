@@ -348,9 +348,24 @@ function update(){
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    nim:$("#nim").val(),
-                    nama:$("#nama").val(),
-                    alamat:$("#alamat").val()
+                    kode:           $("#kode").val(),
+                    // no_induk:       $("#no_induk").val(),
+                    // kode_bpjs:      $("#kode_bpjs").val(),
+                    nama:           $("#nama").val(),
+                    // nama_tercetak:  $("#nama_tercetak").val(),
+                    // gelar_depan:    $("#gelar_depan").val(),
+                    // gelar_belakang: $("#gelar_belakang").val(),
+                    // tempat_lahir:   $("#tempat_lahir").val(),
+                    // tanggal_lahir:  $("#tanggal_lahir").val(),
+                    // alamat:         $("#alamat").val(),
+                    // dusun:          $("#dusun").val(),
+                    // kodepos:        $("#kodepos").val(),
+                    // nik:            $("#nik").val(),
+                    // npwp:           $("#npwp").val(),
+                    // file_photo:     $("#file_photo").val(),
+                    // file_kk:        $("#file_kk").val(),
+                    // file_npwp:      $("#file_npwp").val()
+
                 },
                 type:"POST",
                 dataType:"JSON",

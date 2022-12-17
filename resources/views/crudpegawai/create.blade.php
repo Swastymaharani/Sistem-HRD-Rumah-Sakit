@@ -55,31 +55,31 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" >
             @csrf
             <div class="card">
                 <div class="card-body">
+                    <div class="mb-3 row">
+                        <label for="kode" class="col-sm-2 col-form-label">Kode</label>
+                        <input type="text" class="form-control" name='kode' value="{{ old('kode') }}" id="kode" >
+                    </div>
+
+                    {{-- <div class="mb-3 row">
+                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
+                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
+                    </div> --}}
+
+                    {{-- <div class="mb-3 row">
+                        <label for="kode_bpjs" class="col-sm-2 col-form-label">Kode BPJS</label>
+                        <input type="text" class="form-control" name='kode_bpjs' value="{{ old('kode_bpjs') }}" id="kode_bpjs" >
+                    </div> --}}
+
                     <div class="mb-3 row">
                         <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                         <input type="text" class="form-control" name='nama' value="{{ old('nama') }}" id="nama" >
                     </div>
 
                     {{-- <div class="mb-3 row">
-                        <label for="no_induk" class="col-sm-2 col-form-label">No. Induk</label>
-                        <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="kode_bpjs" class="col-sm-2 col-form-label">Kode BPJS</label>
-                        <input type="text" class="form-control" name='kode_bpjs' value="{{ old('kode_bpjs') }}" id="kode_bpjs" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                        <input type="text" class="form-control" name='nama' value="{{ old('nama') }}" id="nama" >
-                    </div>
-
-                    <div class="mb-3 row">
                         <label for="nama_tercetak" class="col-sm-2 col-form-label">Nama Tercetak</label>
                         <input type="text" class="form-control" name='nama_tercetak' value="{{ old('nama_tercetak') }}" id="nama_tercetak" >
                     </div>
@@ -163,174 +163,182 @@
 
 
 function store(){
-        // var nim = document.getElementById("nim").value;
+    if (document.forms["formPendaftaran"]["kode"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Kode Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["kode"].focus();
+        return false;
+    }
+    // if (document.forms["formPendaftaran"]["no_induk"].value == "") {
+    //     CustomSwal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: 'No. Induk Tidak Boleh Kosong',
+    //     })
+    //     document.forms["formPendaftaran"]["no_induk"].focus();
+    //     return false;
+    //     }
+    // // if (document.forms["formPendaftaran"]["kode_bpjs"].value =="") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Kode BPJS Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["kode_bpjs"].focus();
+    //         return false;
+    // }  
         if (document.forms["formPendaftaran"]["nama"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["nama"].focus();
-                return false;
-            }
-        // if (document.forms["formPendaftaran"]["kode_bpjs"].value =="") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Kode BPJS Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["kode_bpjs"].focus();
-        //         return false;
-        // }  
-        //     if (document.forms["formPendaftaran"]["nama"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Nama Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["nama"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["nama_tercetak"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Nama Tercetak Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["nama_tercetak"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["gelar_depan"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Gelar Depan Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["gelar_depan"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["gelar_belakang"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Gelar Belakang Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["gelar_belakang"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["jabatan_fungsional_terakhir"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Jabatan Fungsional Terakhir Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["jabatan_fungsional_terakhir"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["tempat_lahir"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Tempat Lahir Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["tempat_lahir"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["tanggal_lahir"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Tanggal Lahir Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["tanggal_lahir"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["alamat"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Alamat Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["alamat"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["dusun"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Dusun Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["dusun"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["kodepos"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'Kode Pos Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["kodepos"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["nik"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'NIK Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["nik"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["npwp"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'NPWP Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["npwp"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["file_photo"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'File Foto Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["file_photo"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'File KTP Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["file_ktp"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["file_kk"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'File KK Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["file_kk"].focus();
-        //         return false;
-        //     }
-        //     if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
-        //         CustomSwal.fire({
-        //             icon: 'error',
-        //             title: 'Oops...',
-        //             text: 'File NPWP Tidak Boleh Kosong',
-        //         })
-        //         document.forms["formPendaftaran"]["file_npwp"].focus();
-        //         return false;
-        //     }
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Nama Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["nama"].focus();
+            return false;
+        }
+    //     if (document.forms["formPendaftaran"]["nama_tercetak"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Nama Tercetak Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["nama_tercetak"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["gelar_depan"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Gelar Depan Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["gelar_depan"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["gelar_belakang"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Gelar Belakang Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["gelar_belakang"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["jabatan_fungsional_terakhir"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Jabatan Fungsional Terakhir Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["jabatan_fungsional_terakhir"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["tempat_lahir"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Tempat Lahir Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["tempat_lahir"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["tanggal_lahir"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Tanggal Lahir Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["tanggal_lahir"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["alamat"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Alamat Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["alamat"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["dusun"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Dusun Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["dusun"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["kodepos"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'Kode Pos Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["kodepos"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["nik"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'NIK Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["nik"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["npwp"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'NPWP Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["npwp"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["file_photo"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'File Foto Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["file_photo"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'File KTP Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["file_ktp"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["file_kk"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'File KK Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["file_kk"].focus();
+    //         return false;
+    //     }
+    //     if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
+    //         CustomSwal.fire({
+    //             icon: 'error',
+    //             title: 'Oops...',
+    //             text: 'File NPWP Tidak Boleh Kosong',
+    //         })
+    //         document.forms["formPendaftaran"]["file_npwp"].focus();
+    //         return false;
+    //     }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["kode"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
@@ -343,9 +351,23 @@ function store(){
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    nama:$("#nama").val()
-                    // nama:$("#nama").val(),
-                    // alamat:$("#alamat").val(),
+                    kode:           $("#kode").val(),
+                    // no_induk:       $("#no_induk").val(),
+                    // kode_bpjs:      $("#kode_bpjs").val(),
+                    nama:           $("#nama").val(),
+                    // nama_tercetak:  $("#nama_tercetak").val(),
+                    // gelar_depan:    $("#gelar_depan").val(),
+                    // gelar_belakang: $("#gelar_belakang").val(),
+                    // tempat_lahir:   $("#tempat_lahir").val(),
+                    // tanggal_lahir:  $("#tanggal_lahir").val(),
+                    // alamat:         $("#alamat").val(),
+                    // dusun:          $("#dusun").val(),
+                    // kodepos:        $("#kodepos").val(),
+                    // nik:            $("#nik").val(),
+                    // npwp:           $("#npwp").val(),
+                    // file_photo:     $("#file_photo").val(),
+                    // file_kk:        $("#file_kk").val(),
+                    // file_npwp:      $("#file_npwp").val()
                 },
                 type:"POST",
                 dataType:"JSON",

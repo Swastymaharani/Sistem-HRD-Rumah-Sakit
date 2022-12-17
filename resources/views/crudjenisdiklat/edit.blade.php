@@ -63,11 +63,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="jenis_diklat_id" class="col-sm-2 col-form-label">ID Jenis Diklat</label>
-                        <input type="text" class="form-control" name='jenis_diklat_id' value="{{ old('jenis_diklat_id') }}" id="jenis_diklat_id" >
-                    </div>
-
-                    <div class="mb-3 row">
                         <label for="nama_jenis_diklat" class="col-sm-2 col-form-label">Nama Jenis Diklat</label>
                         <input type="text" class="form-control" name='nama_jenis_diklat' value="{{ old('nama_jenis_diklat') }}" id="nama_jenis_diklat" >
                     </div>
@@ -85,24 +80,15 @@
 <script>
 
 function update(){
-    if (document.forms["formPendaftaran"]["jenis_diklat_id"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'ID Jenis Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
-                return false;
-            }
-        if (document.forms["formPendaftaran"]["nama_jenis_diklat"].value =="") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama Jenis Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["nama_jenis_diklat"].focus();
-                return false;
-        }  
+    if (document.forms["formPendaftaran"]["nama_jenis_diklat"].value =="") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Jenis Diklat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama_jenis_diklat"].focus();
+        return false;
+    }  
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
@@ -119,7 +105,6 @@ function update(){
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    jenis_diklat_id:$("#jenis_diklat_id").val(),
                     nama_jenis_diklat:$("#nama_jenis_diklat").val(),
                 },
                 type:"POST",
