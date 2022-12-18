@@ -23,8 +23,8 @@ class JenisDiklatController extends Controller
                 ->addColumn('aksi', function($data){
                     $aksi = "";
                     $aksi .= "<a title='Edit Data' href='/jenisdiklat/".$data->jenis_diklat_id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-                    // $aksi .= "<a title='Edit Data' href="{{ route('jenisDiklat.edit', $data->jenis_diklat_id) }}" class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-                    // $aksi .= "<a title='Edit Data' href="{{ route('jenisDiklat.edit', $data->jenis_diklat_id) }}" class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    // $aksi .= "<a title='Edit Data' href=('/jenisdiklat/".$data->jenis_diklat_id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    // $aksi .= "<a title='Edit Data' href={ route('jenisDiklat.edit', $data->jenis_diklat_id) } class='btn btn-md btn-primary data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->jenis_diklat_id}\",\"{$data->nama_jenis_diklat}\",this)' class='btn btn-md btn-danger' data-jenis_diklat_id='{$data->jenis_diklat_id}' data-nama_jenis_diklat='{$data->nama_jenis_diklat}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;
                 })
@@ -48,8 +48,8 @@ class JenisDiklatController extends Controller
         return view('crudjenisdiklat.create',compact('subtitle','icon'));
     }
 
-    public function edit(Request $request, $id){
-        $data = JenisDiklat::find($request->id);
+    public function edit(Request $request, $jenis_diklat_id){
+        $data = JenisDiklat::find($jenis_diklat_id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Data Jenis Diklat';
         return view('crudjenisdiklat.edit',compact('subtitle','icon','data'));
@@ -74,13 +74,15 @@ class JenisDiklatController extends Controller
         return $response;
     }
 
-    public function update(Request $request, $id){
-        $data = JenisDiklat::find($id);
+    public function update(Request $request, $jenis_diklat_id){
+        $data = JenisDiklat::find($jenis_diklat_id);
         // $data = JenisDiklat::where('jenis_diklat_id', '=', $id)->get();
-        if($data->fill([
+        if($data->fill(
+            [
             // $request->all()
                 'nama_jenis_diklat' => $request-> input('nama_jenis_diklat'),
-            ])->save()){
+            ]
+            )->save()){
                 $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
             }else{
                 $response = array('success'=>2,'msg'=>'Gagal mengedit data');

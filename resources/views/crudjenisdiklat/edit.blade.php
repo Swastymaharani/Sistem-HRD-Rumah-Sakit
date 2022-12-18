@@ -57,14 +57,14 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->id)}}" method="POST">
+        <form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->jenis_diklat_id)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="nama_jenis_diklat" class="col-sm-2 col-form-label">Nama Jenis Diklat</label>
-                        <input type="text" class="form-control" name='nama_jenis_diklat' value="{{ old('nama_jenis_diklat') }}" id="nama_jenis_diklat" >
+                        <input type="text" class="form-control" name='nama_jenis_diklat' value="{{ $data->nama_jenis_diklat }}" id="nama_jenis_diklat" >
                     </div>
 
                     <div class="mb-3 row">
@@ -101,11 +101,11 @@ function update(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{route('jenisDiklat.update', $data->id)}}/",
+                url:"{{route('jenisDiklat.update', $data->jenis_diklat_id)}}/",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    jenis_diklat_id:$("#jenis_diklat_id").val(),
+                    // jenis_diklat_id:$("#jenis_diklat_id").val(),
                     nama_jenis_diklat:$("#nama_jenis_diklat").val(),
                 },
                 type:"POST",
@@ -114,7 +114,7 @@ function update(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('crud') }}");
+                                window.location.replace("{{ url('jenisdiklat') }}");
                             }
                         });
                     }else{
