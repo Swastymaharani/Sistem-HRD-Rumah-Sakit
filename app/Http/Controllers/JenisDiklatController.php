@@ -24,6 +24,7 @@ class JenisDiklatController extends Controller
                     $aksi = "";
                     $aksi .= "<a title='Edit Data' href='/jenisdiklat/".$data->jenis_diklat_id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
                     // $aksi .= "<a title='Edit Data' href="{{ route('jenisDiklat.edit', $data->jenis_diklat_id) }}" class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    // $aksi .= "<a title='Edit Data' href="{{ route('jenisDiklat.edit', $data->jenis_diklat_id) }}" class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->jenis_diklat_id}\",\"{$data->nama_jenis_diklat}\",this)' class='btn btn-md btn-danger' data-jenis_diklat_id='{$data->jenis_diklat_id}' data-nama_jenis_diklat='{$data->nama_jenis_diklat}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;
                 })
@@ -43,24 +44,6 @@ class JenisDiklatController extends Controller
     public function create(){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Data Jenis Diklat';
-
-        // $jenisDiklat = JenisDiklat::all();
-        // $tidakUnik = 0;
-        // foreach (JenisDiklat::all() as $jenisDiklat) {
-        //     echo $jenisDiklat->nama_jenis_diklat;
-        //     if($jenisDiklat->nama_jenis_diklat=="Offvfsfice"){
-        //         $tidakUnik = 1;
-        //     }
-        // }
-        // if($tidakUnik==1){
-        //     $response = 'Gagal menambah data';
-        // }else{
-        //     $response = 'Berhasil menambah data';
-        //     JenisDiklat::create([
-        //         'nama_jenis_diklat' => "Offvfsfice",
-        //     ]);
-        // }
-        // return $response;
 
         return view('crudjenisdiklat.create',compact('subtitle','icon'));
     }
@@ -92,7 +75,8 @@ class JenisDiklatController extends Controller
     }
 
     public function update(Request $request, $id){
-        $data = JenisDiklat::where('jenis_diklat_id', '=', $id)->get();
+        $data = JenisDiklat::find($id);
+        // $data = JenisDiklat::where('jenis_diklat_id', '=', $id)->get();
         if($data->fill([
             // $request->all()
                 'nama_jenis_diklat' => $request-> input('nama_jenis_diklat'),

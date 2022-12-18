@@ -53,7 +53,7 @@
                 {{-- <div class="table-responsive"> --}}
                 <div>
                     <table id="{{$table_id}}" class="table table-striped table-bordered nowrap" style="width:100%">
-                        <thead id="{{$table_id}}" style="color:#526484; font-size:11px;">
+                        <thead style="color:#526484; font-size:11px;">
                             
                             <th>No.</th>
                             <th>ID</th>
