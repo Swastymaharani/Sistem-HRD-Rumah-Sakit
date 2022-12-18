@@ -56,6 +56,7 @@
                         <thead style="color:#526484; font-size:11px;">
                             
                             <th>No.</th>
+                            <th>Id Riwayat Diklat</th>
                             <th>Id Pegawai</th>
                             <th>Id Diklat</th>
                             <th>Nama Kursus</th>
@@ -71,7 +72,7 @@
                             <th>Riwayat Validasi</th>
                             <th>Keterangan</th>
                             <th>File Sertifikat</th>
-                            {{-- <th>Aksi</th> --}}
+                            <th>Aksi</th>
                             
                         </thead>
                         
@@ -218,11 +219,11 @@ $(document).ready(function() {
                 class: 'text-left'
             },
             {
-                // data: 'aksi',
-                // name: 'aksi',
-                // orderable: false,
-                // searchable: false,
-                // class: 'text-center'
+                data: 'aksi',
+                name: 'aksi',
+                orderable: false,
+                searchable: false,
+                class: 'text-center'
             }
         ],
     });

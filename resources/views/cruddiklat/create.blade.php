@@ -73,6 +73,10 @@
                         <label for="jenis_diklat_id" class="col-sm-2 col-form-label">Jenis Diklat</label>
                         <input type="text" class="form-control" name='jenis_diklat_id' value="{{ old('jenis_diklat_id') }}" id="jenis_diklat_id" >
                     </div>
+
+                    <div class="mb-3 row">
+                        <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
+                    </div>
                 </div>
             </div>
         </form>
