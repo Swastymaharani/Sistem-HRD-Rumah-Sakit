@@ -43,6 +43,25 @@ class JenisDiklatController extends Controller
     public function create(){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Data Jenis Diklat';
+
+        // $jenisDiklat = JenisDiklat::all();
+        // $tidakUnik = 0;
+        // foreach (JenisDiklat::all() as $jenisDiklat) {
+        //     echo $jenisDiklat->nama_jenis_diklat;
+        //     if($jenisDiklat->nama_jenis_diklat=="Offvfsfice"){
+        //         $tidakUnik = 1;
+        //     }
+        // }
+        // if($tidakUnik==1){
+        //     $response = 'Gagal menambah data';
+        // }else{
+        //     $response = 'Berhasil menambah data';
+        //     JenisDiklat::create([
+        //         'nama_jenis_diklat' => "Offvfsfice",
+        //     ]);
+        // }
+        // return $response;
+
         return view('crudjenisdiklat.create',compact('subtitle','icon'));
     }
 
@@ -55,20 +74,25 @@ class JenisDiklatController extends Controller
 
     public function save(Request $request){
         $jenisDiklat = JenisDiklat::all();
-
-        if($jenisDiklat->nama_jenis_diklat!=$request->input('nama_jenis_diklat')){
+        $tidakUnik = 0;
+        foreach (JenisDiklat::all() as $jenisDiklat) {
+            if($jenisDiklat->nama_jenis_diklat==$request->input('nama_jenis_diklat')){
+                $tidakUnik = 1;
+            }
+        }
+        if($tidakUnik == 1){
+            $response = array('success'=>2,'msg'=>'Nama Jenis Diklat harus Unik');
+        }else{
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
             JenisDiklat::create([
                 'nama_jenis_diklat' => $request-> input('nama_jenis_diklat'),
             ]);
-        }else{
-            $response = array('success'=>2,'msg'=>'Gagal menambah data');
         }
         return $response;
     }
 
     public function update(Request $request, $id){
-        $data = JenisDiklat::find($id);
+        $data = JenisDiklat::where('jenis_diklat_id', '=', $id)->get();
         if($data->fill([
             // $request->all()
                 'nama_jenis_diklat' => $request-> input('nama_jenis_diklat'),

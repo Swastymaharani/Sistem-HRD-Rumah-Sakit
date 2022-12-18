@@ -103,6 +103,7 @@ function store(){
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
+                    jenis_diklat_id:$("#jenis_diklat_id").val(),
                     nama_jenis_diklat:$("#nama_jenis_diklat").val(),
                 },
                 type:"POST",
@@ -121,7 +122,7 @@ function store(){
                     }
                 },
                 error:function(error){
-                    CustomSwal.fire('Gagal', 'nama jenis diklat harus unik', 'error');
+                    CustomSwal.fire('Gagal', 'Gagal Menambah Data', 'error');
                     console.log(error.XMLHttpRequest);
                 },
             });

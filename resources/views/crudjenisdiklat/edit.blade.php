@@ -105,6 +105,7 @@ function update(){
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
+                    jenis_diklat_id:$("#jenis_diklat_id").val(),
                     nama_jenis_diklat:$("#nama_jenis_diklat").val(),
                 },
                 type:"POST",
