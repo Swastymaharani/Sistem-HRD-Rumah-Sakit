@@ -60,11 +60,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="id_diklat" class="col-sm-2 col-form-label">ID Diklat</label>
-                        <input type="text" class="form-control" name='id_diklat' value="{{ old('id_diklat') }}" id="id_diklat" >
-                    </div>
-
-                    <div class="mb-3 row">
                         <label for="no_urut" class="col-sm-2 col-form-label">No. Urut</label>
                         <input type="text" class="form-control" name='no_urut' value="{{ old('no_urut') }}" id="no_urut" >
                     </div>
@@ -90,15 +85,6 @@
 
 function store(){
         // var nim = document.getElementById("nim").value;
-        if (document.forms["formPendaftaran"]["id_diklat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'ID Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["id_diklat"].focus();
-                return false;
-            }
         if (document.forms["formPendaftaran"]["no_urut"].value =="") {
                 CustomSwal.fire({
                     icon: 'error',
