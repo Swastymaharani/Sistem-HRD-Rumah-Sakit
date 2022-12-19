@@ -57,6 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
+        <form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->jenis_diklat_id)}}" method="POST">
 <form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->jenis_diklat_id) }}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
@@ -105,7 +106,7 @@ function update(){
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    jenis_diklat_id:$("#jenis_diklat_id").val(),
+                    // jenis_diklat_id:$("#jenis_diklat_id").val(),
                     nama_jenis_diklat:$("#nama_jenis_diklat").val(),
                 },
                 type:"POST",
@@ -114,7 +115,7 @@ function update(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('crud') }}");
+                                window.location.replace("{{ url('jenisdiklat') }}");
                             }
                         });
                     }else{
