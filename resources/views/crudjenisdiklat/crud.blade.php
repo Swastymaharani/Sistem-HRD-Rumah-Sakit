@@ -56,7 +56,6 @@
                         <thead style="color:#526484; font-size:11px;">
                             
                             <th>No.</th>
-                            <th>Jenis Diklat ID</th>
                             <th>Nama Jenis Diklat</th>
                             <th>Aksi</th>
                             
@@ -92,13 +91,6 @@ $(document).ready(function() {
         },
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },       
-            {
-                data: 'jenis_diklat_id',
-                name: 'jenis_diklat_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
             {
                 data: 'nama_jenis_diklat',
                 name: 'nama_jenis_diklat',
