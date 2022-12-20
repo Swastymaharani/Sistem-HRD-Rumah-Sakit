@@ -50,10 +50,11 @@ Route::post('/jenisdiklat/{id}/update',[JenisDiklatController::class,'update'])-
 
 // Route CRUD Diklat
 Route::get('/diklat',[DiklatController::class,'index'])->name('diklat.list');
-Route::post('/diklat/listdata',[DiklatController::class,'listData'])->name('diklat.listData');
+Route::get('/{id}/diklat',[DiklatController::class,'diklatDetail'])->name('diklatDetail.list');
+Route::post('/{id}/diklat/listdata',[DiklatController::class,'listData'])->name('diklat.listData');
 Route::get('/diklat/create',[DiklatController::class,'create'])->name('diklat.create');
 Route::get('/diklat/{id}/edit',[DiklatController::class,'edit'])->name('diklat.edit');
-Route::delete('/diklat/{id}',[DiklatController::class,'deleteData'])->name('diklat.delete');
+Route::delete('/{id}/diklat/{id}',[DiklatController::class,'deleteData'])->name('diklat.delete');
 Route::post('/diklat/save', [DiklatController::class,'simpan'])->name('diklat.save');
 Route::post('/diklat/{id}/update',[DiklatController::class,'update'])->name('diklat.update');
 

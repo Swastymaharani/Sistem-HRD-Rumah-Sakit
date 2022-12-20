@@ -54,14 +54,12 @@
                 <div>
                     <table id="{{$table_id}}" class="table table-striped table-bordered nowrap" style="width:100%">
                         <thead style="color:#526484; font-size:11px;">
-                            
-                            <th>No.</th>
-                            <th>Diklat ID</th>
+                        
+                            <th>No. </th>
+                            <th>Jenis Diklat ID</th>
                             <th>Nomor Urut Diklat</th>
                             <th>Nama Diklat</th>
-                            <th>Jenis Diklat ID</th>
                             <th>Aksi</th>
-                            
                         </thead>
                         
                     </table>
@@ -86,17 +84,19 @@ $(document).ready(function() {
         serverSide: true,
         dom: '<"row justify-between g-2 "<"col-7 col-sm-4 text-left"f><"col-5 col-sm-8 text-right"<"datatable-filter"<"d-flex justify-content-end g-2" l>>>><" my-3"t><"row align-items-center"<"col-5 col-sm-12 col-md-6 text-left text-md-left"i><"col-5 col-sm-12 col-md-6 text-md-right"<"d-flex justify-content-end "p>>>',
         ajax: {
-            url: '{{ route("diklat.listData") }}',
+            
+            url: '{{ route("diklat.listData", $jenis_diklat_id) }}',
             type:"POST",
             data: function(params) {
                 params._token = "{{ csrf_token() }}";
             }
         },
         columns: [
-            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },       
+            { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },     
             {
-                data: 'id_diklat',
-                name: 'id_diklat',
+
+                data: 'jenis_diklat_id', // error: $diklat->jenisdiklat->nama_jenis_diklat
+                name: 'jenis_diklat_id',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
@@ -111,13 +111,6 @@ $(document).ready(function() {
             {
                 data: 'nama_diklat',
                 name: 'nama_diklat',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'jenis_diklat_id',
-                name: 'jenis_diklat_id',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
@@ -148,7 +141,7 @@ function deleteData(id,name,elm){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/diklat')}}/",
+                url: "{{url('".jenis_diklat_id."/diklat')}}/"+id, // error
                 data:{
                     _method:"DELETE",
                     _token:"{{csrf_token()}}"

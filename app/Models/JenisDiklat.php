@@ -11,4 +11,8 @@ class JenisDiklat extends Model
     protected $table='m_jenis_diklat';
     protected $primaryKey='jenis_diklat_id';
     protected $fillable=['nama_jenis_diklat'];
+
+    public function diklat(){
+        return $this->hasMany(Diklat::class);
+    }
 }
