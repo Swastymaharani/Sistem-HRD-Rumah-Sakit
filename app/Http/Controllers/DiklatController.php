@@ -15,15 +15,25 @@ class DiklatController extends Controller
         return view('cruddiklat.crud',compact('subtitle','table_id','icon'));
     }
 
-    public function listData(Request $request){
-        $data = Diklat::all();
+    public function diklatDetail($id){
+        $icon = 'ni ni-dashlite';
+        $subtitle = 'Diklat Detail';
+        $table_id = 'm_diklat';
+        $diklat = Diklat::find($id);
+        $jenis_diklat_id = $id;
+        return view('cruddiklat.crud',compact('subtitle','table_id','icon', 'jenis_diklat_id', 'diklat'));
+    }
+
+    // public function listData(Request $request, $jenis_diklat_id){
+    public function listData(Request $request, $jenis_diklat_id){
+        $data = Diklat::select('id_diklat', 'jenis_diklat_id', 'no_urut', 'nama_diklat')->where('jenis_diklat_id', $jenis_diklat_id)->get();
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
                 ->addColumn('aksi', function($data){
                      $aksi = "";
-                     $aksi .= "<a title='Edit Data' href='/crud/".$data->jenis_diklat_id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->jenis_diklat_id}\",\"{$data->nama_jenis_diklat}\",this)' class='btn btn-md btn-danger' data-jenis_diklat_id='{$data->jenis_diklat_id}' data-nama_jenis_diklat='{$data->nama_jenis_diklat}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
+                     $aksi .= "<a title='Edit Data' href='/diklat/".$data->id_diklat."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id_diklat}\",\"{$data->nama_diklat}\",this)' class='btn btn-md btn-danger' data-id_diklat='{$data->id_diklat}' data-nama_diklat='{$data->nama_diklat}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                      return $aksi;
                 })
                 ->rawColumns(['aksi'])
@@ -52,7 +62,7 @@ class DiklatController extends Controller
         return view('cruddiklat.edit',compact('subtitle','icon','data'));
     }
 
-    public function save(Request $request){
+    public function save(Request $request, $jenis_diklat_id){
         if(Diklat::create($request->all())){
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }else{
