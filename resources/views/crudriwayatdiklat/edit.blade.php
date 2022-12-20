@@ -57,7 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" action="{{ route('crud4.update', $data->id)}}" method="POST">
+        <form name="formPendaftaran" action="{{ route('riwayatDiklat.update', $data->id)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">

@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault">Modal Default</button> -->
                 <!-- <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDefault"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-success" onclick="filtershow()"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
-                <a href="{{ route('crud.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
+                <a href="{{ route('riwayatDiklat.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formInputRiwayatDiklat" action="{{ url('/crud4/save') }}" method="POST">
+        <form name="formInputRiwayatDiklat" action="{{ url('/riwayatDiklat/save') }}" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -130,8 +130,8 @@
                     </div>
                     
                     <div class="mb-3 row">
-                        <label for="tanggal_selesai_kursus" class="col-sm-2 col-form-label">Tempat Selesai Kursus</label>
-                        <input type="text" class="form-control @error("tanggal_selesai_kursus") is-invalid @enderror" name="tanggal_selesai_kursus" value="{{ old("tanggal_selesai_kursus") }}" id="tanggal_selesai_kursus" >
+                        <label for="tanggal_selesai_kursus" class="col-sm-2 col-form-label">Tanggal Selesai Kursus</label>
+                        <input type="date" class="form-control @error("tanggal_selesai_kursus") is-invalid @enderror" name="tanggal_selesai_kursus" value="{{ old("tanggal_selesai_kursus") }}" id="tanggal_selesai_kursus" >
                         @error('tanggal_selesai_kursus')
                              <div class="invalid-feedback"> {{ $message }}</div>
                         @enderror
@@ -171,7 +171,7 @@
 
                     <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
-                        <input type="text" class="form-control @error('file_sertifikat') is-invalid @enderror" name='file_sertifikat' value="{{ old('file_sertifikat') }}" id="file_sertifikat" >
+                        <input type="file" class="form-control @error('file_sertifikat') is-invalid @enderror" name='file_sertifikat' value="{{ old('file_sertifikat') }}" id="file_sertifikat" >
                         @error('file_sertifikat')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
