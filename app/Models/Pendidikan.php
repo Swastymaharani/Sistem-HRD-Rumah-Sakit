@@ -10,4 +10,9 @@ class Pendidikan extends Model
     use HasFactory;
     protected $table='m_pendidikan';
     protected $fillable=['id','nama'];
+
+    public function pegawai(){
+        return $this->hasOne(Pegawai::class);
+    }
+
 }

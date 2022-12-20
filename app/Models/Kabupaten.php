@@ -10,4 +10,8 @@ class Kabupaten extends Model
     use HasFactory;
     protected $table='m_kabupaten';
     protected $fillable=['id', 'nama_kabupaten'];
+
+    public function pegawai(){
+        return $this->hasMany(Pegawai::class);
+    }
 }

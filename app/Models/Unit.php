@@ -10,4 +10,8 @@ class Unit extends Model
     use HasFactory;
     protected $table='m_unit_medik';
     protected $fillable=['id', 'kode', 'nama'];
+
+    public function pegawai(){
+        return $this->hasMany(Pegawai::class);
+    }
 }

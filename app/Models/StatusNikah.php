@@ -10,4 +10,8 @@ class StatusNikah extends Model
     use HasFactory;
     protected $table='m_statusnikah';
     protected $fillable=['id','nama'];
+
+    public function pegawai(){
+        return $this->hasOne(Pegawai::class);
+    }
 }
