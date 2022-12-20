@@ -83,7 +83,7 @@
                         @enderror
                     </div>
                     <div class="mb-3 row">
-                        <label for="tempat" class="col-sm-2 col-form-label">Tempat Pelaksanaan</label>
+                        <label for="tempat" class="col-sm-5 col-form-label">Tempat Pelaksanaan</label>
                         <input type="text" class="form-control @error("tempat") is-invalid @enderror" name="tempat" value="{{ old("tempat") }}" id="tempat" >
                         @error('tempat')
                              <div class="invalid-feedback"> {{ $message }}</div>
@@ -106,7 +106,7 @@
                         @enderror
                     </div>
                     <div class="mb-3 row">
-                        <label for="institusi_penyelenggara" class="col-sm-2 col-form-label">Institusi Penyelenggara</label>
+                        <label for="institusi_penyelenggara" class="col-sm-5 col-form-label">Institusi Penyelenggara</label>
                         <input type="text" class="form-control @error("institusi_penyelenggara") is-invalid @enderror" name="institusi_penyelenggara" value="{{ old("institusi_penyelenggara") }}" id="institusi_penyelenggara" >
                         @error('institusi_penyelenggara')
                              <div class="invalid-feedback"> {{ $message }}</div>
@@ -130,7 +130,7 @@
                     </div>
                     
                     <div class="mb-3 row">
-                        <label for="tanggal_selesai_kursus" class="col-sm-2 col-form-label">Tempat Selesai Kursus</label>
+                        <label for="tanggal_selesai_kursus" class="col-sm-5 col-form-label">Tempat Selesai Kursus</label>
                         <input type="text" class="form-control @error("tanggal_selesai_kursus") is-invalid @enderror" name="tanggal_selesai_kursus" value="{{ old("tanggal_selesai_kursus") }}" id="tanggal_selesai_kursus" >
                         @error('tanggal_selesai_kursus')
                              <div class="invalid-feedback"> {{ $message }}</div>
@@ -138,7 +138,7 @@
                     </div>
                    
                     <div class="mb-3 row">
-                        <label for="jabatan_ttd_sertifikat" class="col-sm-2 col-form-label">Jabatan TTD Sertifikat</label>
+                        <label for="jabatan_ttd_sertifikat" class="col-sm-5 col-form-label">Jabatan TTD Sertifikat</label>
                         <input type="text" class="form-control @error("jabatan_ttd_sertifikat") is-invalid @enderror" name='jabatan_ttd_sertifikat' value="{{ old('jabatan_ttd_sertifikat') }}" id="jabatan_ttd_sertifikat" >
                         @error('jabatan_ttd_sertifikat')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -171,7 +171,7 @@
 
                     <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
-                        <input type="text" class="form-control @error('file_sertifikat') is-invalid @enderror" name='file_sertifikat' value="{{ old('file_sertifikat') }}" id="file_sertifikat" >
+                        <input type="file" class="form-control @error('file_sertifikat') is-invalid @enderror" name='file_sertifikat' value="{{ old('file_sertifikat') }}" id="file_sertifikat" >
                         @error('file_sertifikat')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

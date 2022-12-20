@@ -55,47 +55,13 @@
                     <table id="{{$table_id}}" class="table table-striped table-bordered nowrap" style="width:100%">
                         <thead style="color:#526484; font-size:11px;">
                             
-                            <th>No.</th>
-                            <th>ID</th>
-                            <th>Kode</th>
-                            <th>No. Induk</th>
-                            <th>Absen</th>
-                            <th>Kode BPJS</th>
-                            <th>Nama</th>
-                            <th>Nama Tercetak</th>
-                            <th>Gelar Depan</th>
-                            <th>Gelar Belakang</th>
-                            <th>Status Pegawai ID</th>
-                            <th>Jenis Profesi ID</th>
-                            <th>Spesialisasi ID</th>
-                            <th>Sub Spesialisasi ID</th>
-                            <th>Qualifikasi ID</th>
-                            <th>Pendidikan Terakhir ID</th>
-                            <th>Jabatan Fungsional Terakhir</th>
-                            <th>Jabatan Struktural ID</th>
-                            <th>Unit ID</th>
-                            <th>Subunit ID</th>
-                            <th>Tempat Lahir</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Jenis Kelamin ID</th>
-                            <th>Agama ID</th>
-                            <th>Bahasa Aktif ID</th>
-                            <th>Alamat</th>
-                            <th>Dusun</th>
-                            <th>Desa ID</th>
-                            <th>Kecamatan ID</th>
-                            <th>Kabupaten ID</th>
-                            <th>Provinsi ID</th>
-                            <th>Kode Pos</th>
-                            <th>NIK</th>
-                            <th>NPWP</th>
-                            <th>File Foto</th>
-                            <th>File KTP</th>
-                            <th>File KK</th>
-                            <th>File NPWP</th>
-                            <th>Status Nikah ID </th>
-                            <th>Status Daftar ID</th>
-                            <th>Aksi</th>
+                            <th width="1%">No.</th>
+                            <th width="10%">No. Induk</th>
+                            <th width="10%">Nama</th>
+                            <th width="10%">Status Pegawai</th>
+                            <th width="10%">Profesi</th>
+                            <th width="10%">Alamat</th>
+                            <th width="10%">Aksi</th>
                         </thead>
                         
                     </table>
@@ -129,20 +95,6 @@
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },         
             {
-                data: 'id',
-                name: 'id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'kode',
-                name: 'kode',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
                 data: 'no_induk',
                 name: 'no_induk',
                 orderable: true,
@@ -150,43 +102,8 @@
                 class: 'text-left'
             },
             {
-                data: 'absen_id',
-                name: 'absen_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'kode_bpjs',
-                name: 'kode_bpjs',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
                 data: 'nama',
                 name: 'nama',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'nama_tercetak',
-                name: 'nama_tercetak',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'gelar_depan',
-                name: 'gelar_depan',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'gelar_belakang',
-                name: 'gelar_belakang',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
@@ -206,197 +123,8 @@
                 class: 'text-left'
             },
             {
-                data: 'spesialisasi_id',
-                name: 'spesialisasi_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'sub_spesialisasi_id',
-                name: 'sub_spesialisasi_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'qualifikasi_id',
-                name: 'qualifikasi_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'pendidikan_terakhir_id',
-                name: 'pendidikan_terakhir_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'jabatan_fungsional_terakhir',
-                name: 'jabatan_fungsional_terakhir',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'jabatan_struktural_id',
-                name: 'jabatan_struktural_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'unit_id',
-                name: 'unit_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'subunit_id',
-                name: 'subunit_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'tempat_lahir',
-                name: 'tempat_lahir',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'tanggal_lahir',
-                name: 'tanggal_lahir',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'jeniskelamin_id',
-                name: 'jeniskelamin_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'agama_id',
-                name: 'agama_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'bahasa_aktif_id',
-                name: 'bahasa_aktif_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
                 data: 'alamat',
                 name: 'alamat',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'dusun',
-                name: 'dusun',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'desa_id',
-                name: 'desa_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'kecamatan_id',
-                name: 'kecamatan_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'kabupaten_id',
-                name: 'kabupaten_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'provinsi_id',
-                name: 'provinsi_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'kodepos',
-                name: 'kodepos',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'nik',
-                name: 'nik',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'npwp',
-                name: 'npwp',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'file_photo',
-                name: 'file_photo',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'file_ktp',
-                name: 'file_ktp',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'file_kk',
-                name: 'file_kk',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'file_npwp',
-                name: 'file_npwp',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'status_nikah_id',
-                name: 'status_nikah_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'status_daftar_id',
-                name: 'status_daftar_id',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
