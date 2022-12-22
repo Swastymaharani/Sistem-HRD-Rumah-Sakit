@@ -9,7 +9,7 @@ class Kualifikasi extends Model
 {
     use HasFactory;
     protected $table='m_kualifikasi';
-    protected $fillable=['id', 'kode', 'nama'];
+    protected $fillable=['kode', 'nama'];
 
     public function pegawai(){
         return $this->hasMany(Pegawai::class);

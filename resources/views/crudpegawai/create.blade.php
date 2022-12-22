@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" >
+        <form name="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -103,8 +103,8 @@
                         <label for="status_pegawai_id" class="col-sm-2 col-form-label">Status Pegawai</label>
                         <select type="text" class="form-control" name='status_pegawai_id' id="status_pegawai_id">
                             <option value="{{ old('status_pegawai_id') }}">Pilih Status Pegawai</option>
-                            @foreach ($statusPegawai as $sP)
-                                <option value= {{ $sP->id }} >{{ $sP->nama }}</option>
+                            @foreach ($statusPegawai as $sp)
+                                <option value= {{ $sp->id }} >{{ $sp->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -113,8 +113,8 @@
                         <label for="jenis_profesi_id" class="col-sm-2 col-form-label">Jenis Profesi</label>
                         <select type="text" class="form-control" name='jenis_profesi_id' id="jenis_profesi_id">
                             <option value="{{ old('jenis_profesi_id') }}">Pilih Jenis Profesi</option>
-                            @foreach ($jenisProfesi as $jP)
-                                <option value= {{ $jP->id }} >{{ $jP->nama_profesi }}</option>
+                            @foreach ($jenisProfesi as $jp)
+                                <option value= {{ $jp->id }} >{{ $jp->nama_profesi }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -162,12 +162,12 @@
                     <div class="mb-3 row"> <!--ada tabel relasinya ato gmna ni-->
                         <label for="jabatan_fungsional_terakhir" class="col-sm-5 col-form-label">Jabatan Fungsional Terakhir</label>
                         <input type="number" class="form-control" name='jabatan_fungsional_terakhir' value="{{ old('jabatan_fungsional_terakhir') }}" id="jabatan_fungsional_terakhir" >
-                    </div>
+                    </div> 
 
                     <div class="mb-3 row">
                         <label for="jabatan_struktural_id" class="col-sm-2 col-form-label">Jabatan Struktural</label>
                         <select type="text" class="form-control" name='jabatan_struktural_id' id="jabatan_struktural_id">
-                            <option value="{{ old('jabatan_struktural_id') }}">Pilih Jabatan Strukturan</option>
+                            <option value="{{ old('jabatan_struktural_id') }}">Pilih Jabatan Struktural</option>
                             @foreach ($jabatanStruktural as $jS)
                                 <option value= {{ $jS->jabatan_id }} >{{ $jS->nama_jabatan_singkat }}</option>
                             @endforeach
@@ -236,7 +236,7 @@
 
                     <div class="mb-3 row">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="Alamat" >
+                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="alamat" >
                     </div>
 
                     <div class="mb-3 row">
@@ -246,11 +246,8 @@
 
                     <div class="mb-3 row">
                         <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
-                        <input type="number" class="form-control" name='desa_id' value="{{ old('desa_id') }}" id="desa_id" >
+                        <input type="text" class="form-control" name='desa_id' value="{{ old('desa_id') }}" id="desa_id" >
                     </div>
-
-
-
 
                     {{-- <div class="mb-3 row"> <!--gak ada tabel desa-->
                         <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
@@ -261,9 +258,6 @@
                             @endforeach
                         </select>
                     </div> --}}
-
-
-
 
                     <div class="mb-3 row"> 
                         <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
@@ -310,7 +304,7 @@
                         <input type="text" class="form-control" name='npwp' value="{{ old('npwp') }}" id="npwp" >
                     </div>
 
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="file_photo" class="col-sm-2 col-form-label">File Foto</label>
                         <input type="file" class="form-control" name='file_photo' value="{{ old('file_photo') }}" id="file_photo" >
                     </div>
@@ -328,9 +322,9 @@
                     <div class="mb-3 row">
                         <label for="file_npwp" class="col-sm-2 col-form-label">File NPWP</label>
                         <input type="file" class="form-control" name='file_npwp' value="{{ old('file_npwp') }}" id="file_npwp" >
-                    </div>
+                    </div> --}}
 
-                    <div class="mb-3 row"> 
+                    {{-- <div class="mb-3 row"> 
                         <label for="status_nikah_id" class="col-sm-2 col-form-label">Status Nikah</label>
                         <select type="text" class="form-control" name='status_nikah_id' id="status_nikah_id">
                             <option value="{{ old('status_nikah_id') }}">Pilih Status Nikah</option>
@@ -343,7 +337,7 @@
                     <div class="mb-3 row">
                         <label for="status_daftar_id" class="col-sm-2 col-form-label">Status Daftar</label>
                         <input type="number" class="form-control" name='status_daftar_id' value="{{ old('status_daftar_id') }}" id="status_daftar_id" >
-                    </div>
+                    </div> --}}
 
 
 
@@ -399,32 +393,32 @@ function store(){
         return false;
         }
     if (document.forms["formPendaftaran"]["kode_bpjs"].value =="") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Kode BPJS Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["kode_bpjs"].focus();
-            return false;
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Kode BPJS Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["kode_bpjs"].focus();
+        return false;
     }  
-        if (document.forms["formPendaftaran"]["nama"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Nama Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["nama"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["nama_tercetak"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Nama Tercetak Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["nama_tercetak"].focus();
-            return false;
-        }
+    if (document.forms["formPendaftaran"]["nama"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["nama_tercetak"].value == "") {
+    CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Tercetak Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama_tercetak"].focus();
+        return false;
+    }
         if (document.forms["formPendaftaran"]["gelar_depan"].value == "") {
             CustomSwal.fire({
                 icon: 'error',
@@ -614,15 +608,7 @@ function store(){
             document.forms["formPendaftaran"]["kecamatan_id"].focus();
             return false;
         }
-        // if (document.forms["formPendaftaran"]["kabupaten_id"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Kabupaten Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["kabupaten_id"].focus();
-        //     return false;
-        // }
+        
         if (document.forms["formPendaftaran"]["provinsi_id"].value == "") {
             CustomSwal.fire({
                 icon: 'error',
@@ -659,60 +645,60 @@ function store(){
             document.forms["formPendaftaran"]["npwp"].focus();
             return false;
         }
-        if (document.forms["formPendaftaran"]["file_photo"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File Foto Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_photo"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File KTP Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_ktp"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["file_kk"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File KK Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_kk"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File NPWP Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_npwp"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["status_nikah_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Status Nikah Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["status_nikah_id"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["status_daftar_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Status Daftar Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["status_daftar_id"].focus();
-            return false;
-        }
+        // if (document.forms["formPendaftaran"]["file_photo"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File Foto Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_photo"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File KTP Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_ktp"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["file_kk"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File KK Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_kk"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File NPWP Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_npwp"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["status_nikah_id"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Status Nikah Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["status_nikah_id"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["status_daftar_id"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Status Daftar Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["status_daftar_id"].focus();
+        //     return false;
+        // }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
@@ -758,17 +744,16 @@ function store(){
                     dusun:              $("#dusun").val(),
                     desa_id:            $("#desa_id").val(),
                     kecamatan_id:       $("#kecamatan_id").val(),
-                    // kabupaten_id:       $("#kabupaten_id").val(),
                     provinsi_id:        $("#provinsi_id").val(),
                     kodepos:            $("#kodepos").val(),
                     nik:                $("#nik").val(),
                     npwp:               $("#npwp").val(),
-                    file_photo:         $("#file_photo").val(),
-                    file_ktp:           $("#file_ktp").val(),
-                    file_kk:            $("#file_kk").val(),
-                    file_npwp:          $("#file_npwp").val(),
-                    status_nikah_id:    $("#status_nikah_id").val(),
-                    status_daftar_id:   $("#status_daftar_id").val(),
+                    // file_photo:         $("#file_photo").val(),
+                    // file_ktp:           $("#file_ktp").val(),
+                    // file_kk:            $("#file_kk").val(),
+                    // file_npwp:          $("#file_npwp").val(),
+                    // status_nikah_id:    $("#status_nikah_id").val(),
+                    // status_daftar_id:   $("#status_daftar_id").val(),
                 },
                 type:"POST",
                 dataType:"JSON",
