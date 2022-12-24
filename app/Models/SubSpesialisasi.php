@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SubSpesialisasi extends Model
 {
     use HasFactory;
-    protected $table='m_subspesialis';
+    protected $table='m_subspesialisasi';
     protected $fillable=['id', 'spesialis_id','kode', 'nama'];
 }
