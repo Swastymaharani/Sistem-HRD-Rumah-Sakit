@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" >
+        <form name="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -69,7 +69,7 @@
                         <input type="text" class="form-control" name='no_induk' value="{{ old('no_induk') }}" id="no_induk" >
                     </div>
 
-                    {{-- <div class="mb-3 row"> <!--ada tabel absen gak?--> --}}
+                    <div class="mb-3 row"> <!--ada tabel absen gak?-->
                         <label for="absen_id" class="col-sm-2 col-form-label">Absen</label>
                         <input type="text" class="form-control" name='absen_id' value="{{ old('absen_id') }}" id="absen_id" >
                     </div>
@@ -103,8 +103,8 @@
                         <label for="status_pegawai_id" class="col-sm-2 col-form-label">Status Pegawai</label>
                         <select type="text" class="form-control" name='status_pegawai_id' id="status_pegawai_id">
                             <option value="{{ old('status_pegawai_id') }}">Pilih Status Pegawai</option>
-                            @foreach ($statusPegawai as $sP)
-                                <option value= {{ $sP->id }} >{{ $sP->nama }}</option>
+                            @foreach ($statusPegawai as $sp)
+                                <option value= {{ $sp->id }} >{{ $sp->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -113,8 +113,8 @@
                         <label for="jenis_profesi_id" class="col-sm-2 col-form-label">Jenis Profesi</label>
                         <select type="text" class="form-control" name='jenis_profesi_id' id="jenis_profesi_id">
                             <option value="{{ old('jenis_profesi_id') }}">Pilih Jenis Profesi</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($jenisProfesi as $jp)
+                                <option value= {{ $jp->id }} >{{ $jp->nama_profesi }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -123,8 +123,8 @@
                         <label for="spesialisasi_id" class="col-sm-2 col-form-label">Spesialisasi</label>
                         <select type="text" class="form-control" name='spesialisasi_id' id="spesialisasi_id">
                             <option value="{{ old('spesialisasi_id') }}">Pilih Spesialisasi</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($spesialisasi as $sp)
+                                <option value= {{ $sp->id }} >{{ $sp->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -133,8 +133,8 @@
                         <label for="sub_spesialisasi_id" class="col-sm-2 col-form-label">Sub Spesialisasi</label>
                         <select type="text" class="form-control" name='sub_spesialisasi_id' id="sub_spesialisasi_id">
                             <option value="{{ old('sub_spesialisasi_id') }}">Pilih Sub Spesialisasi</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($subSpesialisasi as $sS)
+                                <option value= {{ $sS->id }} >{{ $sS->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -143,33 +143,33 @@
                         <label for="qualifikasi_id" class="col-sm-2 col-form-label">Qualifikasi</label>
                         <select type="text" class="form-control" name='qualifikasi_id' id="qualifikasi_id">
                             <option value="{{ old('qualifikasi_id') }}">Pilih Qualifikasi</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($kualifikasi as $ku)
+                                <option value= {{ $ku->id }} >{{ $ku->nama }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="pendidikan_terakhir_id" class="col-sm-2 col-form-label">Pilih Pendidikan Terakhir</label>
+                        <label for="pendidikan_terakhir_id" class="col-sm-5 col-form-label">Pendidikan Terakhir</label>
                         <select type="text" class="form-control" name='pendidikan_terakhir_id' id="pendidikan_terakhir_id">
                             <option value="{{ old('pendidikan_terakhir_id') }}">Pilih Pendidikan Terakhir</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($pendidikan as $pe)
+                                <option value= {{ $pe->id }} >{{ $pe->nama }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3 row"> <!--ada tabel relasinya ato gmna ni-->
-                        <label for="jabatan_fungsional_terakhir" class="col-sm-2 col-form-label">Jabatan Fungsional Terakhir</label>
-                        <input type="text" class="form-control" name='jabatan_fungsional_terakhir' value="{{ old('jabatan_fungsional_terakhir') }}" id="jabatan_fungsional_terakhir" >
-                    </div>
+                        <label for="jabatan_fungsional_terakhir" class="col-sm-5 col-form-label">Jabatan Fungsional Terakhir</label>
+                        <input type="number" class="form-control" name='jabatan_fungsional_terakhir' value="{{ old('jabatan_fungsional_terakhir') }}" id="jabatan_fungsional_terakhir" >
+                    </div> 
 
                     <div class="mb-3 row">
-                        <label for="jabatan_struktural_id" class="col-sm-2 col-form-label">Jabatan Strukturan</label>
+                        <label for="jabatan_struktural_id" class="col-sm-2 col-form-label">Jabatan Struktural</label>
                         <select type="text" class="form-control" name='jabatan_struktural_id' id="jabatan_struktural_id">
-                            <option value="{{ old('jabatan_struktural_id') }}">Pilih Jabatan Strukturan</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            <option value="{{ old('jabatan_struktural_id') }}">Pilih Jabatan Struktural</option>
+                            @foreach ($jabatanStruktural as $jS)
+                                <option value= {{ $jS->jabatan_id }} >{{ $jS->nama_jabatan_singkat }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -178,8 +178,8 @@
                         <label for="unit_id" class="col-sm-2 col-form-label">Unit</label>
                         <select type="text" class="form-control" name='unit_id' id="unit_id">
                             <option value="{{ old('unit_id') }}">Pilih Unit</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($unit as $un)
+                                <option value= {{ $un->id }} >{{ $un->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -188,15 +188,15 @@
                         <label for="subunit_id" class="col-sm-2 col-form-label">Sub Unit</label>
                         <select type="text" class="form-control" name='subunit_id' id="subunit_id">
                             <option value="{{ old('subunit_id') }}">Pilih Sub Unit</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($subUnit as $sU)
+                                <option value= {{ $sU->id }} >{{ $sU->nama_subunit }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
-                        <input type="date" class="form-control" name='tempat_lahir' value="{{ old('tempat_lahir') }}" id="tempat_lahir" >
+                        <input type="text" class="form-control" name='tempat_lahir' value="{{ old('tempat_lahir') }}" id="tempat_lahir" >
                     </div>
 
                     <div class="mb-3 row">
@@ -208,8 +208,8 @@
                         <label for="jeniskelamin_id" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <select type="text" class="form-control" name='jeniskelamin_id' id="jeniskelamin_id">
                             <option value="{{ old('jeniskelamin_id') }}">Pilih Jenis Kelamin</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($jenisKelamin as $jK)
+                                <option value= {{ $jK->id }} >{{ $jK->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -218,8 +218,8 @@
                         <label for="agama_id" class="col-sm-2 col-form-label">Agama</label>
                         <select type="text" class="form-control" name='agama_id' id="agama_id">
                             <option value="{{ old('agama_id') }}">Pilih Agama</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($agama as $ag)
+                                <option value= {{ $ag->id }} >{{ $ag->nama }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -228,15 +228,15 @@
                         <label for="bahasa_aktif_id" class="col-sm-2 col-form-label">Bahasa Aktif</label>
                         <select type="text" class="form-control" name='bahasa_aktif_id' id="bahasa_aktif_id">
                             <option value="{{ old('bahasa_aktif_id') }}">Pilih Bahasa Aktif</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($bahasaAktif as $bA)
+                                <option value= {{ $bA->id }} >{{ $bA->nama }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="Alamat" >
+                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="alamat" >
                     </div>
 
                     <div class="mb-3 row">
@@ -249,9 +249,6 @@
                         <input type="text" class="form-control" name='desa_id' value="{{ old('desa_id') }}" id="desa_id" >
                     </div>
 
-
-
-
                     {{-- <div class="mb-3 row"> <!--gak ada tabel desa-->
                         <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
                         <select type="text" class="form-control" name='desa_id' id="desa_id">
@@ -262,35 +259,32 @@
                         </select>
                     </div> --}}
 
-
-
-
                     <div class="mb-3 row"> 
                         <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
                         <select type="text" class="form-control" name='kecamatan_id' id="kecamatan_id">
                             <option value="{{ old('kecamatan_id') }}">Pilih Kecamatan</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($kecamatan as $kec)
+                                <option value= {{ $kec->id }} >{{ $kec->nama_kecamatan }}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="mb-3 row"> 
+                    {{-- <div class="mb-3 row"> 
                         <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
                         <select type="text" class="form-control" name='kabupaten_id' id="kabupaten_id">
                             <option value="{{ old('kabupaten_id') }}">Pilih Kabupaten</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($kabupaten as $kab)
+                                <option value= {{ $kab->id }} >{{ $kab->nama_kabupaten }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3 row"> 
                         <label for="provinsi_id" class="col-sm-2 col-form-label">Provinsi</label>
                         <select type="text" class="form-control" name='provinsi_id' id="provinsi_id">
                             <option value="{{ old('provinsi_id') }}">Pilih Provinsi</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($provinsi as $prov)
+                                <option value= {{ $prov->id }} >{{ $prov->nama_provinsi }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -310,7 +304,7 @@
                         <input type="text" class="form-control" name='npwp' value="{{ old('npwp') }}" id="npwp" >
                     </div>
 
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="file_photo" class="col-sm-2 col-form-label">File Foto</label>
                         <input type="file" class="form-control" name='file_photo' value="{{ old('file_photo') }}" id="file_photo" >
                     </div>
@@ -328,22 +322,22 @@
                     <div class="mb-3 row">
                         <label for="file_npwp" class="col-sm-2 col-form-label">File NPWP</label>
                         <input type="file" class="form-control" name='file_npwp' value="{{ old('file_npwp') }}" id="file_npwp" >
-                    </div>
+                    </div> --}}
 
-                    <div class="mb-3 row"> 
+                    {{-- <div class="mb-3 row"> 
                         <label for="status_nikah_id" class="col-sm-2 col-form-label">Status Nikah</label>
                         <select type="text" class="form-control" name='status_nikah_id' id="status_nikah_id">
                             <option value="{{ old('status_nikah_id') }}">Pilih Status Nikah</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($statusNikah as $sN)
+                                <option value= {{ $sN->id }} >{{ $sN->nama }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="status_daftar_id" class="col-sm-2 col-form-label">Status Daftar</label>
-                        <input type="text" class="form-control" name='status_daftar_id' value="{{ old('status_daftar_id') }}" id="status_daftar_id" >
-                    </div>
+                        <input type="number" class="form-control" name='status_daftar_id' value="{{ old('status_daftar_id') }}" id="status_daftar_id" >
+                    </div> --}}
 
 
 
@@ -399,32 +393,32 @@ function store(){
         return false;
         }
     if (document.forms["formPendaftaran"]["kode_bpjs"].value =="") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Kode BPJS Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["kode_bpjs"].focus();
-            return false;
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Kode BPJS Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["kode_bpjs"].focus();
+        return false;
     }  
-        if (document.forms["formPendaftaran"]["nama"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Nama Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["nama"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["nama_tercetak"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Nama Tercetak Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["nama_tercetak"].focus();
-            return false;
-        }
+    if (document.forms["formPendaftaran"]["nama"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["nama_tercetak"].value == "") {
+    CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Tercetak Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama_tercetak"].focus();
+        return false;
+    }
         if (document.forms["formPendaftaran"]["gelar_depan"].value == "") {
             CustomSwal.fire({
                 icon: 'error',
@@ -614,15 +608,7 @@ function store(){
             document.forms["formPendaftaran"]["kecamatan_id"].focus();
             return false;
         }
-        if (document.forms["formPendaftaran"]["kabupaten_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Kabupaten Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["kabupaten_id"].focus();
-            return false;
-        }
+        
         if (document.forms["formPendaftaran"]["provinsi_id"].value == "") {
             CustomSwal.fire({
                 icon: 'error',
@@ -659,65 +645,65 @@ function store(){
             document.forms["formPendaftaran"]["npwp"].focus();
             return false;
         }
-        if (document.forms["formPendaftaran"]["file_photo"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File Foto Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_photo"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File KTP Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_ktp"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["file_kk"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File KK Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_kk"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'File NPWP Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["file_npwp"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["status_nikah_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Status Nikah Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["status_nikah_id"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["status_daftar_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Status Daftar Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["status_daftar_id"].focus();
-            return false;
-        }
+        // if (document.forms["formPendaftaran"]["file_photo"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File Foto Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_photo"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File KTP Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_ktp"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["file_kk"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File KK Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_kk"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'File NPWP Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["file_npwp"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["status_nikah_id"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Status Nikah Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["status_nikah_id"].focus();
+        //     return false;
+        // }
+        // if (document.forms["formPendaftaran"]["status_daftar_id"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Status Daftar Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["status_daftar_id"].focus();
+        //     return false;
+        // }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["kode"].value+' ?',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
@@ -730,41 +716,44 @@ function store(){
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
-                    kode:           $("#kode").val(),
-                    no_induk:       $("#no_induk").val(),
-                    absen_id:       $("#absen_id").val(),
-                    kode_bpjs:      $("#kode_bpjs").val(),
-                    nama:           $("#nama").val(),
-                    nama_tercetak:  $("#nama_tercetak").val(),
-                    gelar_depan:    $("#gelar_depan").val(),
-                    status_pegawai_id: $("#status_pegawai_id").val(),
-                    jenis_profesi_id: $("#jenis_profesi_id").val(),
-                    spesialisasi_id: $("#spesialisasi_id").val(),
+                    id:                 $("#id").val(),
+                    kode:               $("#kode").val(),
+                    no_induk:           $("#no_induk").val(),
+                    absen_id:           $("#absen_id").val(),
+                    kode_bpjs:          $("#kode_bpjs").val(),
+                    nama:               $("#nama").val(),
+                    nama_tercetak:      $("#nama_tercetak").val(),
+                    gelar_depan:        $("#gelar_depan").val(),
+                    gelar_belakang:     $("#gelar_belakang").val(),
+                    status_pegawai_id:  $("#status_pegawai_id").val(),
+                    jenis_profesi_id:   $("#jenis_profesi_id").val(),
+                    spesialisasi_id:    $("#spesialisasi_id").val(),
                     sub_spesialisasi_id: $("#sub_spesialisasi_id").val(),
-                    qualifikasi_id: $("#qualifikasi_id").val(),
-                    pendidikan_terakhir_id: $("#pendidikan_terakhir_id").val(),
-                    jabatan_fungsional_terakhir: $("#jabatan_fungsional_terakhir").val(),
-                    unit_id: $("#unit_id").val(),
-                    subunit_id: $("#subunit_id").val(),
-                    tempat_lahir:   $("#tempat_lahir").val(),
-                    tanggal_lahir:  $("#tanggal_lahir").val(),
-                    jeniskelamin_id: $("#jeniskelamin_id").val(),
-                    agama_id: $("#agama_id").val(),
-                    bahasa_aktif_id: $("#bahasa_aktif_id").val(),
-                    alamat:         $("#alamat").val(),
-                    dusun:          $("#dusun").val(),
-                    desa_id:          $("#desa_id").val(),
-                    kecamatan_id:          $("#kecamatan_id").val(),
-                    kabupaten_id:          $("#kabupaten_id").val(),
-                    provinsi_id:          $("#provinsi_id").val(),
-                    kodepos:        $("#kodepos").val(),
-                    nik:            $("#nik").val(),
-                    npwp:           $("#npwp").val(),
-                    file_photo:     $("#file_photo").val(),
-                    file_kk:        $("#file_kk").val(),
-                    file_npwp:      $("#file_npwp").val()
-                    status_nikah_id:      $("#status_nikah_id").val()
-                    status_daftar_id:      $("#status_daftar_id").val()
+                    qualifikasi_id:      $("#qualifikasi_id").val(),
+                    pendidikan_terakhir_id:         $("#pendidikan_terakhir_id").val(),
+                    jabatan_fungsional_terakhir:    $("#jabatan_fungsional_terakhir").val(),
+                    jabatan_struktural_id:          $("#jabatan_struktural_id").val(),
+                    unit_id:            $("#unit_id").val(),
+                    subunit_id:         $("#subunit_id").val(),
+                    tempat_lahir:       $("#tempat_lahir").val(),
+                    tanggal_lahir:      $("#tanggal_lahir").val(),
+                    jeniskelamin_id:    $("#jeniskelamin_id").val(),
+                    agama_id:           $("#agama_id").val(),
+                    bahasa_aktif_id:    $("#bahasa_aktif_id").val(),
+                    alamat:             $("#alamat").val(),
+                    dusun:              $("#dusun").val(),
+                    desa_id:            $("#desa_id").val(),
+                    kecamatan_id:       $("#kecamatan_id").val(),
+                    provinsi_id:        $("#provinsi_id").val(),
+                    kodepos:            $("#kodepos").val(),
+                    nik:                $("#nik").val(),
+                    npwp:               $("#npwp").val(),
+                    // file_photo:         $("#file_photo").val(),
+                    // file_ktp:           $("#file_ktp").val(),
+                    // file_kk:            $("#file_kk").val(),
+                    // file_npwp:          $("#file_npwp").val(),
+                    // status_nikah_id:    $("#status_nikah_id").val(),
+                    // status_daftar_id:   $("#status_daftar_id").val(),
                 },
                 type:"POST",
                 dataType:"JSON",
@@ -791,3 +780,4 @@ function store(){
 }
 </script>
 @endpush
+
