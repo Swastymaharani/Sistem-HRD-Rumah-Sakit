@@ -10,4 +10,8 @@ class Spesialisasi extends Model
     use HasFactory;
     protected $table='m_spesialisasi';
     protected $fillable=['id', 'kode', 'nama', 'gelar'];
+
+    public function pegawai(){
+        return $this->hasMany(Pegawai::class);
+    }
 }

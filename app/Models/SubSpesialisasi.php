@@ -10,4 +10,8 @@ class SubSpesialisasi extends Model
     use HasFactory;
     protected $table='m_subspesialisasi';
     protected $fillable=['id', 'spesialis_id','kode', 'nama'];
+
+    public function pegawai(){
+        return $this->hasMany(Pegawai::class);
+    }
 }

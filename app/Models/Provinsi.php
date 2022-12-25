@@ -10,4 +10,8 @@ class Provinsi extends Model
     use HasFactory;
     protected $table='m_provinsi';
     protected $fillable=['id','nama_provinsi'];
+
+    public function pegawai(){
+        return $this->hasMany(Pegawai::class);
+    }
 }
