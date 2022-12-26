@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault">Modal Default</button> -->
                 <!-- <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDefault"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-success" onclick="filtershow()"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
-                <a href="{{ route('crud.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
+                <a href="{{ route('pegawai.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
@@ -57,7 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" action="{{ route('crud.update', $data->id)}}" method="POST">
+        <form name="formPendaftaran" action="{{ route('pegawai.update', $data->id)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
@@ -344,7 +344,7 @@ function update(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{route('crud.update', $data->id)}}/",
+                url:"{{route('pegawai.update', $data->id)}}/",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
@@ -373,7 +373,7 @@ function update(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('crud') }}");
+                                window.location.replace("{{ url('pegawai') }}");
                             }
                         });
                     }else{

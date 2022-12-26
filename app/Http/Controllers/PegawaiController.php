@@ -37,16 +37,34 @@ class PegawaiController extends Controller
         $data = Pegawai::all();
         $datatables = DataTables::of($data);
         return $datatables
-                ->addIndexColumn()
-                ->addColumn('aksi', function($data){
-                    $aksi = "";
-                    $aksi .= "<a title='Riwayat Diklat' href='#' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
-                    $aksi .= "<a title='Edit Data' href='/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-                    $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->kode}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-kode='{$data->kode}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
-                    return $aksi;
+        ->addIndexColumn()
+        ->addColumn('status_pegawai', function($data){
+                    $nama_status = Pegawai::find($data->id);
+                    // foreach($data as $status_pegawai){
+                    // $status_pegawai = $data->statusPegawai;
+                    return $nama_status->statusPegawai;
+                    // }
+
+                    // $nama_status = Pegawai::where('status_pegawai_id', $data->status_pegawai_id);
+                    // foreach($data as $status_pegawai){
+                    //     $status_pegawai = $data->statusPegawai;
+                    // }
+                    // return $nama_status->statusPegawai->nama;
+                    // }
                 })
-                ->rawColumns(['aksi'])
-                ->make(true);
+        ->addColumn('jenis_profesi', function($data){
+            $jenis_profesi = Pegawai::find($data->id);  
+            return $jenis_profesi->jenisProfesi;
+        })
+        ->addColumn('aksi', function($data){
+            $aksi = "";
+            $aksi .= "<a title='Riwayat Diklat' href='#' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
+            $aksi .= "<a title='Edit Data' href='/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+            $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->kode}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-kode='{$data->kode}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
+            return $aksi;
+        })
+        ->rawColumns(['aksi'])
+        ->make(true);
     }
 
     public function deleteData(Request $request){

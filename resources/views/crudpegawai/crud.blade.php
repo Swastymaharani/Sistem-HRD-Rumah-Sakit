@@ -109,15 +109,15 @@
                 class: 'text-left'
             },
             {
-                data: 'status_pegawai_id.nama',
-                name: 'status_pegawai_id.nama',
+                data: 'status_pegawai',
+                name: 'status_pegawai',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
             },
             {
-                data: 'jenis_profesi_id.nama_profesi',
-                name: 'jenis_profesi_id.nama_profesi',
+                data: 'jenis_profesi',
+                name: 'jenis_profesi',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'

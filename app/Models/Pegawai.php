@@ -16,66 +16,66 @@ class Pegawai extends Model
     'kecamatan_id','kabupaten_id','provinsi_id','kodepos','nik','npwp','file_photo','file_ktp','file_kk','file_npwp','status_nikah_id','status_daftar_id'];
 
     public function agama(){
-        return $this->belongsTo(Agama::class, 'agama_id', 'id');
+        return $this->belongsTo(Agama::class);
     }
 
     public function bahasaAktif(){
-        return $this->belongsTo(BahasaAktif::class, 'bahasa_aktif_id', 'id');
+        return $this->belongsTo(BahasaAktif::class, 'bahasa_aktif_id');
     }
 
     public function jabatanStruktural(){
-        return $this->belongsTo(JabatanStruktural::class, 'jabatan_struktural_id', 'jabatan_id');
+        return $this->belongsTo(JabatanStruktural::class, 'jabatan_struktural_id');
     }
 
     public function jenisKelamin(){
-        return $this->belongsTo(JenisKelamin::class, 'jenis_kelamin_id', 'id');
+        return $this->belongsTo(JenisKelamin::class, 'jenis_kelamin_id');
     }
 
     public function jenisProfesi(){
-        return $this->belongsTo(JenisProfesi::class, 'jenis_profesi_id', 'id');
+        return $this->belongsTo(JenisProfesi::class);
     }   
     
     public function kabupaten(){
-        return $this->belongsTo(Kabupaten::class, 'kabupaten_id', 'id');
+        return $this->belongsTo(Kabupaten::class);
     } 
 
     public function kecamatan(){
-        return $this->belongsTo(Kecamatan::class, 'kecamatan_id', 'id');
+        return $this->belongsTo(Kecamatan::class);
     } 
 
     public function kualifikasi(){
-        return $this->belongsTo(Kualifikasi::class, 'qualifikasi_id', 'id');
+        return $this->belongsTo(Kualifikasi::class);
     } 
 
     public function pendidikan(){
-        return $this->belongsTo(Pendidikan::class, 'pendidikan_id', 'id');
+        return $this->belongsTo(Pendidikan::class);
     }
 
     public function provinsi(){
-        return $this->belongsTo(Provinsi::class, 'provinsi_id', 'id');
+        return $this->belongsTo(Provinsi::class);
     }
 
     public function spesialisasi(){
-        return $this->belongsTo(Spesialisasi::class, 'spesialisasi_id', 'id');
+        return $this->belongsTo(Spesialisasi::class);
     }
 
     public function statusNikah(){
-        return $this->belongsTo(StatusNikah::class, 'status_nikah_id', 'id');
+        return $this->belongsTo(StatusNikah::class, 'status_nikah_id');
     }
 
     public function statusPegawai(){
-        return $this->belongsTo(StatusPegawai::class, 'status_pegawai_id', 'id');
+        return $this->belongsTo(StatusPegawai::class);
     }
 
     public function subSpesialisasi(){
-        return $this->belongsTo(SubSpesialisasi::class, 'subspesialisasi_id', 'id');
+        return $this->belongsTo(SubSpesialisasi::class, 'subspesialisasi_id');
     }
 
     public function subUnit(){
-        return $this->belongsTo(SubUnit::class, 'subunit_id', 'id');
+        return $this->belongsTo(SubUnit::class, 'subunit_id');
     }
 
     public function unit(){
-        return $this->belongsTo(Unit::class, 'unit_id', 'id');
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 }
