@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault">Modal Default</button> -->
                 <!-- <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDefault"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-success" onclick="filtershow()"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
-                <a href="{{ route('diklat.listData') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
+                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
@@ -57,15 +57,11 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" action="{{ route('diklat.update', $data->id)}}" method="POST">
+        <form name="formPendaftaran" action="{{ route('diklat.update', $data->id_diklat)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
                 <div class="card-body">
-                    <div class="mb-3 row">
-                        <label for="id_diklat" class="col-sm-2 col-form-label">ID Diklat</label>
-                        <input type="text" class="form-control" name='id_diklat' value="{{ $data->id_diklat }}" id="id_diklat" >
-                    </div>
 
                     <div class="mb-3 row">
                         <label for="no_urut" class="col-sm-2 col-form-label">No. Urut</label>
@@ -95,15 +91,6 @@
 <script>
 
 function update(){
-    if (document.forms["formPendaftaran"]["id_diklat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'ID Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["id_diklat"].focus();
-                return false;
-            }
         if (document.forms["formPendaftaran"]["no_urut"].value =="") {
                 CustomSwal.fire({
                     icon: 'error',
@@ -143,7 +130,7 @@ function update(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{route('diklat.update', $data->id)}}/",
+                url:"{{route('diklat.update', $data->id_diklat)}}/",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",
@@ -158,7 +145,7 @@ function update(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('crud') }}");
+                                window.location.replace("{{ url()->previous() }}");
                             }
                         });
                     }else{

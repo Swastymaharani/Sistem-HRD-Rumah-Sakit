@@ -54,7 +54,7 @@ Route::get('/{id}/diklat',[DiklatController::class,'diklatDetail'])->name('dikla
 Route::post('/{id}/diklat/listdata',[DiklatController::class,'listData'])->name('diklat.listData');
 Route::get('/diklat/create',[DiklatController::class,'create'])->name('diklat.create');
 Route::get('/diklat/{id}/edit',[DiklatController::class,'edit'])->name('diklat.edit');
-Route::delete('/{id}/diklat/{id}',[DiklatController::class,'deleteData'])->name('diklat.delete');
+Route::delete('/diklat/{id}',[DiklatController::class,'deleteData'])->name('diklat.delete');
 Route::post('/diklat/save', [DiklatController::class,'save'])->name('diklat.save');
 Route::post('/diklat/{id}/update',[DiklatController::class,'update'])->name('diklat.update');
 

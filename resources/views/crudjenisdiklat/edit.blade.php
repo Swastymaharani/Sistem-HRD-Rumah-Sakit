@@ -58,7 +58,6 @@
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
         <form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->jenis_diklat_id)}}" method="POST">
-<form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->jenis_diklat_id) }}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">

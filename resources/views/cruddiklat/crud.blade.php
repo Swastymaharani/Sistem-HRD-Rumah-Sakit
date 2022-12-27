@@ -56,7 +56,7 @@
                     <table id="{{$table_id}}" class="table table-striped table-bordered nowrap" style="width:100%">
                         <thead style="color:#526484; font-size:11px;">
                         
-                            <th>No. </th>
+                            <th>No.</th>
                             <th>Nomor Urut Diklat</th>
                             <th>Nama Diklat</th>
                             <th>Aksi</th>
@@ -108,11 +108,11 @@ $(document).ready(function() {
                 class: 'text-left'
             },
             {
-                 data: 'aksi',
-                 name: 'aksi',
-                 orderable: false,
-                 searchable: false,
-                 class: 'text-center'
+                data: 'aksi',
+                name: 'aksi',
+                orderable: false,
+                searchable: false,
+                class: 'text-center'
             }
         ],
     });
@@ -133,7 +133,7 @@ function deleteData(id,name,elm){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url: "{{url('".jenis_diklat_id."/diklat')}}/"+id, // error
+                url: "{{url('/diklat')}}/"+id, 
                 data:{
                     _method:"DELETE",
                     _token:"{{csrf_token()}}"
