@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault">Modal Default</button> -->
                 <!-- <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDefault"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-success" onclick="filtershow()"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
-                <a href="{{ route('diklat.listData') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
+                <a href="{{ url()->previous() }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
@@ -143,7 +143,7 @@ function store(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('diklat') }}");
+                                window.location.replace("{{ url()->previous() }}");
                             }
                         });
                     }

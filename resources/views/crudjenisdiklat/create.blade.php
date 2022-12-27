@@ -55,13 +55,17 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/jenisdiklat/save') }}" method="POST">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/jenisdiklat/save') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="nama_jenis_diklat" class="col-sm-2 col-form-label">Nama Jenis Diklat</label>
                         <input type="text" class="form-control" name='nama_jenis_diklat' value="{{ old('nama_jenis_diklat') }}" id="nama_jenis_diklat" >
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="gambar1" class="col-sm-2 col-form-label">Gambar Diklat</label>
+                        <input type="file" class="form-control" name='gambar1' value="{{ old('gambar1') }}" id="gambar1" >
                     </div>
                   
                     <div class="mb-3 row">
@@ -86,7 +90,16 @@ function store(){
                 })
                 document.forms["formPendaftaran"]["nama_jenis_diklat"].focus();
                 return false;
-        }  
+        } 
+        if (document.forms["formPendaftaran"]["gambar1"].value =="") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Gambar Diklat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["gambar1"].focus();
+                return false;
+        }   
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
@@ -98,14 +111,12 @@ function store(){
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+            let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
                 url:"{{url('/jenisdiklat/save')}}",
-                data:{
-                    _method:"POST",
-                    _token:"{{csrf_token()}}",
-                    jenis_diklat_id:$("#jenis_diklat_id").val(),
-                    nama_jenis_diklat:$("#nama_jenis_diklat").val(),
-                },
+                data:formData,
+                contentType: false,
+                processData: false,
                 type:"POST",
                 dataType:"JSON",
                 success:function(data){
@@ -128,6 +139,7 @@ function store(){
             });
         }
     });
+
 }
 </script>
 @endpush

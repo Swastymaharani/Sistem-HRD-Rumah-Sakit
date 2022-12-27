@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Diklat;
+use App\Models\JenisDiklat;
 
 class DiklatController extends Controller
 {
@@ -20,8 +21,9 @@ class DiklatController extends Controller
         $subtitle = 'Diklat Detail';
         $table_id = 'm_diklat';
         $diklat = Diklat::find($id);
+        $jenis_diklat = JenisDiklat::find($id);
         $jenis_diklat_id = $id;
-        return view('cruddiklat.crud',compact('subtitle','table_id','icon', 'jenis_diklat_id', 'diklat'));
+        return view('cruddiklat.crud',compact('subtitle','table_id','icon', 'jenis_diklat_id', 'diklat', 'jenis_diklat'));
     }
 
     // public function listData(Request $request, $jenis_diklat_id){
@@ -51,18 +53,19 @@ class DiklatController extends Controller
 
     public function create(){
         $icon = 'ni ni-dashlite';
-        $subtitle = 'Tambah Data Jenis Diklat';
+        $subtitle = 'Tambah Data Diklat';
+        
         return view('cruddiklat.create',compact('subtitle','icon'));
     }
 
     public function edit(Request $request, $id){
         $data = Diklat::find($request->id);
         $icon = 'ni ni-dashlite';
-        $subtitle = 'Edit Data Jenis Diklat';
+        $subtitle = 'Edit Data Diklat';
         return view('cruddiklat.edit',compact('subtitle','icon','data'));
     }
 
-    public function save(Request $request, $jenis_diklat_id){
+    public function save(Request $request){
         if(Diklat::create($request->all())){
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }else{

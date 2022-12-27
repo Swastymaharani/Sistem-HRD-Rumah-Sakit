@@ -57,6 +57,7 @@
                             
                             <th>No.</th>
                             <th>Nama Jenis Diklat</th>
+                            <th>Gambar Diklat</th>
                             <th>Aksi</th>
                             
                         </thead>
@@ -94,6 +95,13 @@ $(document).ready(function() {
             {
                 data: 'nama_jenis_diklat',
                 name: 'nama_jenis_diklat',
+                orderable: true,
+                searchable: true,
+                class: 'text-left'
+            },
+            {
+                data: 'gambar1',
+                name: 'gambar1',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
@@ -155,8 +163,5 @@ function deleteData(id,name,elm){
         }
     });
 }
-
-
-
 </script>
 @endpush

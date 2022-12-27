@@ -15,11 +15,12 @@
 
 <div class="nk-fmg-body-head d-none d-lg-flex">
     <div class="nk-fmg-search">
-        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle)}}</h4>
+        <a href="{{ route('jenisDiklat.list') }}"><button type="button" class="btn btn-info"><em class="icon fas fa-arrow-left"></em> <span>Jenis Diklat</span></button></a>  &nbsp;&nbsp;
+        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle.": Jenis Diklat ".$jenis_diklat->nama_jenis_diklat)}}</h4>
     </div>
     <div class="nk-fmg-actions">
-        <div class="btn-group">
-            <a href="{{ route('diklat.create') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Diklat</span></a>
+        <div class="btn-group"> 
+            <a href="{{ route('diklat.create'), $jenis_diklat_id }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Diklat</span></a>
         </div>
     </div>
 </div>
@@ -56,7 +57,6 @@
                         <thead style="color:#526484; font-size:11px;">
                         
                             <th>No. </th>
-                            <th>Jenis Diklat ID</th>
                             <th>Nomor Urut Diklat</th>
                             <th>Nama Diklat</th>
                             <th>Aksi</th>
@@ -93,14 +93,6 @@ $(document).ready(function() {
         },
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },     
-            {
-
-                data: 'jenis_diklat_id', // error: $diklat->jenisdiklat->nama_jenis_diklat
-                name: 'jenis_diklat_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
             {
                 data: 'no_urut',
                 name: 'no_urut',

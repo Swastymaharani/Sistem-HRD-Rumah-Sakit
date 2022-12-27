@@ -13,6 +13,6 @@ class JenisDiklat extends Model
     protected $fillable=['nama_jenis_diklat'];
 
     public function diklat(){
-        return $this->hasMany(Diklat::class);
+        return $this->hasMany(Diklat::class, 'jenis_diklat_id', 'jenis_diklat_id');
     }
 }

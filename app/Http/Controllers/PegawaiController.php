@@ -115,15 +115,15 @@ class PegawaiController extends Controller
     }
 
     public function save(Request $request){
-        // $file_photo_nama = time().'.'.$request->file_photo->extension();
-        // $file_ktp_nama = time().'.'.$request->file_ktp->extension();
-        // $file_kk_nama = time().'.'.$request->file_kk->extension();
-        // $file_npwp_nama = time().'.'.$request->file_npwp->extension();
+        $file_photo_nama = time().'.'.$request->file_photo->extension();
+        $file_ktp_nama = time().'.'.$request->file_ktp->extension();
+        $file_kk_nama = time().'.'.$request->file_kk->extension();
+        $file_npwp_nama = time().'.'.$request->file_npwp->extension();
 
-        // $request->file_photo->move(public_path('images'), $file_photo_nama);
-        // $request->file_ktp->move(public_path('images'), $file_ktp_nama);
-        // $request->file_kk->move(public_path('images'), $file_kk_nama);
-        // $request->file_npwp->move(public_path('images'), $file_npwp_nama);
+        $request->file_photo->move(public_path('images'), $file_photo_nama);
+        $request->file_ktp->move(public_path('images'), $file_ktp_nama);
+        $request->file_kk->move(public_path('images'), $file_kk_nama);
+        $request->file_npwp->move(public_path('images'), $file_npwp_nama);
 
         // $data = $request->except('file_photo');
         // $data = $request->except('file_kk');
@@ -171,6 +171,13 @@ class PegawaiController extends Controller
             // 'file_npwp'         => $file_npwp_nama,
             // 'status_nikah_id'   => $request-> input('status_nikah_id'),
             // 'status_daftar_id'  => $request-> input('status_daftar_id'),
+        ]);
+
+        $data = Pegawai::insert([
+            'file_photo'        => $file_photo_nama,
+            'file_ktp'          => $file_ktp_nama,
+            'file_kk'           => $file_kk_nama,
+            'file_npwp'         => $file_npwp_nama
         ]);
 
         // Carbon::createFromFormat('m/d/Y', $request->input('tanggal_lahir'))->format('Y-m-d'),

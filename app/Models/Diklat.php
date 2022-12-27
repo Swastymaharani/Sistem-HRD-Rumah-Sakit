@@ -13,6 +13,6 @@ class Diklat extends Model
     protected $fillable=['no_urut', 'nama_diklat', 'jenis_diklat_id'];
 
     public function jenisdiklat(){
-        return $this->belongsTo(JenisDiklat::class);
+        return $this->belongsTo(JenisDiklat::class, 'jenis_diklat_id', 'jenis_diklat_id');
     }
 }

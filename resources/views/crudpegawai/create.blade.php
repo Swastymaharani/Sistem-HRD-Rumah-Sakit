@@ -304,7 +304,7 @@
                         <input type="text" class="form-control" name='npwp' value="{{ old('npwp') }}" id="npwp" >
                     </div>
 
-                    {{-- <div class="mb-3 row">
+                    <div class="mb-3 row">
                         <label for="file_photo" class="col-sm-2 col-form-label">File Foto</label>
                         <input type="file" class="form-control" name='file_photo' value="{{ old('file_photo') }}" id="file_photo" >
                     </div>
@@ -322,7 +322,7 @@
                     <div class="mb-3 row">
                         <label for="file_npwp" class="col-sm-2 col-form-label">File NPWP</label>
                         <input type="file" class="form-control" name='file_npwp' value="{{ old('file_npwp') }}" id="file_npwp" >
-                    </div> --}}
+                    </div>
 
                     {{-- <div class="mb-3 row"> 
                         <label for="status_nikah_id" class="col-sm-2 col-form-label">Status Nikah</label>
@@ -748,10 +748,10 @@ function store(){
                     kodepos:            $("#kodepos").val(),
                     nik:                $("#nik").val(),
                     npwp:               $("#npwp").val(),
-                    // file_photo:         $("#file_photo").val(),
-                    // file_ktp:           $("#file_ktp").val(),
-                    // file_kk:            $("#file_kk").val(),
-                    // file_npwp:          $("#file_npwp").val(),
+                    file_photo:         $("#file_photo").val(),
+                    file_ktp:           $("#file_ktp").val(),
+                    file_kk:            $("#file_kk").val(),
+                    file_npwp:          $("#file_npwp").val(),
                     // status_nikah_id:    $("#status_nikah_id").val(),
                     // status_daftar_id:   $("#status_daftar_id").val(),
                 },

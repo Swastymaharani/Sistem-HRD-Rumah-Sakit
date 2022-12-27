@@ -55,7 +55,7 @@ Route::post('/{id}/diklat/listdata',[DiklatController::class,'listData'])->name(
 Route::get('/diklat/create',[DiklatController::class,'create'])->name('diklat.create');
 Route::get('/diklat/{id}/edit',[DiklatController::class,'edit'])->name('diklat.edit');
 Route::delete('/{id}/diklat/{id}',[DiklatController::class,'deleteData'])->name('diklat.delete');
-Route::post('/diklat/save', [DiklatController::class,'simpan'])->name('diklat.save');
+Route::post('/diklat/save', [DiklatController::class,'save'])->name('diklat.save');
 Route::post('/diklat/{id}/update',[DiklatController::class,'update'])->name('diklat.update');
 
 // Route CRUD RiwayatDiklat
@@ -64,5 +64,5 @@ Route::post('/riwayatdiklat/listdata',[RiwayatDiklatController::class,'listData'
 Route::get('/riwayatdiklat/create',[RiwayatDiklatController::class,'create'])->name('riwayatDiklat.create');
 Route::get('/riwayatdiklat/{id}/edit',[RiwayatDiklatController::class,'edit'])->name('riwayatDiklat.edit');
 Route::delete('/riwayatdiklat/{id}',[RiwayatDiklatController::class,'deleteData'])->name('riwayatDiklat.delete');
-Route::post('/riwayatdiklat/save', [RiwayatDiklatController::class,'simpan'])->name('riwayatDiklat.save');
+Route::post('/riwayatdiklat/save', [RiwayatDiklatController::class,'save'])->name('riwayatDiklat.save');
 Route::post('/riwayatdiklat/{id}/update',[RiwayatDiklatController::class,'update'])->name('riwayatDiklat.update');
