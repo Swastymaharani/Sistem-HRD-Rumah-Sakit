@@ -14,4 +14,8 @@ class Pendidikan extends Model
     public function pegawai(){
         return $this->hasOne(Pegawai::class);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> crud_pegawai
 }

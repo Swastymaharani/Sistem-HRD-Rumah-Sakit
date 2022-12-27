@@ -15,3 +15,4 @@ class JenisKelamin extends Model
         return $this->hasOne(Pegawai::class);
     }
 }
+

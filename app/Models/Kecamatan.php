@@ -14,4 +14,8 @@ class Kecamatan extends Model
     public function pegawai(){
         return $this->hasMany(Pegawai::class);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> crud_pegawai
 }

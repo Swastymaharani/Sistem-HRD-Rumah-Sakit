@@ -55,7 +55,11 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
+<<<<<<< HEAD
         <form name="formInputRiwayatDiklat" action="{{ url('/riwayatDiklat/save') }}" method="POST">
+=======
+        <form name="formInputRiwayatDiklat" action="{{ url('/crud4/save') }}" method="POST" enctype="multipart/form-data">
+>>>>>>> crud_pegawai
             @csrf
             <div class="card">
                 <div class="card-body">
