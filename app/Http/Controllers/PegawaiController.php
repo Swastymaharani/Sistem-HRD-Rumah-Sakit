@@ -115,75 +115,118 @@ class PegawaiController extends Controller
     }
 
     public function save(Request $request){
-        $file_photo_nama = time().'.'.$request->file_photo->extension();
-        $file_ktp_nama = time().'.'.$request->file_ktp->extension();
-        $file_kk_nama = time().'.'.$request->file_kk->extension();
-        $file_npwp_nama = time().'.'.$request->file_npwp->extension();
-
-        $request->file_photo->move(public_path('images'), $file_photo_nama);
-        $request->file_ktp->move(public_path('images'), $file_ktp_nama);
-        $request->file_kk->move(public_path('images'), $file_kk_nama);
-        $request->file_npwp->move(public_path('images'), $file_npwp_nama);
-
-        // $data = $request->except('file_photo');
-        // $data = $request->except('file_kk');
-        // $data = $request->except('file_npwp');
-
-        // $data['file_photo'] = $file_photo_nama;
-        // $data['file_kk'] = $file_kk_nama;
-        // $data['file_npwp'] = $file_npwp_nama;
-
-        $data = Pegawai::create([
-            'kode'              => $request-> input('kode'),
-            'no_induk'          => $request-> input('no_induk'),
-            'absen_id'          => $request-> input('absen_id'),
-            'kode_bpjs'         => $request-> input('kode_bpjs'),
-            'nama'              => $request-> input('nama'),
-            'nama_tercetak'     => $request-> input('nama_tercetak'),
-            'gelar_depan'       => $request-> input('gelar_depan'),
-            'gelar_belakang'    => $request-> input('gelar_belakang'),
-            'status_pegawai_id' => $request-> input('status_pegawai_id'),
-            'jenis_profesi_id'  => $request-> input('jenis_profesi_id'),
-            'spesialisasi_id'   => $request-> input('spesialisasi_id'),
-            'sub_spesialisasi_id'       => $request-> input('sub_spesialisasi_id'),
-            'qualifikasi_id'            => $request-> input('qualifikasi_id'),
-            'pendidikan_terakhir_id'    => $request-> input('pendidikan_terakhir_id'),
-            'jabatan_fungsional_terakhir'=> $request-> input('jabatan_fungsional_terakhir'),
-            'jabatan_struktural_id'     => $request-> input('jabatan_struktural_id'),
-            'unit_id'           => $request-> input('unit_id'),
-            'subunit_id'        => $request-> input('subunit_id'),
-            'tempat_lahir'      => $request-> input('tempat_lahir'),
-            'tanggal_lahir'     => $request-> input('tanggal_lahir'),
-            'jeniskelamin_id'   => $request-> input('jeniskelamin_id'),
-            'agama_id'          => $request-> input('agama_id'),
-            'bahasa_aktif_id'   => $request-> input('bahasa_aktif_id'),
-            'alamat'            => $request-> input('alamat'),
-            'dusun'             => $request-> input('dusun'),
-            'desa_id'           => $request-> input('desa_id'),
-            'kecamatan_id'      => $request-> input('kecamatan_id'),
-            'provinsi_id'       => $request-> input('provinsi_id'),
-            'kodepos'           => $request-> input('kodepos'),
-            'nik'               => $request-> input('nik'),
-            'npwp'              => $request-> input('npwp'),
+    
+        // $data = Pegawai::create([
+        //     'kode'              => $request-> input('kode'),
+        //     'no_induk'          => $request-> input('no_induk'),
+        //     'absen_id'          => $request-> input('absen_id'),
+        //     'kode_bpjs'         => $request-> input('kode_bpjs'),
+        //     'nama'              => $request-> input('nama'),
+        //     'nama_tercetak'     => $request-> input('nama_tercetak'),
+        //     'gelar_depan'       => $request-> input('gelar_depan'),
+        //     'gelar_belakang'    => $request-> input('gelar_belakang'),
+        //     'status_pegawai_id' => $request-> input('status_pegawai_id'),
+        //     'jenis_profesi_id'  => $request-> input('jenis_profesi_id'),
+        //     'spesialisasi_id'   => $request-> input('spesialisasi_id'),
+        //     'sub_spesialisasi_id'       => $request-> input('sub_spesialisasi_id'),
+        //     'qualifikasi_id'            => $request-> input('qualifikasi_id'),
+        //     'pendidikan_terakhir_id'    => $request-> input('pendidikan_terakhir_id'),
+        //     'jabatan_fungsional_terakhir'=> $request-> input('jabatan_fungsional_terakhir'),
+        //     'jabatan_struktural_id'     => $request-> input('jabatan_struktural_id'),
+        //     'unit_id'           => $request-> input('unit_id'),
+        //     'subunit_id'        => $request-> input('subunit_id'),
+        //     'tempat_lahir'      => $request-> input('tempat_lahir'),
+        //     'tanggal_lahir'     => $request-> input('tanggal_lahir'),
+        //     'jeniskelamin_id'   => $request-> input('jeniskelamin_id'),
+        //     'agama_id'          => $request-> input('agama_id'),
+        //     'bahasa_aktif_id'   => $request-> input('bahasa_aktif_id'),
+        //     'alamat'            => $request-> input('alamat'),
+        //     'dusun'             => $request-> input('dusun'),
+        //     'desa_id'           => $request-> input('desa_id'),
+        //     'kecamatan_id'      => $request-> input('kecamatan_id'),
+        //     'provinsi_id'       => $request-> input('provinsi_id'),
+        //     'kodepos'           => $request-> input('kodepos'),
+        //     'nik'               => $request-> input('nik'),
+        //     'npwp'              => $request-> input('npwp'),
             // 'file_photo'        => $file_photo_nama,
             // 'file_ktp'          => $file_ktp_nama,
             // 'file_kk'           => $file_kk_nama,
             // 'file_npwp'         => $file_npwp_nama,
             // 'status_nikah_id'   => $request-> input('status_nikah_id'),
             // 'status_daftar_id'  => $request-> input('status_daftar_id'),
-        ]);
+        // ]);
 
-        $data = Pegawai::insert([
-            'file_photo'        => $file_photo_nama,
-            'file_ktp'          => $file_ktp_nama,
-            'file_kk'           => $file_kk_nama,
-            'file_npwp'         => $file_npwp_nama
-        ]);
+       
+        $pegawai = new Pegawai;
+        $pegawai->kode = $request-> input('kode');
+        $pegawai->no_induk = $request-> input('no_induk');
+        $pegawai-> absen_id = $request-> input('absen_id');
+        $pegawai-> kode_bpjs = $request-> input('kode_bpjs');
+        $pegawai-> nama = $request-> input('nama');
+        $pegawai-> nama_tercetak = $request-> input('nama_tercetak');
+        $pegawai-> gelar_depan = $request-> input('gelar_depan');
+        $pegawai->gelar_belakang = $request-> input('gelar_belakang');
+        $pegawai-> status_pegawai_id = $request-> input('status_pegawai_id');
+        $pegawai-> jenis_profesi_id = $request-> input('jenis_profesi_id');
+        $pegawai-> spesialisasi_id  = $request-> input('spesialisasi_id');
+        $pegawai-> sub_spesialisasi_id = $request-> input('sub_spesialisasi_id');
+        $pegawai-> qualifikasi_id = $request-> input('qualifikasi_id');
+        $pegawai-> pendidikan_terakhir_id = $request-> input('pendidikan_terakhir_id');
+        $pegawai-> jabatan_fungsional_terakhir = $request-> input('jabatan_fungsional_terakhir');
+        $pegawai-> jabatan_struktural_id = $request-> input('jabatan_struktural_id');
+        $pegawai-> unit_id = $request-> input('unit_id');
+        $pegawai->subunit_id = $request-> input('subunit_id');
+        $pegawai-> tempat_lahir = $request-> input('tempat_lahir');
+        $pegawai-> tanggal_lahir= $request-> input('tanggal_lahir');
+        $pegawai-> jeniskelamin_id = $request-> input('jeniskelamin_id');
+        $pegawai-> agama_id= $request-> input('agama_id');
+        $pegawai-> bahasa_aktif_id = $request-> input('bahasa_aktif_id');
+        $pegawai-> alamat = $request-> input('alamat');
+        $pegawai-> dusun = $request-> input('dusun');
+        $pegawai-> desa_id = $request-> input('desa_id');
+        $pegawai-> kecamatan_id = $request-> input('kecamatan_id');
+        $pegawai->provinsi_id  = $request-> input('provinsi_id');
+        $pegawai-> kodepos = $request-> input('kodepos');
+        $pegawai-> nik= $request-> input('nik');
+        $pegawai-> npwp = $request-> input('npwp');
+        // $pegawai-> status_nikah_id = $request-> input('status_nikah_id');
+        // $pegawai-> status_daftar_id  = $request-> input('status_daftar_id');
+        
+        if($request->hasFile('file_photo')){
+            $file = $request->file('file_photo');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/pegawai/photo/', $filename);
+            $pegawai->file_photo = $filename;
+        }
 
-        // Carbon::createFromFormat('m/d/Y', $request->input('tanggal_lahir'))->format('Y-m-d'),
-        // if(Pegawai::create($request->all())){
-        if($data){
-            $response = array('success'=>1,'msg'=>'Berhasil menambah data');
+        if($request->hasFile('file_ktp')){
+            $file = $request->file('file_ktp');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/pegawai/ktp/', $filename);
+            $pegawai->file_ktp = $filename;
+        }
+
+        if($request->hasFile('file_kk')){
+            $file = $request->file('file_kk');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/pegawai/kk/', $filename);
+            $pegawai->file_kk = $filename;
+        }
+
+        if($request->hasFile('file_npwp')){
+            $file = $request->file('file_npwp');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/pegawai/npwp/', $filename);
+            $pegawai->file_npwp = $filename;
+        }
+        $pegawai->save();
+
+        if($pegawai){
+             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }else{
             $response = array('success'=>2,'msg'=>'Gagal menambah data');
         }

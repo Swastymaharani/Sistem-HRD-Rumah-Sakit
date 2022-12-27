@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -645,42 +645,42 @@ function store(){
             document.forms["formPendaftaran"]["npwp"].focus();
             return false;
         }
-        // if (document.forms["formPendaftaran"]["file_photo"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'File Foto Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["file_photo"].focus();
-        //     return false;
-        // }
-        // if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'File KTP Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["file_ktp"].focus();
-        //     return false;
-        // }
-        // if (document.forms["formPendaftaran"]["file_kk"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'File KK Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["file_kk"].focus();
-        //     return false;
-        // }
-        // if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'File NPWP Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["file_npwp"].focus();
-        //     return false;
-        // }
+        if (document.forms["formPendaftaran"]["file_photo"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File Foto Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["file_photo"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["file_ktp"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File KTP Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["file_ktp"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["file_kk"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File KK Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["file_kk"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["file_npwp"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File NPWP Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["file_npwp"].focus();
+            return false;
+        }
         // if (document.forms["formPendaftaran"]["status_nikah_id"].value == "") {
         //     CustomSwal.fire({
         //         icon: 'error',
@@ -711,50 +711,12 @@ function store(){
         /* Read more about isConfirmed, isDenied below */
         // var kode = $(this).find('input[name=kode]').val();
         if (result.isConfirmed) {
+            let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
                 url:"{{url('/pegawai/save')}}",
-                data:{
-                    _method:"POST",
-                    _token:"{{csrf_token()}}",
-                    id:                 $("#id").val(),
-                    kode:               $("#kode").val(),
-                    no_induk:           $("#no_induk").val(),
-                    absen_id:           $("#absen_id").val(),
-                    kode_bpjs:          $("#kode_bpjs").val(),
-                    nama:               $("#nama").val(),
-                    nama_tercetak:      $("#nama_tercetak").val(),
-                    gelar_depan:        $("#gelar_depan").val(),
-                    gelar_belakang:     $("#gelar_belakang").val(),
-                    status_pegawai_id:  $("#status_pegawai_id").val(),
-                    jenis_profesi_id:   $("#jenis_profesi_id").val(),
-                    spesialisasi_id:    $("#spesialisasi_id").val(),
-                    sub_spesialisasi_id: $("#sub_spesialisasi_id").val(),
-                    qualifikasi_id:      $("#qualifikasi_id").val(),
-                    pendidikan_terakhir_id:         $("#pendidikan_terakhir_id").val(),
-                    jabatan_fungsional_terakhir:    $("#jabatan_fungsional_terakhir").val(),
-                    jabatan_struktural_id:          $("#jabatan_struktural_id").val(),
-                    unit_id:            $("#unit_id").val(),
-                    subunit_id:         $("#subunit_id").val(),
-                    tempat_lahir:       $("#tempat_lahir").val(),
-                    tanggal_lahir:      $("#tanggal_lahir").val(),
-                    jeniskelamin_id:    $("#jeniskelamin_id").val(),
-                    agama_id:           $("#agama_id").val(),
-                    bahasa_aktif_id:    $("#bahasa_aktif_id").val(),
-                    alamat:             $("#alamat").val(),
-                    dusun:              $("#dusun").val(),
-                    desa_id:            $("#desa_id").val(),
-                    kecamatan_id:       $("#kecamatan_id").val(),
-                    provinsi_id:        $("#provinsi_id").val(),
-                    kodepos:            $("#kodepos").val(),
-                    nik:                $("#nik").val(),
-                    npwp:               $("#npwp").val(),
-                    file_photo:         $("#file_photo").val(),
-                    file_ktp:           $("#file_ktp").val(),
-                    file_kk:            $("#file_kk").val(),
-                    file_npwp:          $("#file_npwp").val(),
-                    // status_nikah_id:    $("#status_nikah_id").val(),
-                    // status_daftar_id:   $("#status_daftar_id").val(),
-                },
+                data:formData,
+                contentType: false,
+                processData: false,
                 type:"POST",
                 dataType:"JSON",
                 success:function(data){
