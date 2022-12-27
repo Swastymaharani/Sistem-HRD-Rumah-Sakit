@@ -12,10 +12,6 @@ class Provinsi extends Model
     protected $fillable=['id','nama_provinsi'];
 
     public function pegawai(){
-<<<<<<< HEAD
-        return $this->hasMany(Pegawai::class);
-=======
         return $this->hasOne(Pegawai::class);
->>>>>>> crud_pegawai
     }
 }

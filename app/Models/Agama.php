@@ -12,10 +12,6 @@ class Agama extends Model
     protected $fillable=['id', 'kode', 'nama'];
 
     public function pegawai(){
-<<<<<<< HEAD
         return $this->hasOne(Pegawai::class);
-=======
-        return $this->hasOne(Pegawai::class, 'agama_id');
->>>>>>> crud_pegawai
     }
 }
