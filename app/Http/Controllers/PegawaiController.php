@@ -39,22 +39,12 @@ class PegawaiController extends Controller
         return $datatables
         ->addIndexColumn()
         ->addColumn('status_pegawai', function($data){
-                    $nama_status = Pegawai::find($data->id);
-                    // foreach($data as $status_pegawai){
-                    // $status_pegawai = $data->statusPegawai;
-                    return $nama_status->statusPegawai;
-                    // }
-
-                    // $nama_status = Pegawai::where('status_pegawai_id', $data->status_pegawai_id);
-                    // foreach($data as $status_pegawai){
-                    //     $status_pegawai = $data->statusPegawai;
-                    // }
-                    // return $nama_status->statusPegawai->nama;
-                    // }
-                })
+            $nama_status = Pegawai::find($data->id);
+            return $nama_status->statusPegawai->nama;
+        })
         ->addColumn('jenis_profesi', function($data){
             $jenis_profesi = Pegawai::find($data->id);  
-            return $jenis_profesi->jenisProfesi;
+            return $jenis_profesi->jenisProfesi->nama_profesi;
         })
         ->addColumn('aksi', function($data){
             $aksi = "";
