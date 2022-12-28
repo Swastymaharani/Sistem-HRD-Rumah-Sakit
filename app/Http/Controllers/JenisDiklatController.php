@@ -95,26 +95,48 @@ class JenisDiklatController extends Controller
     }
 
     public function update(Request $request, $jenis_diklat_id){
-        $jenisDiklat = JenisDiklat::find($jenis_diklat_id);
-        $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
-        if($request->hasFile('gambar1')){
-            $path = 'uploads/jenisdiklat/'.$jenisDiklat->gambar1;
-            if(File::exists($path)){
-                File::delete($path);
-            }
-            $file = $request->file('gambar1');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads/jenisdiklat/', $filename);
-            $jenisDiklat->gambar1 = $filename;
-        }
-        $jenisDiklat->save();
+        $tidakUnik = 0;
+        $request->validate([
+            'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
+        ]);
 
-        if($jenisDiklat){
-            $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
+        $jenisDiklat = JenisDiklat::all();
+        foreach (JenisDiklat::all() as $jenisDiklat) {
+            if($jenisDiklat->jenis_diklat_id==$jenis_diklat_id){
+                continue;
+            }else{
+                if($jenisDiklat->nama_jenis_diklat==$request->input('nama_jenis_diklat')){
+                    $tidakUnik = 1;
+                }    
+            }
+        }
+        if($tidakUnik == 1){
+            $response = array('success'=>2,'msg'=>'Nama Jenis Diklat harus Unik');
         }else{
-            $response = array('success'=>2,'msg'=>'Gagal mengedit data');
+            $jenisDiklat = JenisDiklat::find($jenis_diklat_id);
+            $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
+            if($request->hasFile('gambar1')){
+                $path = 'uploads/jenisdiklat/'.$jenisDiklat->gambar1;
+                if(File::exists($path)){
+                    File::delete($path);
+                }
+                $file = $request->file('gambar1');
+                $extension = $file->getClientOriginalExtension();
+                $filename = time().'.'.$extension;
+                $file->move('uploads/jenisdiklat/', $filename);
+                $jenisDiklat->gambar1 = $filename;
+            }
+            $jenisDiklat->save();
+
+            $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
         }
         return $response;
+
+        // if($jenisDiklat){
+        //     $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
+        // }else{
+        //     $response = array('success'=>2,'msg'=>'Gagal mengedit data');
+        // }
+        // return $response;
     }
 }
