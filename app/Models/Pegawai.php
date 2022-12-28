@@ -23,6 +23,10 @@ class Pegawai extends Model
         return $this->belongsTo(BahasaAktif::class, 'bahasa_aktif_id');
     }
 
+    public function jabatanFungsional(){
+        return $this->belongsTo(JabatanStruktural::class, 'jabatan_fungsional_terakhir', 'jabatan_fungsional_id');
+    }
+
     public function jabatanStruktural(){
         return $this->belongsTo(JabatanStruktural::class, 'jabatan_struktural_id');
     }
@@ -57,6 +61,10 @@ class Pegawai extends Model
 
     public function spesialisasi(){
         return $this->belongsTo(Spesialisasi::class);
+    }
+
+    public function statusDaftar(){
+        return $this->belongsTo(StatusDaftar::class, 'status_daftar_id');
     }
 
     public function statusNikah(){

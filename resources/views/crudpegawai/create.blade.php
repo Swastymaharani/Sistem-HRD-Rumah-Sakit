@@ -161,7 +161,12 @@
 
                     <div class="mb-3 row"> <!--ada tabel relasinya ato gmna ni-->
                         <label for="jabatan_fungsional_terakhir" class="col-sm-5 col-form-label">Jabatan Fungsional Terakhir</label>
-                        <input type="number" class="form-control" name='jabatan_fungsional_terakhir' value="{{ old('jabatan_fungsional_terakhir') }}" id="jabatan_fungsional_terakhir" >
+                        <select type="text" class="form-control" name='jabatan_fungsional_terakhir' id="jabatan_fungsional_terakhir">
+                            <option value="{{ old('jabatan_fungsional_terakhir') }}">Pilih Jabatan Fungsional</option>
+                            @foreach ($jabatanFungsional as $jF)
+                                <option value= {{ $jF->jabatan_fungsional_id }} >{{ $jF->jabatan_kum}}</option>
+                            @endforeach
+                        </select>
                     </div> 
 
                     <div class="mb-3 row">
@@ -246,18 +251,8 @@
 
                     <div class="mb-3 row">
                         <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
-                        <input type="number" class="form-control" name='desa_id' value="{{ old('desa_id') }}" id="desa_id" >
+                        <input type="text" class="form-control" name='desa_id' value="{{ old('desa_id') }}" id="desa_id" >
                     </div>
-
-                    {{-- <div class="mb-3 row"> <!--gak ada tabel desa-->
-                        <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
-                        <select type="text" class="form-control" name='desa_id' id="desa_id">
-                            <option value="{{ old('desa_id') }}">Pilih Desa</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
-                            @endforeach
-                        </select>
-                    </div> --}}
 
                     <div class="mb-3 row"> 
                         <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
@@ -324,7 +319,7 @@
                         <input type="file" class="form-control" name='file_npwp' value="{{ old('file_npwp') }}" id="file_npwp" >
                     </div>
 
-                    {{-- <div class="mb-3 row"> 
+                    <div class="mb-3 row"> 
                         <label for="status_nikah_id" class="col-sm-2 col-form-label">Status Nikah</label>
                         <select type="text" class="form-control" name='status_nikah_id' id="status_nikah_id">
                             <option value="{{ old('status_nikah_id') }}">Pilih Status Nikah</option>
@@ -336,20 +331,13 @@
 
                     <div class="mb-3 row">
                         <label for="status_daftar_id" class="col-sm-2 col-form-label">Status Daftar</label>
-                        <input type="number" class="form-control" name='status_daftar_id' value="{{ old('status_daftar_id') }}" id="status_daftar_id" >
-                    </div> --}}
-
-
-
-                    {{-- <div class="mb-3 row"> <!--gak ada tabelnya-->
-                        <label for="status_daftar_id" class="col-sm-2 col-form-label">Status Daftar</label>
                         <select type="text" class="form-control" name='status_daftar_id' id="status_daftar_id">
                             <option value="{{ old('status_daftar_id') }}">Pilih Status Daftar</option>
-                            @foreach ($goldar as $gd)
-                                <option value= {{ $gd->id }} >{{ $gd->goldar }}</option>
+                            @foreach ($statusDaftar as $sD)
+                                <option value= {{ $sD->id }} >{{ $sD->status }}</option>
                             @endforeach
                         </select>
-                    </div> --}}
+                    </div> 
 
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
@@ -681,24 +669,24 @@ function store(){
             document.forms["formPendaftaran"]["file_npwp"].focus();
             return false;
         }
-        // if (document.forms["formPendaftaran"]["status_nikah_id"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Status Nikah Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["status_nikah_id"].focus();
-        //     return false;
-        // }
-        // if (document.forms["formPendaftaran"]["status_daftar_id"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Status Daftar Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["status_daftar_id"].focus();
-        //     return false;
-        // }
+        if (document.forms["formPendaftaran"]["status_nikah_id"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Status Nikah Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["status_nikah_id"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["status_daftar_id"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Status Daftar Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["status_daftar_id"].focus();
+            return false;
+        }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
