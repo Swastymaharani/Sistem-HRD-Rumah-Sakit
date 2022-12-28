@@ -57,7 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" action="{{ route('jenisDiklat.update', $data->jenis_diklat_id)}}" method="POST">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ route('jenisDiklat.update', $data->jenis_diklat_id)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
@@ -66,9 +66,14 @@
                         <label for="nama_jenis_diklat" class="col-sm-2 col-form-label">Nama Jenis Diklat</label>
                         <input type="text" class="form-control" name='nama_jenis_diklat' value="{{ $data->nama_jenis_diklat }}" id="nama_jenis_diklat" >
                     </div>
+                    <div class="mb-3 row">
+                        <label for="gambar1" class="col-sm-2 col-form-label">Gambar Jenis Diklat</label>
+                        <input type="file" class="form-control" name='gambar1' value="{{ old('gambar1') }}" id="gambar1" >
+                        <label for="notebook" class="col-sm-2 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
+                    </div>
 
                     <div class="mb-3 row">
-                        <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update("","")' class='btn btn-primary'>Simpan</a></div>
+                        <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update()' class='btn btn-primary'>Simpan</a></div>
                     </div>
                 </div>
             </div>
@@ -88,7 +93,7 @@ function update(){
         })
         document.forms["formPendaftaran"]["nama_jenis_diklat"].focus();
         return false;
-    }  
+    }   
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
@@ -100,14 +105,12 @@ function update(){
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+            let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
                 url:"{{route('jenisDiklat.update', $data->jenis_diklat_id)}}/",
-                data:{
-                    _method:"POST",
-                    _token:"{{csrf_token()}}",
-                    // jenis_diklat_id:$("#jenis_diklat_id").val(),
-                    nama_jenis_diklat:$("#nama_jenis_diklat").val(),
-                },
+                data:formData,
+                contentType: false,
+                processData: false,
                 type:"POST",
                 dataType:"JSON",
                 success:function(data){
@@ -126,8 +129,6 @@ function update(){
                     console.log(error.XMLHttpRequest);
                 }
             });
-        }else{
-            
         }
     });
 }

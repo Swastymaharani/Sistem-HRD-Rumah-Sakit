@@ -54,24 +54,48 @@ class DiklatController extends Controller
     public function create(){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Data Diklat';
+        $jenisdiklats = JenisDiklat::all();
         
-        return view('cruddiklat.create',compact('subtitle','icon'));
+        return view('cruddiklat.create',compact('subtitle','icon', 'jenisdiklats'));
     }
 
     public function edit(Request $request, $id){
         $data = Diklat::find($request->id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Data Diklat';
-        return view('cruddiklat.edit',compact('subtitle','icon','data'));
+        $jenisdiklats = JenisDiklat::all();
+        $diklat = Diklat::find($id);
+
+        return view('cruddiklat.edit',compact('subtitle','icon','data', 'diklat', 'jenisdiklats'));
     }
 
     public function save(Request $request){
-        if(Diklat::create($request->all())){
-            $response = array('success'=>1,'msg'=>'Berhasil menambah data');
+        $diklats = Diklat::all();
+        $tidakUnik = 0;
+        foreach ($diklats as $diklat) {
+            if($diklat->no_urut==$request->input('no_urut')){
+                $tidakUnik = 1;
+            }
+            if($diklat->nama_diklat==$request->input('nama_diklat')){
+                $tidakUnik = 2;
+            }
+        }
+        if($tidakUnik == 1){
+            $response = array('success'=>2,'msg'=>'Nomor Urut Diklat harus Unik');
+        }elseif($tidakUnik == 2){
+            $response = array('success'=>2,'msg'=>'Nama Diklat harus Unik');
         }else{
-            $response = array('success'=>2,'msg'=>'Gagal menambah data');
+            Diklat::create($request->all());
+            $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }
         return $response;
+
+        // if(Diklat::create($request->all())){
+        //     $response = array('success'=>1,'msg'=>'Berhasil menambah data');
+        // }else{
+        //     $response = array('success'=>2,'msg'=>'Gagal menambah data');
+        // }
+        // return $response;
     }
 
     public function update(Request $request, $id){

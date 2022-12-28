@@ -133,7 +133,7 @@ function store(){
                     }
                 },
                 error:function(error){
-                    CustomSwal.fire('Gagal', 'Gagal Menambah Data', 'error');
+                    CustomSwal.fire('Gagal', 'Bukan Gambar atau Gambar Terlalu Besar', 'error');
                     console.log(error.XMLHttpRequest);
                 },
             });

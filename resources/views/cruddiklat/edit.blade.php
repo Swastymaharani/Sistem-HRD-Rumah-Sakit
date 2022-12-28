@@ -75,7 +75,17 @@
 
                     <div class="mb-3 row">
                         <label for="jenis_diklat_id" class="col-sm-2 col-form-label">Jenis Diklat</label>
-                        <input type="text" class="form-control" name='jenis_diklat_id' value="{{ $data->jenis_diklat_id }}" id="jenis_diklat_id" >
+                        <select type="text" class="form-control" name='jenis_diklat_id' id="jenis_diklat_id">
+                            <option disabled>Pilih Jenis Diklat</option>
+                            <option selected>{{ $diklat->jenisdiklat->nama_jenis_diklat }}</option>
+                            @foreach ($jenisdiklats as $jenisdiklat)
+                                @if($diklat->jenisdiklat->nama_jenis_diklat==$jenisdiklat->nama_jenis_diklat){
+                                    @continue;
+                                }
+                                @endif
+                                <option value= {{ $jenisdiklat->jenis_diklat_id }} >{{ $jenisdiklat->nama_jenis_diklat }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3 row">

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JenisDiklat;
+use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Facades\View;
 
 class JenisDiklatController extends Controller
 {
@@ -18,7 +18,9 @@ class JenisDiklatController extends Controller
 
     public function listData(Request $request){
         $data = JenisDiklat::all();
+        // $data = JenisDiklat::all()->sortDesc();
         $datatables = DataTables::of($data);
+
         return $datatables
                 ->addIndexColumn()
                 ->addColumn('gambar1', function($data){
@@ -62,8 +64,12 @@ class JenisDiklatController extends Controller
     }
 
     public function save(Request $request){
-        $jenisDiklat = JenisDiklat::all();
         $tidakUnik = 0;
+        $request->validate([
+            'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
+        ]);
+
+        $jenisDiklat = JenisDiklat::all();
         foreach (JenisDiklat::all() as $jenisDiklat) {
             if($jenisDiklat->nama_jenis_diklat==$request->input('nama_jenis_diklat')){
                 $tidakUnik = 1;
@@ -72,22 +78,6 @@ class JenisDiklatController extends Controller
         if($tidakUnik == 1){
             $response = array('success'=>2,'msg'=>'Nama Jenis Diklat harus Unik');
         }else{
-            // $file_gambar1_nama = time().'.'.$request->gambar1->extension();
-
-            // $request->gambar1->move(public_path('images'), $file_gambar1_nama);
-            // JenisDiklat::create([
-
-                //     'gambar1'           => $request-> input('gambar1'),
-                // ]);
-                // $path = 'images/';
-                // $file_gambar1 = $request->file('gambar1');
-                // $file_gambar1_name = time().'_'.$file_gambar1->getClientOriginalName();
-                // $upload_gambar1 = $file_gambar1->storeAs($path, $file_gambar1_name, 'public');
-
-                // JenisDiklat::insert([
-                //     'nama_jenis_diklat' => $request-> input('nama_jenis_diklat'),
-                //     'gambar1'           => $request->file('gambar1'),
-                // ]);
             $jenisDiklat = new JenisDiklat;
             $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
             if($request->hasFile('gambar1')){
@@ -100,23 +90,31 @@ class JenisDiklatController extends Controller
             $jenisDiklat->save();
 
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
-            }
+        }
         return $response;
     }
 
     public function update(Request $request, $jenis_diklat_id){
-        $data = JenisDiklat::find($jenis_diklat_id);
-        // $data = JenisDiklat::where('jenis_diklat_id', '=', $id)->get();
-        if($data->fill(
-            [
-            // $request->all()
-                'nama_jenis_diklat' => $request-> input('nama_jenis_diklat'),
-            ]
-            )->save()){
-                $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
-            }else{
-                $response = array('success'=>2,'msg'=>'Gagal mengedit data');
+        $jenisDiklat = JenisDiklat::find($jenis_diklat_id);
+        $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
+        if($request->hasFile('gambar1')){
+            $path = 'uploads/jenisdiklat/'.$jenisDiklat->gambar1;
+            if(File::exists($path)){
+                File::delete($path);
             }
+            $file = $request->file('gambar1');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/jenisdiklat/', $filename);
+            $jenisDiklat->gambar1 = $filename;
+        }
+        $jenisDiklat->save();
+
+        if($jenisDiklat){
+            $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
+        }else{
+            $response = array('success'=>2,'msg'=>'Gagal mengedit data');
+        }
         return $response;
     }
 }

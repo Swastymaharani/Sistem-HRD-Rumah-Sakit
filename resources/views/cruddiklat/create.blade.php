@@ -71,7 +71,12 @@
 
                     <div class="mb-3 row">
                         <label for="jenis_diklat_id" class="col-sm-2 col-form-label">Jenis Diklat</label>
-                        <input type="text" class="form-control" name='jenis_diklat_id' value="{{ old('jenis_diklat_id') }}" id="jenis_diklat_id" >
+                        <select type="text" class="form-control" name='jenis_diklat_id' id="jenis_diklat_id">
+                            <option value="{{ old('jenis_diklat_id') }}">Pilih Jenis Diklat</option>
+                            @foreach ($jenisdiklats as $jenisdiklat)
+                                <option value= {{ $jenisdiklat->jenis_diklat_id }} >{{ $jenisdiklat->nama_jenis_diklat }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-3 row">
@@ -88,34 +93,33 @@
 
 
 function store(){
-        // var nim = document.getElementById("nim").value;
-        if (document.forms["formPendaftaran"]["no_urut"].value =="") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'No Urut Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["no_urut"].focus();
-                return false;
-        }  
-            if (document.forms["formPendaftaran"]["nama_diklat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["nama_diklat"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["jenis_diklat_id"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Jenis Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
-                return false;
-            }
+    if (document.forms["formPendaftaran"]["no_urut"].value =="") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No Urut Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["no_urut"].focus();
+            return false;
+    }  
+        if (document.forms["formPendaftaran"]["nama_diklat"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Nama Diklat Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["nama_diklat"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["jenis_diklat_id"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Jenis Diklat Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
+            return false;
+        }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
