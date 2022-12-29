@@ -105,6 +105,24 @@ class DiklatController extends Controller
         }else{
             $response = array('success'=>2,'msg'=>'Gagal mengedit data');
         }
+
+        if($tidakUnik == 1){
+            $response = array('success'=>2,'msg'=>'Nama Jenis Diklat harus Unik');
+        }else{
+            $diklat = Diklat::find($jenis_diklat_id);
+            $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
+            $jenisDiklat->save();
+
+            $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
+        }
         return $response;
+
+        // if($jenisDiklat){
+        //     $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
+        // }else{
+        //     $response = array('success'=>2,'msg'=>'Gagal mengedit data');
+        // }
+        // return $response;
     }
 }
+

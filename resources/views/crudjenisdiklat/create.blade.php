@@ -63,11 +63,7 @@
                         <label for="nama_jenis_diklat" class="col-sm-2 col-form-label">Nama Jenis Diklat</label>
                         <input type="text" class="form-control" name='nama_jenis_diklat' value="{{ old('nama_jenis_diklat') }}" id="nama_jenis_diklat" >
                     </div>
-                    <div class="mb-3 row">
-                        <label for="gambar1" class="col-sm-2 col-form-label">Gambar Diklat</label>
-                        <input type="file" class="form-control" name='gambar1' value="{{ old('gambar1') }}" id="gambar1" >
-                    </div>
-                  
+                             
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
                     </div>
@@ -91,16 +87,8 @@ function store(){
                 document.forms["formPendaftaran"]["nama_jenis_diklat"].focus();
                 return false;
         } 
-        if (document.forms["formPendaftaran"]["gambar1"].value =="") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Gambar Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["gambar1"].focus();
-                return false;
-        }   
-
+        
+        
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',

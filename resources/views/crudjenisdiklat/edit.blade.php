@@ -66,11 +66,6 @@
                         <label for="nama_jenis_diklat" class="col-sm-2 col-form-label">Nama Jenis Diklat</label>
                         <input type="text" class="form-control" name='nama_jenis_diklat' value="{{ $data->nama_jenis_diklat }}" id="nama_jenis_diklat" >
                     </div>
-                    <div class="mb-3 row">
-                        <label for="gambar1" class="col-sm-2 col-form-label">Gambar Jenis Diklat</label>
-                        <input type="file" class="form-control" name='gambar1' value="{{ old('gambar1') }}" id="gambar1" >
-                        <label for="notebook" class="col-sm-2 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
-                    </div>
 
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update()' class='btn btn-primary'>Simpan</a></div>
