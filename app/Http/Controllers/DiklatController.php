@@ -89,40 +89,40 @@ class DiklatController extends Controller
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
         }
         return $response;
-
-        // if(Diklat::create($request->all())){
-        //     $response = array('success'=>1,'msg'=>'Berhasil menambah data');
-        // }else{
-        //     $response = array('success'=>2,'msg'=>'Gagal menambah data');
-        // }
-        // return $response;
     }
 
     public function update(Request $request, $id){
-        $data = Diklat::find($id);
-        if($data->fill($request->all())->save()){
-            $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
-        }else{
-            $response = array('success'=>2,'msg'=>'Gagal mengedit data');
+        $diklats = Diklat::all();
+        $diklatLama = Diklat::find($id);
+        $tidakUnik = 0;
+        
+        foreach ($diklats as $diklat) {
+            if($diklat->id_diklat==$id && $diklatLama->jenis_diklat_id==$request->jenis_diklat_id){
+                $tidakUnik = 0;
+                continue;
+            }else{ 
+                if($diklat->no_urut==$request->input('no_urut')){
+                    $tidakUnik = 1;
+                }
+                if($diklat->nama_diklat==$request->input('nama_diklat')){
+                    $tidakUnik = 2;
+                }
+            }
         }
-
+        
         if($tidakUnik == 1){
-            $response = array('success'=>2,'msg'=>'Nama Jenis Diklat harus Unik');
+            $response = array('success'=>2,'msg'=>'Nomor Urut Diklat harus Unik');
+        }elseif($tidakUnik == 2){
+            $response = array('success'=>2,'msg'=>'Nama Diklat harus Unik');
         }else{
-            $diklat = Diklat::find($jenis_diklat_id);
-            $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
-            $jenisDiklat->save();
-
+            $diklatLama->no_urut = $request-> input('no_urut');
+            $diklatLama->nama_diklat = $request-> input('nama_diklat');
+            $diklatLama->jenis_diklat_id = $request-> input('jenis_diklat_id');
+            $diklatLama->save();
+            
             $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
         }
         return $response;
-
-        // if($jenisDiklat){
-        //     $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
-        // }else{
-        //     $response = array('success'=>2,'msg'=>'Gagal mengedit data');
-        // }
-        // return $response;
     }
 }
 

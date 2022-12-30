@@ -100,8 +100,8 @@ class JenisDiklatController extends Controller
             'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
         ]);
 
-        $jenisDiklat = JenisDiklat::all();
-        foreach (JenisDiklat::all() as $jenisDiklat) {
+        $jenisDiklats = JenisDiklat::all();
+        foreach ($jenisDiklats as $jenisDiklat) {
             if($jenisDiklat->jenis_diklat_id==$jenis_diklat_id){
                 continue;
             }else{
@@ -115,28 +115,10 @@ class JenisDiklatController extends Controller
         }else{
             $jenisDiklat = JenisDiklat::find($jenis_diklat_id);
             $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
-            if($request->hasFile('gambar1')){
-                $path = 'uploads/jenisdiklat/'.$jenisDiklat->gambar1;
-                if(File::exists($path)){
-                    File::delete($path);
-                }
-                $file = $request->file('gambar1');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time().'.'.$extension;
-                $file->move('uploads/jenisdiklat/', $filename);
-                $jenisDiklat->gambar1 = $filename;
-            }
             $jenisDiklat->save();
 
             $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
         }
         return $response;
-
-        // if($jenisDiklat){
-        //     $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
-        // }else{
-        //     $response = array('success'=>2,'msg'=>'Gagal mengedit data');
-        // }
-        // return $response;
     }
 }
