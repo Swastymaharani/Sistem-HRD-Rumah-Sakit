@@ -97,7 +97,7 @@ class DiklatController extends Controller
         $tidakUnik = 0;
         
         foreach ($diklats as $diklat) {
-            if($diklat->id_diklat==$id && $diklatLama->jenis_diklat_id==$request->jenis_diklat_id){
+            if($diklat->id_diklat==$id){
                 $tidakUnik = 0;
                 continue;
             }else{ 
