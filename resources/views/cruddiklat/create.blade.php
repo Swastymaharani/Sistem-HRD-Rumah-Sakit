@@ -60,16 +60,6 @@
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="no_urut" class="col-sm-2 col-form-label">No. Urut</label>
-                        <input type="text" class="form-control" name='no_urut' value="{{ old('no_urut') }}" id="no_urut" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="nama_diklat" class="col-sm-2 col-form-label">Nama Diklat</label>
-                        <input type="text" class="form-control" name='nama_diklat' value="{{ old('nama_diklat') }}" id="nama_diklat" >
-                    </div>
-
-                    <div class="mb-3 row">
                         <label for="jenis_diklat_id" class="col-sm-2 col-form-label">Jenis Diklat</label>
                         <select type="text" class="form-control" name='jenis_diklat_id' id="jenis_diklat_id">
                             <option value="{{ old('jenis_diklat_id') }}">Pilih Jenis Diklat</option>
@@ -77,6 +67,16 @@
                                 <option value= {{ $jenisdiklat->jenis_diklat_id }} >{{ $jenisdiklat->nama_jenis_diklat }}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="no_urut" class="col-sm-2 col-form-label">No. Urut</label>
+                        <input type="text" class="form-control" name='no_urut' value="{{ old('no_urut') }}" id="no_urut" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="nama_diklat" class="col-sm-2 col-form-label">Nama Diklat</label>
+                        <input type="text" class="form-control" name='nama_diklat' value="{{ old('nama_diklat') }}" id="nama_diklat" >
                     </div>
 
                     <div class="mb-3 row">
