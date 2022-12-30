@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\Unit;
 use App\Models\Agama;
 use App\Models\Pegawai;

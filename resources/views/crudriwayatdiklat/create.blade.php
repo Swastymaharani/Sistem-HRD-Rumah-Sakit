@@ -276,7 +276,7 @@ function store(){
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, ',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama_kursus"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',

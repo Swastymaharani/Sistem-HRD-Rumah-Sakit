@@ -5,6 +5,7 @@ use App\Models\Diklat;
 use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Models\RiwayatDiklat;
+use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
 
 class RiwayatDiklatController extends Controller
@@ -26,7 +27,7 @@ class RiwayatDiklatController extends Controller
     }
 
     public function listData(Request $request, $pegawai_id){
-        $data = RiwayatDiklat::select('id', 'pegawai_id', 'diklat_id', 'nama_kursus', 'tempat', 'jumlah_jam', 'tanggal_kursus', 'institusi_penyelenggara', 'nomor_sertifikat', 'tgl_sertifikat','tanggal_selesai_kursus', 'jabatan_ttd_sertifikat','is_aktif','is_valid','keterangan','file_sertifikat')->where('pegawai_id', $pegawai_id)->get();
+        $data = RiwayatDiklat::select('id_t_diklat', 'pegawai_id', 'diklat_id', 'nama_kursus', 'tempat', 'jumlah_jam', 'tanggal_kursus', 'institusi_penyelenggara', 'nomor_sertifikat', 'tgl_sertifikat','tanggal_selesai_kursus', 'jabatan_ttd_sertifikat','is_aktif','is_valid','keterangan','file_sertifikat')->where('pegawai_id', $pegawai_id)->get();
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
@@ -36,8 +37,8 @@ class RiwayatDiklatController extends Controller
                 })
                 ->addColumn('aksi', function($data){
                     $aksi = "";
-                    $aksi .= "<a title='Edit Data' href='/riwayatdiklat/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-                    $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->nama_kursus}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-nama_kursus='{$data->nama_kursus}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
+                    $aksi .= "<a title='Edit Data' href='/riwayatdiklat/".$data->id_t_diklat."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id_t_diklat}\",\"{$data->nama_kursus}\",this)' class='btn btn-md btn-danger' data-id_t_diklat='{$data->id_t_diklat}' data-nama_kursus='{$data->nama_kursus}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;
                 })
                 ->rawColumns(['file_sertifikats', 'aksi'])
@@ -61,37 +62,16 @@ class RiwayatDiklatController extends Controller
         return view('crudriwayatdiklat.create',compact('subtitle','icon','diklats', 'id_pegawai'));
     }
 
-    public function edit(Request $request, $id){
+    public function edit(Request $request){
         $data = RiwayatDiklat::find($request->id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Riwayat Diklat Pegawai';
-        $pegawais = Pegawai::all();
-        $riwayat_diklat = RiwayatDiklat::find($id);
+        $diklats = Diklat::all();
 
-        return view('crudriwayatdiklat.edit',compact('subtitle','icon','data','riwayat_diklat','pegawais'));
+        return view('crudriwayatdiklat.edit',compact('subtitle','icon','data','diklats'));
     }
 
     public function save(Request $request, $id_pegawai){
-    //     $riwayat_diklats = RiwayatDiklat::all();
-    //     $tidakUnik = 0;
-    //     foreach ($riwayat_diklats as $riwayat_diklat) {
-    //         if($diklat->nama_kursus==$request->input('nama_kursus')){
-    //             $tidakUnik = 1;
-    //         }
-    //         if($diklat->tempat==$request->input('tempat')){
-    //             $tidakUnik = 2;
-    //         }
-    //     }
-    //     if($tidakUnik == 1){
-    //         $response = array('success'=>2,'msg'=>'Nama Kursus harus Unik');
-    //     }elseif($tidakUnik == 2){
-    //         $response = array('success'=>2,'msg'=>'Tempat Kursus harus Unik');
-    //     }else{
-    //         Diklat::create($request->all());
-    //         $response = array('success'=>1,'msg'=>'Berhasil menambah data');
-    //     }
-    //     return $response;
-
         $riwayatDiklat = new RiwayatDiklat;
         $riwayatDiklat-> pegawai_id = $id_pegawai;
         $riwayatDiklat-> diklat_id = $request-> input('diklat_id');
@@ -112,7 +92,7 @@ class RiwayatDiklatController extends Controller
             $file = $request->file('file_sertifikat');
             $extension = $file->getClientOriginalExtension();
             $filename = time().'.'.$extension;
-            $file->move('uploads/riwayatdiklat/file_sertifikat/', $filename);
+            $file->move('uploads/riwayatdiklat/filesertifikat/', $filename);
             $riwayatDiklat->file_sertifikat = $filename;
         }
 
@@ -127,8 +107,36 @@ class RiwayatDiklatController extends Controller
     }
 
     public function update(Request $request, $id){
-        $data = RiwayatDiklat::find($id);
-        if($data->fill($request->all())->save()){
+        $riwayatDiklat = RiwayatDiklat::find($id);
+
+        $riwayatDiklat-> diklat_id = $request-> input('diklat_id');
+        $riwayatDiklat-> nama_kursus = $request-> input('nama_kursus');
+        $riwayatDiklat-> tempat = $request-> input('tempat');
+        $riwayatDiklat-> jumlah_jam = $request-> input('jumlah_jam');
+        $riwayatDiklat-> tanggal_kursus = $request-> input('tanggal_kursus');
+        $riwayatDiklat-> institusi_penyelenggara = $request-> input('institusi_penyelenggara');
+        $riwayatDiklat-> nomor_sertifikat = $request-> input('nomor_sertifikat');
+        $riwayatDiklat-> tgl_sertifikat = $request-> input('tgl_sertifikat');
+        $riwayatDiklat-> tanggal_selesai_kursus = $request-> input('tanggal_selesai_kursus');
+        $riwayatDiklat-> jabatan_ttd_sertifikat  = $request-> input('jabatan_ttd_sertifikat');
+        $riwayatDiklat-> is_aktif = $request-> input('is_aktif');
+        $riwayatDiklat-> is_valid = $request-> input('is_valid');
+        $riwayatDiklat-> keterangan = $request-> input('keterangan');
+        
+        if($request->hasFile('file_sertifikat')){
+            $path = 'uploads/riwayatdiklat/filesertifikat/'.$riwayatDiklat->file_sertifikat;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            $file = $request->file('file_sertifikat');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/riwayatdiklat/filesertifikat/', $filename);
+            $riwayatDiklat->file_sertifikat = $filename;
+        }
+        $riwayatDiklat->save();
+
+        if($riwayatDiklat){
             $response = array('success'=>1,'msg'=>'Berhasil mengedit data');
         }else{
             $response = array('success'=>2,'msg'=>'Gagal mengedit data');

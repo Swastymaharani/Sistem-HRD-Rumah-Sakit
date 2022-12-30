@@ -57,14 +57,22 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" id="formPendaftaran" action="{{ route('riwayatDiklat.update', $data->id)}}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ route('riwayatDiklat.update', $data->id_t_diklat)}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
-                        <label for="diklat_id" class="col-sm-2 col-form-label">Id Diklat</label>
-                        <input type="text" class="form-control" name='diklat_id' value="{{ $data->diklat_id }}" id="diklat_id">
+                        <label for="diklat_id" class="col-sm-2 col-form-label">Nama Diklat</label>
+                        <select type="text" class="form-control" name='diklat_id' id="diklat_id">
+                            <option value="{{ $data->diklat_id }}" disabled>Pilih Diklat</option>
+                            @foreach ($diklats as $diklat)
+                                <option value= {{ $diklat->id_diklat }} 
+                                    @if ($data->diklat_id === $diklat->id_diklat)
+                                        SELECTED
+                                    @endif>{{ $diklat->nama_diklat }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3 row">
                         <label for="nama_kursus" class="col-sm-2 col-form-label">Nama Kursus</label>
@@ -126,7 +134,7 @@
 
                     <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
-                        <input type="text" class="form-control" name='file_sertifikat' value="{{ $data->file_sertifikat }}" id="file_sertifikat" >
+                        <input type="file" class="form-control" name='file_sertifikat' value="{{ $data->file_sertifikat }}" id="file_sertifikat" >
                     </div>
 
                     <div class="mb-3 row">
@@ -263,16 +271,19 @@ function update(){
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama_kursus"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+            let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{route('riwayatDiklat.update', $data->id)}}/",
+                url:"{{route('riwayatDiklat.update', $data->id_t_diklat)}}/",
                 data: formData,
+                contentType: false,
+                processData: false,
                 type:"POST",
                 dataType:"JSON",
                 success:function(data){
@@ -291,8 +302,6 @@ function update(){
                     console.log(error.XMLHttpRequest);
                 }
             });
-        }else{
-            
         }
     });
 }

@@ -9,7 +9,7 @@ class RiwayatDiklat extends Model
 {
     use HasFactory;
     protected $table='t_riwayat_diklat';
-    protected $primarykey='id';
+    protected $primaryKey='id_t_diklat';
     protected $fillable=['pegawai_id', 'diklat_id', 'nama_kursus', 'tempat', 'jumlah_jam', 'tanggal_kursus', 'institusi_penyelenggara', 'nomor_sertifikat', 'tgl_sertifikat','tanggal_selesai_kursus', 'jabatan_ttd_sertifikat','is_aktif','is_valid','keterangan','file_sertifikat'];
 
     public function pegawai(){

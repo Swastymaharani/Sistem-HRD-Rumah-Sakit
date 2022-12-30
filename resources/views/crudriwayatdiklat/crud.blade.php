@@ -211,7 +211,7 @@ $(document).ready(function() {
 });
 
 
-function deleteData(id,name,elm){
+function deleteData(id_t_diklat,name,elm){
     buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
@@ -223,7 +223,7 @@ function deleteData(id,name,elm){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/riwayatdiklat')}}/"+id,
+                url:"{{url('/riwayatdiklat')}}/"+id_t_diklat,
                 data:{
                     _method:"DELETE",
                     _token:"{{csrf_token()}}"
