@@ -65,5 +65,5 @@ Route::post('/{id}/riwayatdiklat/listdata',[RiwayatDiklatController::class,'list
 Route::get('/{id}/riwayatdiklat/create',[RiwayatDiklatController::class,'create'])->name('riwayatDiklat.create');
 Route::get('/riwayatdiklat/{id}/edit',[RiwayatDiklatController::class,'edit'])->name('riwayatDiklat.edit');
 Route::delete('/riwayatdiklat/{id}',[RiwayatDiklatController::class,'deleteData'])->name('riwayatDiklat.delete');
-Route::post('/riwayatdiklat/save', [RiwayatDiklatController::class,'save'])->name('riwayatDiklat.save');
+Route::post('/riwayatdiklat/save/{id}', [RiwayatDiklatController::class,'save'])->name('riwayatDiklat.save');
 Route::post('/riwayatdiklat/{id}/update',[RiwayatDiklatController::class,'update'])->name('riwayatDiklat.update');

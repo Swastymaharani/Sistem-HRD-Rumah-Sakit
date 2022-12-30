@@ -55,15 +55,14 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/riwayatDiklat/save') }}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{route('riwayatDiklat.save', $id_pegawai)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
-        
                     <div class="mb-3 row">
-                        <label for="diklat_id" class="col-sm-2 col-form-label">Id Diklat</label>
+                        <label for="diklat_id" class="col-sm-2 col-form-label">Nama Diklat</label>
                         <select type="text" class="form-control" name='diklat_id' id="diklat_id">
-                            <option value="{{ old('diklat_id') }}">Pilih Jenis Diklat</option>
+                            <option value="{{ old('diklat_id') }}">Pilih Diklat</option>
                             @foreach ($diklats as $diklat)
                                 <option value= {{ $diklat->id_diklat }} >{{ $diklat->nama_diklat }}</option>
                             @endforeach
@@ -73,104 +72,65 @@
 
                     <div class="mb-3 row">
                         <label for="nama_kursus" class="col-sm-2 col-form-label">Nama Kursus</label>
-                        <input type="text" class="form-control @error('nama_kursus') is-invalid @enderror" name='nama_kursus' value="{{ old('nama_kursus') }}" id="nama_kursus" >
-                        @error('nama_kursus')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='nama_kursus' value="{{ old('nama_kursus') }}" id="nama_kursus" >
                     </div>
                     <div class="mb-3 row">
                         <label for="tempat" class="col-sm-5 col-form-label">Tempat Pelaksanaan</label>
-                        <input type="text" class="form-control @error("tempat") is-invalid @enderror" name="tempat" value="{{ old("tempat") }}" id="tempat" >
-                        @error('tempat')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='tempat' value="{{ old("tempat") }}" id="tempat" >
                     </div>
                    
                     <div class="mb-3 row">
                         <label for="jumlah_jam" class="col-sm-2 col-form-label">Lama Diklat (jam)</label>
-                        <input type="text" class="form-control @error("jumlah_jam") is-invalid @enderror" name='jumlah_jam' value="{{ old('jumlah_jam') }}" id="jumlah_jam" >
-                        @error('jumlah_jam')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='jumlah_jam' value="{{ old('jumlah_jam') }}" id="jumlah_jam" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="tanggal_kursus" class="col-sm-2 col-form-label">Tanggal Kursus</label>
-                        <input type="date" class="form-control @error('tanggal_kursus') is-invalid @enderror" name='tanggal_kursus' value="{{ old('tanggal_kursus') }}" id="tanggal_kursus" >
-                        @error('tanggal_kursus')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="date" class="form-control" name='tanggal_kursus' value="{{ old('tanggal_kursus') }}" id="tanggal_kursus" >
                     </div>
                     <div class="mb-3 row">
                         <label for="institusi_penyelenggara" class="col-sm-5 col-form-label">Institusi Penyelenggara</label>
-                        <input type="text" class="form-control @error("institusi_penyelenggara") is-invalid @enderror" name="institusi_penyelenggara" value="{{ old("institusi_penyelenggara") }}" id="institusi_penyelenggara" >
-                        @error('institusi_penyelenggara')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name="institusi_penyelenggara" value="{{ old("institusi_penyelenggara") }}" id="institusi_penyelenggara" >
                     </div>
                    
                     <div class="mb-3 row">
                         <label for="nomor_sertifikat" class="col-sm-2 col-form-label">Nomor Sertifikat</label>
-                        <input type="text" class="form-control @error("nomor_sertifikat") is-invalid @enderror" name='nomor_sertifikat' value="{{ old('nomor_sertifikat') }}" id="nomor_sertifikat" >
-                        @error('nomor_sertifikat')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='nomor_sertifikat' value="{{ old('nomor_sertifikat') }}" id="nomor_sertifikat" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="tgl_sertifikat" class="col-sm-2 col-form-label">Tanggal Sertifikat</label>
-                        <input type="date" class="form-control @error('tgl_sertifikat') is-invalid @enderror" name='tgl_sertifikat' value="{{ old('tgl_sertifikat') }}" id="tgl_sertifikat" >
-                        @error('tgl_sertifikat')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="date" class="form-control" name='tgl_sertifikat' value="{{ old('tgl_sertifikat') }}" id="tgl_sertifikat" >
                     </div>
                     
                     <div class="mb-3 row">
                         <label for="tanggal_selesai_kursus" class="col-sm-2 col-form-label">Tanggal Selesai Kursus</label>
-                        <input type="date" class="form-control @error("tanggal_selesai_kursus") is-invalid @enderror" name="tanggal_selesai_kursus" value="{{ old("tanggal_selesai_kursus") }}" id="tanggal_selesai_kursus" >
-                        @error('tanggal_selesai_kursus')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <input type="date" class="form-control" name="tanggal_selesai_kursus" value="{{ old("tanggal_selesai_kursus") }}" id="tanggal_selesai_kursus" >
                     </div>
                    
                     <div class="mb-3 row">
                         <label for="jabatan_ttd_sertifikat" class="col-sm-5 col-form-label">Jabatan TTD Sertifikat</label>
-                        <input type="text" class="form-control @error("jabatan_ttd_sertifikat") is-invalid @enderror" name='jabatan_ttd_sertifikat' value="{{ old('jabatan_ttd_sertifikat') }}" id="jabatan_ttd_sertifikat" >
-                        @error('jabatan_ttd_sertifikat')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='jabatan_ttd_sertifikat' value="{{ old('jabatan_ttd_sertifikat') }}" id="jabatan_ttd_sertifikat" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="is_aktif" class="col-sm-2 col-form-label">Riwayat aktif</label>
-                        <input type="text" class="form-control @error('is_aktif') is-invalid @enderror" name='is_aktif' value="{{ old('is_aktif') }}" id="is_aktif" >
-                        @error('is_aktif')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='is_aktif' value="{{ old('is_aktif') }}" id="is_aktif" >
                     </div>
                     
                     <div class="mb-3 row">
                         <label for="is_valid" class="col-sm-2 col-form-label">Riwayat Valid</label>
-                        <input type="text" class="form-control @error("is_valid") is-invalid @enderror" name="is_valid" value="{{ old("is_valid") }}" id="is_valid" >
-                        @error('is_valid')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name="is_valid" value="{{ old("is_valid") }}" id="is_valid" >
                     </div>
                    
                     <div class="mb-3 row">
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
-                        <input type="text" class="form-control @error("keterangan") is-invalid @enderror" name='keterangan' value="{{ old('keterangan') }}" id="keterangan" >
-                        @error('keterangan')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="text" class="form-control" name='keterangan' value="{{ old('keterangan') }}" id="keterangan" >
                     </div>
 
                     <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
-                        <input type="file" class="form-control @error('file_sertifikat') is-invalid @enderror" name='file_sertifikat' value="{{ old('file_sertifikat') }}" id="file_sertifikat" >
-                        @error('file_sertifikat')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <input type="file" class="form-control" name='file_sertifikat' value="{{ old('file_sertifikat') }}" id="file_sertifikat" >
                     </div>
                     
                     <div class="mb-3 row">
@@ -180,147 +140,143 @@
             </div>
         </form>
     </div>
-    <!-- </div> -->
 @endsection
 @push('script')
 <script>
 
 
 function store(){
-        // var nim = document.getElementById("nim").value;
-        if (document.forms["formPendaftaran"]["diklat_id"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["diklat_id"].focus();
-                return false;
-            }
- 
-            if (document.forms["formPendaftaran"]["nama_kursus"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama Kursus Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["nama_kursus"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["tempat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Tempat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["tempat"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["jumlah_jam"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Jumlah Jam Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["jumlah_jam"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["tanggal_kursus"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Tanggal Kursus Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["tanggal_kursus"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["institusi_penyelenggara"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Institusi Penyelenggara Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["institusi_penyelenggara"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["nomor_sertifikat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nomor Sertifikat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["nomor_sertifikat"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["tanggal_sertifikat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Tanggal Sertifikat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["tanggal_sertifikat"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["tanggal_selesai_kursus"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: ' Tanggal Selesai Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["tanggal_selesai_kursus"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["jabatan_ttd_sertifikat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Jabatan TTD Sertifikat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["jabatan_ttd_sertifikat"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["is_aktif"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Riwayat Aktif Sertifikat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["is_aktif"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["is_valid"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Riwayat Valid Sertifikat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["is_valid"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["keterangan"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Keterangan Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["keterangan"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["file_sertifikat"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'File Sertifikat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["file_sertifikat"].focus();
-                return false;
-            }
-            
+    if (document.forms["formPendaftaran"]["diklat_id"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Diklat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["diklat_id"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["nama_kursus"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nama Kursus Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nama_kursus"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["tempat"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Tempat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["tempat"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["jumlah_jam"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Jumlah Jam Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["jumlah_jam"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["tanggal_kursus"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Tanggal Kursus Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["tanggal_kursus"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["institusi_penyelenggara"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Institusi Penyelenggara Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["institusi_penyelenggara"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["nomor_sertifikat"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Nomor Sertifikat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["nomor_sertifikat"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["tgl_sertifikat"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Tanggal Sertifikat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["tgl_sertifikat"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["tanggal_selesai_kursus"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: ' Tanggal Selesai Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["tanggal_selesai_kursus"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["jabatan_ttd_sertifikat"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Jabatan TTD Sertifikat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["jabatan_ttd_sertifikat"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["is_aktif"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Riwayat Aktif Sertifikat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["is_aktif"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["is_valid"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Riwayat Valid Sertifikat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["is_valid"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["keterangan"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Keterangan Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["keterangan"].focus();
+        return false;
+    }
+    if (document.forms["formPendaftaran"]["file_sertifikat"].value == "") {
+        CustomSwal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'File Sertifikat Tidak Boleh Kosong',
+        })
+        document.forms["formPendaftaran"]["file_sertifikat"].focus();
+        return false;
+    }         
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama_kursus"].value+' ?',
+        text: 'Apakah Data Sudah Benar, ',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
@@ -329,7 +285,7 @@ function store(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{url('/riwayatdiklat/save', $id_pegawai)}}",
+                url:"{{route('riwayatDiklat.save', $id_pegawai)}}/",
                 data:formData,
                 contentType: false,
                 processData: false,

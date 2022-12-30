@@ -26,17 +26,21 @@ class RiwayatDiklatController extends Controller
     }
 
     public function listData(Request $request, $pegawai_id){
-        $data = RiwayatDiklat::select('id_t_diklat', 'pegawai_id', 'diklat_id', 'nama_kursus', 'tempat', 'jumlah_jam', 'tanggal_kursus', 'institusi_penyelenggara', 'nomor_sertifikat', 'tgl_sertifikat','tanggal_selesai_kursus', 'jabatan_ttd_sertifikat','is_aktif','is_valid','keterangan','file_sertifikat')->where('pegawai_id', $pegawai_id)->get();
+        $data = RiwayatDiklat::select('id', 'pegawai_id', 'diklat_id', 'nama_kursus', 'tempat', 'jumlah_jam', 'tanggal_kursus', 'institusi_penyelenggara', 'nomor_sertifikat', 'tgl_sertifikat','tanggal_selesai_kursus', 'jabatan_ttd_sertifikat','is_aktif','is_valid','keterangan','file_sertifikat')->where('pegawai_id', $pegawai_id)->get();
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
+                ->addColumn('file_sertifikats', function($data){
+                        $url= asset('uploads/riwayatdiklat/filesertifikat/'.$data->file_sertifikat);
+                        return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+                })
                 ->addColumn('aksi', function($data){
                     $aksi = "";
-                    $aksi .= "<a title='Edit Data' href='/riwayatdiklat/".$data->id_t_diklat."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-                    $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id_t_diklat}\",\"{$data->nama_kursus}\",this)' class='btn btn-md btn-danger' data-id='{$data->id_t_diklat}' data-nama-kursus='{$data->nama_kursus}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
+                    $aksi .= "<a title='Edit Data' href='/riwayatdiklat/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->nama_kursus}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-nama_kursus='{$data->nama_kursus}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;
                 })
-                ->rawColumns(['aksi'])
+                ->rawColumns(['file_sertifikats', 'aksi'])
                 ->make(true);
     }
 
@@ -89,8 +93,8 @@ class RiwayatDiklatController extends Controller
     //     return $response;
 
         $riwayatDiklat = new RiwayatDiklat;
-        $riwayatDiklat->pegawai_id = $id_pegawai;
-        $riwayatDiklat->diklat_id = $request-> input('diklat_id');
+        $riwayatDiklat-> pegawai_id = $id_pegawai;
+        $riwayatDiklat-> diklat_id = $request-> input('diklat_id');
         $riwayatDiklat-> nama_kursus = $request-> input('nama_kursus');
         $riwayatDiklat-> tempat = $request-> input('tempat');
         $riwayatDiklat-> jumlah_jam = $request-> input('jumlah_jam');
@@ -98,7 +102,7 @@ class RiwayatDiklatController extends Controller
         $riwayatDiklat-> institusi_penyelenggara = $request-> input('institusi_penyelenggara');
         $riwayatDiklat-> nomor_sertifikat = $request-> input('nomor_sertifikat');
         $riwayatDiklat-> tgl_sertifikat = $request-> input('tgl_sertifikat');
-        $riwayatDiklat-> tgl_selesai_kursus = $request-> input('tgl_selesai_kursus');
+        $riwayatDiklat-> tanggal_selesai_kursus = $request-> input('tanggal_selesai_kursus');
         $riwayatDiklat-> jabatan_ttd_sertifikat  = $request-> input('jabatan_ttd_sertifikat');
         $riwayatDiklat-> is_aktif = $request-> input('is_aktif');
         $riwayatDiklat-> is_valid = $request-> input('is_valid');

@@ -106,27 +106,6 @@ $(document).ready(function() {
         },
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },         
-            // {
-            //     data: 'id',
-            //     name: 'id',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            // {
-            //     data: 'pegawai_id',
-            //     name: 'pegawai_id',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            // {
-            //     data: 'diklat_id',
-            //     name: 'diklat_id',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
             {
                 data: 'nama_kursus',
                 name: 'nama_kursus',
@@ -212,8 +191,8 @@ $(document).ready(function() {
             //     class: 'text-left'
             // },
             {
-                data: 'file_sertifikat',
-                name: 'file_sertifikat',
+                data: 'file_sertifikats',
+                name: 'file_sertifikats',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
@@ -244,7 +223,7 @@ function deleteData(id,name,elm){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/pegawai')}}/"+id,
+                url:"{{url('/riwayatdiklat')}}/"+id,
                 data:{
                     _method:"DELETE",
                     _token:"{{csrf_token()}}"
