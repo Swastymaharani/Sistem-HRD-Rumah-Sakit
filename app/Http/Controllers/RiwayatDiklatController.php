@@ -49,12 +49,12 @@ class RiwayatDiklatController extends Controller
         return $response;
     }
 
-    public function create($pegawai_id){
+    public function create($id){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Riwayat Diklat Pegawai';
         $diklats = Diklat::all();
-        $pegawai_id = $pegawai_id;
-        return view('crudriwayatdiklat.create',compact('subtitle','icon','diklats','pegawai_id'));
+        $id_pegawai = $id;
+        return view('crudriwayatdiklat.create',compact('subtitle','icon','diklats', 'id_pegawai'));
     }
 
     public function edit(Request $request, $id){
@@ -67,7 +67,7 @@ class RiwayatDiklatController extends Controller
         return view('crudriwayatdiklat.edit',compact('subtitle','icon','data','riwayat_diklat','pegawais'));
     }
 
-    public function save(Request $request, $id){
+    public function save(Request $request, $id_pegawai){
     //     $riwayat_diklats = RiwayatDiklat::all();
     //     $tidakUnik = 0;
     //     foreach ($riwayat_diklats as $riwayat_diklat) {

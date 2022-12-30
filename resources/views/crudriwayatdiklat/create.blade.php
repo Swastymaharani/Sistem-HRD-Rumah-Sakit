@@ -329,7 +329,7 @@ function store(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{url('/riwayatdiklat/save', $pegawai_id)}}",
+                url:"{{url('/riwayatdiklat/save', $id_pegawai)}}",
                 data:formData,
                 contentType: false,
                 processData: false,
