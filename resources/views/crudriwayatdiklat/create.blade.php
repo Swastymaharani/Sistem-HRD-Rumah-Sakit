@@ -188,47 +188,139 @@
 
 function store(){
         // var nim = document.getElementById("nim").value;
-        if (document.forms["formPendaftaran"]["nim"].value == "") {
+        if (document.forms["formPendaftaran"]["diklat_id"].value == "") {
                 CustomSwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'NIM Tidak Boleh Kosong',
+                    text: 'Nama Diklat Tidak Boleh Kosong',
                 })
-                document.forms["formPendaftaran"]["nim"].focus();
+                document.forms["formPendaftaran"]["diklat_id"].focus();
                 return false;
             }
-        if (document.forms["formPendaftaran"]["nim"].value =="") {
+ 
+            if (document.forms["formPendaftaran"]["nama_kursus"].value == "") {
                 CustomSwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'NIM Sudah Ada',
+                    text: 'Nama Kursus Tidak Boleh Kosong',
                 })
-                document.forms["formPendaftaran"]["nim"].focus();
-                return false;
-        }  
-            if (document.forms["formPendaftaran"]["nama"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Nama Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["nama"].focus();
+                document.forms["formPendaftaran"]["nama_kursus"].focus();
                 return false;
             }
-            if (document.forms["formPendaftaran"]["alamat"].value == "") {
+            if (document.forms["formPendaftaran"]["tempat"].value == "") {
                 CustomSwal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Alamat Tidak Boleh Kosong',
+                    text: 'Tempat Tidak Boleh Kosong',
                 })
-                document.forms["formPendaftaran"]["alamat"].focus();
+                document.forms["formPendaftaran"]["tempat"].focus();
                 return false;
             }
+            if (document.forms["formPendaftaran"]["jumlah_jam"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Jumlah Jam Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["jumlah_jam"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["tanggal_kursus"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Tanggal Kursus Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["tanggal_kursus"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["institusi_penyelenggara"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Institusi Penyelenggara Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["institusi_penyelenggara"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["nomor_sertifikat"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Nomor Sertifikat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["nomor_sertifikat"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["tanggal_sertifikat"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Tanggal Sertifikat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["tanggal_sertifikat"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["tanggal_selesai_kursus"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: ' Tanggal Selesai Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["tanggal_selesai_kursus"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["jabatan_ttd_sertifikat"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Jabatan TTD Sertifikat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["jabatan_ttd_sertifikat"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["is_aktif"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Riwayat Aktif Sertifikat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["is_aktif"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["is_valid"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Riwayat Valid Sertifikat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["is_valid"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["keterangan"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Keterangan Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["keterangan"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["file_sertifikat"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'File Sertifikat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["file_sertifikat"].focus();
+                return false;
+            }
+            
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama"].value+' ?',
+        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama_kursus"].value+' ?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
@@ -237,7 +329,7 @@ function store(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{url('/crud/save')}}",
+                url:"{{url('/riwayatdiklat/save', $pegawai_id)}}",
                 data:formData,
                 contentType: false,
                 processData: false,

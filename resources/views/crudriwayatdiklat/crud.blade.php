@@ -20,7 +20,7 @@
     </div>
     <div class="nk-fmg-actions">
         <div class="btn-group">
-            <a href="{{ route('riwayatDiklat.create') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Riwayat diklat</span></a>
+            <a href="{{ route('riwayatDiklat.create'), $pegawai_id }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Riwayat diklat</span></a>
         </div>
     </div>
 </div>

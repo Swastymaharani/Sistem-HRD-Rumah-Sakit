@@ -49,11 +49,12 @@ class RiwayatDiklatController extends Controller
         return $response;
     }
 
-    public function create(){
+    public function create($pegawai_id){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Riwayat Diklat Pegawai';
         $diklats = Diklat::all();
-        return view('crudriwayatdiklat.create',compact('subtitle','icon','diklats'));
+        $pegawai_id = $pegawai_id;
+        return view('crudriwayatdiklat.create',compact('subtitle','icon','diklats','pegawai_id'));
     }
 
     public function edit(Request $request, $id){
