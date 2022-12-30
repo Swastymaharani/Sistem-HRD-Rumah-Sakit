@@ -125,4 +125,3 @@ class DiklatController extends Controller
         return $response;
     }
 }
-

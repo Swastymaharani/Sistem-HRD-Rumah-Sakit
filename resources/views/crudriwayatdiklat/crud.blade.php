@@ -15,7 +15,8 @@
 
 <div class="nk-fmg-body-head d-none d-lg-flex">
     <div class="nk-fmg-search">
-        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle)}}</h4>
+    <a href="{{ route('pegawai.list') }}"><button type="button" class="btn btn-info"><em class="icon fas fa-arrow-left"></em> <span>Pegawai</span></button></a>  &nbsp;&nbsp;
+        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle.": Riwayat Diklat ".$pegawai->nama)}}</h4>
     </div>
     <div class="nk-fmg-actions">
         <div class="btn-group">
@@ -56,21 +57,20 @@
                         <thead style="color:#526484; font-size:11px;">
                             
                             <th>No.</th>
-                            <th>Id Riwayat Diklat</th>
-                            <th>Id Pegawai</th>
-                            <th>Id Diklat</th>
+                            <!-- <th>Id Pegawai</th> -->
+                            <!-- <th>Id Diklat</th> -->
                             <th>Nama Kursus</th>
                             <th>Tempat</th>
                             <th>Jumlah Jam</th>
                             <th>Tanggal Kursus</th>
                             <th>Institusi Penyelenggara</th>
-                            <th>Nomor Sertifikat</th>
-                            <th>Tanggal Sertifikat</th>
+                            <!-- <th>Nomor Sertifikat</th> -->
+                            <!-- <th>Tanggal Sertifikat</th> -->
                             <th>Tanggal Selesai Kursus</th>
-                            <th>Jabatan TTD Sertifikat</th>
-                            <th>Riwayat Aktif</th>
-                            <th>Riwayat Validasi</th>
-                            <th>Keterangan</th>
+                            <!-- <th>Jabatan TTD Sertifikat</th> -->
+                            <!-- <th>Riwayat Aktif</th> -->
+                            <!-- <th>Riwayat Validasi</th> -->
+                            <!-- <th>Keterangan</th> -->
                             <th>File Sertifikat</th>
                             <th>Aksi</th>
                             
@@ -98,7 +98,7 @@ $(document).ready(function() {
         serverSide: true,
         dom: '<"row justify-between g-2 "<"col-7 col-sm-4 text-left"f><"col-5 col-sm-8 text-right"<"datatable-filter"<"d-flex justify-content-end g-2" l>>>><" my-3"t><"row align-items-center"<"col-5 col-sm-12 col-md-6 text-left text-md-left"i><"col-5 col-sm-12 col-md-6 text-md-right"<"d-flex justify-content-end "p>>>',
         ajax: {
-            url: '{{ route("riwayatDiklat.listData") }}',
+            url: '{{ route("riwayatDiklat.listData", $id) }}',
             type:"POST",
             data: function(params) {
                 params._token = "{{ csrf_token() }}";
@@ -106,27 +106,27 @@ $(document).ready(function() {
         },
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },         
-            {
-                data: 'id_t_diklat',
-                name: 'id_t_diklat',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'pegawai_id',
-                name: 'pegawai_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'diklat_id',
-                name: 'diklat_id',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
+            // {
+            //     data: 'id',
+            //     name: 'id',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
+            // {
+            //     data: 'pegawai_id',
+            //     name: 'pegawai_id',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
+            // {
+            //     data: 'diklat_id',
+            //     name: 'diklat_id',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
             {
                 data: 'nama_kursus',
                 name: 'nama_kursus',
@@ -162,20 +162,20 @@ $(document).ready(function() {
                 searchable: true,
                 class: 'text-left'
             },
-            {
-                data: 'nomor_sertifikat',
-                name: 'nomor_sertifikat',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'tgl_sertifikat',
-                name: 'tgl_sertifikat',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
+            // {
+            //     data: 'nomor_sertifikat',
+            //     name: 'nomor_sertifikat',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
+            // {
+            //     data: 'tgl_sertifikat',
+            //     name: 'tgl_sertifikat',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
             {
                 data: 'tanggal_selesai_kursus',
                 name: 'tanggal_selesai_kursus',
@@ -183,34 +183,34 @@ $(document).ready(function() {
                 searchable: true,
                 class: 'text-left'
             },
-            {
-                data: 'jabatan_ttd_sertifikat',
-                name: 'jabatan_ttd_sertifikat',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'is_aktif',
-                name: 'is_aktif',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'is_valid',
-                name: 'is_valid',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            {
-                data: 'keterangan',
-                name: 'keterangan',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
+            // {
+            //     data: 'jabatan_ttd_sertifikat',
+            //     name: 'jabatan_ttd_sertifikat',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
+            // {
+            //     data: 'is_aktif',
+            //     name: 'is_aktif',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
+            // {
+            //     data: 'is_valid',
+            //     name: 'is_valid',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
+            // {
+            //     data: 'keterangan',
+            //     name: 'keterangan',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
             {
                 data: 'file_sertifikat',
                 name: 'file_sertifikat',
@@ -244,7 +244,7 @@ function deleteData(id,name,elm){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('riwayatdiklat')}}/"+id,
+                url:"{{url('/pegawai')}}/"+id,
                 data:{
                     _method:"DELETE",
                     _token:"{{csrf_token()}}"
