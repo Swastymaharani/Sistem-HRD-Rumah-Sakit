@@ -87,6 +87,39 @@ class RiwayatDiklatController extends Controller
     //         $response = array('success'=>1,'msg'=>'Berhasil menambah data');
     //     }
     //     return $response;
+
+        $riwayatDiklat = new RiwayatDiklat;
+        $riwayatDiklat->pegawai_id = $id_pegawai;
+        $riwayatDiklat->diklat_id = $request-> input('diklat_id');
+        $riwayatDiklat-> nama_kursus = $request-> input('nama_kursus');
+        $riwayatDiklat-> tempat = $request-> input('tempat');
+        $riwayatDiklat-> jumlah_jam = $request-> input('jumlah_jam');
+        $riwayatDiklat-> tanggal_kursus = $request-> input('tanggal_kursus');
+        $riwayatDiklat-> institusi_penyelenggara = $request-> input('institusi_penyelenggara');
+        $riwayatDiklat-> nomor_sertifikat = $request-> input('nomor_sertifikat');
+        $riwayatDiklat-> tgl_sertifikat = $request-> input('tgl_sertifikat');
+        $riwayatDiklat-> tgl_selesai_kursus = $request-> input('tgl_selesai_kursus');
+        $riwayatDiklat-> jabatan_ttd_sertifikat  = $request-> input('jabatan_ttd_sertifikat');
+        $riwayatDiklat-> is_aktif = $request-> input('is_aktif');
+        $riwayatDiklat-> is_valid = $request-> input('is_valid');
+        $riwayatDiklat-> keterangan = $request-> input('keterangan');
+        
+        if($request->hasFile('file_sertifikat')){
+            $file = $request->file('file_sertifikat');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $file->move('uploads/riwayatdiklat/file_sertifikat/', $filename);
+            $riwayatDiklat->file_sertifikat = $filename;
+        }
+
+        $riwayatDiklat->save();
+
+        if($riwayatDiklat){
+             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
+        }else{
+            $response = array('success'=>2,'msg'=>'Gagal menambah data');
+        }
+        return $response;
     }
 
     public function update(Request $request, $id){
