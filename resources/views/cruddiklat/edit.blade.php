@@ -57,7 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" action="{{ route('diklat.update', $data->id_diklat)}}" method="POST">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ route('diklat.update', $data->id_diklat)}}" method="POST">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
@@ -66,7 +66,7 @@
                         <label for="jenis_diklat_id" class="col-sm-2 col-form-label">Jenis Diklat</label>
                         <select type="text" class="form-control" name='jenis_diklat_id' id="jenis_diklat_id">
                             <option disabled>Pilih Jenis Diklat</option>
-                            <option selected>{{ $diklat->jenisdiklat->nama_jenis_diklat }}</option>
+                            <option selected value= {{ $diklat->jenisdiklat->jenis_diklat_id }} >{{ $diklat->jenisdiklat->nama_jenis_diklat }}</option>
                             @foreach ($jenisdiklats as $jenisdiklat)
                                 @if($diklat->jenisdiklat->nama_jenis_diklat==$jenisdiklat->nama_jenis_diklat){
                                     @continue;
@@ -138,16 +138,12 @@ function update(){
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+            let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
                 url:"{{route('diklat.update', $data->id_diklat)}}/",
-                data:{
-                    _method:"POST",
-                    _token:"{{csrf_token()}}",
-                    id_diklat:$("#id_diklat").val(),
-                    no_urut:$("#no_urut").val(),
-                    nama_diklat:$("#nama_diklat").val(),
-                    jenis_diklat_id:$("#jenis_diklat_id").val(),
-                },
+                data:formData,
+                contentType: false,
+                processData: false,
                 type:"POST",
                 dataType:"JSON",
                 success:function(data){
@@ -166,8 +162,6 @@ function update(){
                     console.log(error.XMLHttpRequest);
                 }
             });
-        }else{
-            
         }
     });
 }
