@@ -76,7 +76,7 @@ class PegawaiController extends Controller
         $jabatanStruktural = JabatanStruktural::all();
         $jenisKelamin = JenisKelamin::all();
         $jenisProfesi = JenisProfesi::all();
-        // $kabupaten = Kabupaten::all();
+        $kabupaten = Kabupaten::all();
         $kecamatan = Kecamatan::all();
         $kualifikasi = Kualifikasi::all();
         $pendidikan = Pendidikan::all();
@@ -92,7 +92,7 @@ class PegawaiController extends Controller
 
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Data Pegawai';
-        return view('crudpegawai.create',compact('subtitle','icon','statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kecamatan','kualifikasi','pendidikan','provinsi','spesialisasi','statusNikah','statusDaftar','statusPegawai','subSpesialisasi','subUnit','unit'));
+        return view('crudpegawai.create',compact('subtitle','icon','statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kabupaten','kecamatan','kualifikasi','pendidikan','provinsi','spesialisasi','statusNikah','statusDaftar','statusPegawai','subSpesialisasi','subUnit','unit'));
     }
 
     public function edit(Request $request, $id){
@@ -102,7 +102,7 @@ class PegawaiController extends Controller
         $jabatanStruktural = JabatanStruktural::all();
         $jenisKelamin = JenisKelamin::all();
         $jenisProfesi = JenisProfesi::all();
-        // $kabupaten = Kabupaten::all();
+        $kabupaten = Kabupaten::all();
         $kecamatan = Kecamatan::all();
         $kualifikasi = Kualifikasi::all();
         $pendidikan = Pendidikan::all();
@@ -118,7 +118,7 @@ class PegawaiController extends Controller
         $data = Pegawai::find($request->id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Data Pegawai';
-        return view('crudpegawai.edit',compact('subtitle','icon','data', 'statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kecamatan','kualifikasi','pendidikan','provinsi','spesialisasi','statusDaftar','statusNikah','statusPegawai','subSpesialisasi','subUnit','unit'));
+        return view('crudpegawai.edit',compact('subtitle','icon','data', 'statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kecamatan','kabupaten','kualifikasi','pendidikan','provinsi','spesialisasi','statusDaftar','statusNikah','statusPegawai','subSpesialisasi','subUnit','unit'));
     }
 
     public function save(Request $request){
@@ -151,10 +151,10 @@ class PegawaiController extends Controller
         $pegawai-> dusun = $request-> input('dusun');
         $pegawai-> desa_id = $request-> input('desa_id');
         $pegawai-> kecamatan_id = $request-> input('kecamatan_id');
+        $pegawai-> kabupaten_id = $request-> input('kabupaten_id');
         $pegawai->provinsi_id  = $request-> input('provinsi_id');
         $pegawai-> kodepos = $request-> input('kodepos');
         $pegawai-> nik= $request-> input('nik');
-        $pegawai-> npwp = $request-> input('npwp');
         $pegawai-> npwp = $request-> input('npwp');
         $pegawai-> status_nikah_id = $request-> input('status_nikah_id');
         $pegawai-> status_daftar_id  = $request-> input('status_daftar_id');
@@ -229,10 +229,10 @@ class PegawaiController extends Controller
         $data-> dusun = $request-> input('dusun');
         $data-> desa_id = $request-> input('desa_id');
         $data-> kecamatan_id = $request-> input('kecamatan_id');
+        $data-> kabupaten_id = $request-> input('kabupaten_id');
         $data->provinsi_id  = $request-> input('provinsi_id');
         $data-> kodepos = $request-> input('kodepos');
         $data-> nik= $request-> input('nik');
-        $data-> npwp = $request-> input('npwp');
         $data-> npwp = $request-> input('npwp');
         $data-> status_nikah_id = $request-> input('status_nikah_id');
         $data-> status_daftar_id  = $request-> input('status_daftar_id');

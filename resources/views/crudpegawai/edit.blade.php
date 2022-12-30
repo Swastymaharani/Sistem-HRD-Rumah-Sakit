@@ -309,7 +309,7 @@
                         </select>
                     </div>
 
-                    {{-- <div class="mb-3 row"> 
+                    <div class="mb-3 row"> 
                         <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
                         <select type="text" class="form-control" name='kabupaten_id' id="kabupaten_id">
                             <option value="{{ $data->kabupaten_id }}">Pilih Kabupaten</option>
@@ -317,7 +317,7 @@
                                 <option value= {{ $kab->id }} >{{ $kab->nama_kabupaten }}</option>
                             @endforeach
                         </select>
-                    </div> --}}
+                    </div>
 
                     <div class="mb-3 row"> 
                         <label for="provinsi_id" class="col-sm-2 col-form-label">Provinsi</label>
@@ -649,6 +649,16 @@ function update(){
             document.forms["formPendaftaran"]["kecamatan_id"].focus();
             return false;
         }
+
+        // if (document.forms["formPendaftaran"]["kabupaten_id"].value == "") {
+        //     CustomSwal.fire({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: 'Kabupaten Tidak Boleh Kosong',
+        //     })
+        //     document.forms["formPendaftaran"]["kabupaten_id"].focus();
+        //     return false;
+        // }
         
         if (document.forms["formPendaftaran"]["provinsi_id"].value == "") {
             CustomSwal.fire({

@@ -90,6 +90,6 @@ class Pegawai extends Model
     }
 
     public function riwayatDiklat(){
-        return $this->hasMany(RiwayatDiklat::class, 'id', 'id');
+        return $this->hasMany(RiwayatDiklat::class);
     }
 }

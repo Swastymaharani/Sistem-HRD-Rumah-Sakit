@@ -20,10 +20,9 @@ class DiklatController extends Controller
         $icon = 'ni ni-dashlite';
         $subtitle = 'Diklat Detail';
         $table_id = 'm_diklat';
-        $diklat = Diklat::find($id);
         $jenis_diklat = JenisDiklat::find($id);
         $jenis_diklat_id = $id;
-        return view('cruddiklat.crud',compact('subtitle','table_id','icon', 'jenis_diklat_id', 'diklat', 'jenis_diklat'));
+        return view('cruddiklat.crud',compact('subtitle','table_id','icon', 'jenis_diklat_id', 'jenis_diklat'));
     }
 
     // public function listData(Request $request, $jenis_diklat_id){

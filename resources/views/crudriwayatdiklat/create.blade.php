@@ -17,7 +17,7 @@
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDefault">Modal Default</button> -->
                 <!-- <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#modalDefault"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
                 <!-- <a href="javascript:void(0)" class="btn btn-sm btn-success" onclick="filtershow()"><em class="icon ti-file"></em> <span>Filter Data</span></a> -->
-                <a href="{{ route('riwayatDiklat.list') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
+                <a href="{{  url()->previous() }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em
                         class="icon fas fa-arrow-left"></em> <span>Kembali</span></a>
             </div>
         </div>
@@ -55,28 +55,20 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-<<<<<<< HEAD
-        <form name="formInputRiwayatDiklat" action="{{ url('/riwayatDiklat/save') }}" method="POST">
-=======
-        <form name="formInputRiwayatDiklat" action="{{ url('/crud4/save') }}" method="POST" enctype="multipart/form-data">
->>>>>>> crud_pegawai
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/riwayatDiklat/save') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
-                    <div class="mb-3 row">
-                        <label for="nim" class="col-sm-2 col-form-label">Id Pegawai</label>
-                        <input type="text" class="form-control @error("pegawai_id") is-invalid @enderror" name="pegawai_id" value="{{ old("pegawai_id") }}" id="pegawai_id" >
-                        @error('pegawai_id')
-                             <div class="invalid-feedback"> {{ $message }}</div>
-                        @enderror
-                    </div>
-                   
+        
                     <div class="mb-3 row">
                         <label for="diklat_id" class="col-sm-2 col-form-label">Id Diklat</label>
-                        <input type="text" class="form-control @error("diklat_id") is-invalid @enderror" name='diklat_id' value="{{ old('diklat_id') }}" id="diklat_id" >
-                        @error('diklat_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <select type="text" class="form-control" name='diklat_id' id="diklat_id">
+                            <option value="{{ old('diklat_id') }}">Pilih Jenis Diklat</option>
+                            @foreach ($diklats as $diklat)
+                                <option value= {{ $diklat->id_diklat }} >{{ $diklat->nama_diklat }}</option>
+                            @endforeach
+                        </select>
+                        
                     </div>
 
                     <div class="mb-3 row">
@@ -243,22 +235,19 @@ function store(){
     }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
+            let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
                 url:"{{url('/crud/save')}}",
-                data:{
-                    _method:"POST",
-                    _token:"{{csrf_token()}}",
-                    nim:$("#nim").val(),
-                    nama:$("#nama").val(),
-                    alamat:$("#alamat").val(),
-                },
+                data:formData,
+                contentType: false,
+                processData: false,
                 type:"POST",
                 dataType:"JSON",
                 success:function(data){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('crud') }}");
+                                window.location.replace("{{  url()->previous() }}");
                             }
                         });
                     }

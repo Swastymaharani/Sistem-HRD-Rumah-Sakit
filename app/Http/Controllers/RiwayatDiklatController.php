@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Diklat;
 use App\Models\Pegawai;
-use App\Models\RiwayatDiklat;
 use Illuminate\Http\Request;
+use App\Models\RiwayatDiklat;
 use Yajra\DataTables\Facades\DataTables;
 
 class RiwayatDiklatController extends Controller
@@ -15,18 +16,17 @@ class RiwayatDiklatController extends Controller
         return view('crudriwayatdiklat.crud',compact('subtitle','table_id','icon'));
     }
 
-    public function riwayatDiklat($id){
+    public function riwayatdiklatDetail($id){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Riwayat Diklat';
         $table_id = 't_riwayat_diklat';
-        $riwayat_diklat = RiwayatDiklat::find($id);
         $pegawai = Pegawai::find($id);
-        $id = $id;
-        return view('crudriwayatdiklat.crud',compact('subtitle','table_id','icon', 'id', 'riwayat_diklat', 'pegawai'));
+        $pegawai_id = $id;
+        return view('crudriwayatdiklat.crud',compact('subtitle','table_id','icon', 'pegawai_id', 'pegawai'));
     }
 
-    public function listData(Request $request, $id){
-        $data = RiwayatDiklat::select('id_t_diklat', 'pegawai_id', 'diklat_id', 'nama_kursus', 'tempat', 'jumlah_jam', 'tanggal_kursus', 'institusi_penyelenggara', 'nomor_sertifikat', 'tgl_sertifikat','tanggal_selesai_kursus', 'jabatan_ttd_sertifikat','is_aktif','is_valid','keterangan','file_sertifikat')->where('id', $id)->get();
+    public function listData(Request $request, $pegawai_id){
+        $data = RiwayatDiklat::select('id_t_diklat', 'pegawai_id', 'diklat_id', 'nama_kursus', 'tempat', 'jumlah_jam', 'tanggal_kursus', 'institusi_penyelenggara', 'nomor_sertifikat', 'tgl_sertifikat','tanggal_selesai_kursus', 'jabatan_ttd_sertifikat','is_aktif','is_valid','keterangan','file_sertifikat')->where('pegawai_id', $pegawai_id)->get();
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
@@ -52,8 +52,8 @@ class RiwayatDiklatController extends Controller
     public function create(){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Riwayat Diklat Pegawai';
-        $pegawais = Pegawai::all();
-        return view('crudriwayatdiklat.create',compact('subtitle','icon','pegawais'));
+        $diklats = Diklat::all();
+        return view('crudriwayatdiklat.create',compact('subtitle','icon','diklats'));
     }
 
     public function edit(Request $request, $id){
@@ -67,25 +67,25 @@ class RiwayatDiklatController extends Controller
     }
 
     public function save(Request $request, $id){
-        $riwayat_diklats = RiwayatDiklat::all();
-        $tidakUnik = 0;
-        foreach ($riwayat_diklats as $riwayat_diklat) {
-            if($diklat->nama_kursus==$request->input('nama_kursus')){
-                $tidakUnik = 1;
-            }
-            if($diklat->tempat==$request->input('tempat')){
-                $tidakUnik = 2;
-            }
-        }
-        if($tidakUnik == 1){
-            $response = array('success'=>2,'msg'=>'Nama Kursus harus Unik');
-        }elseif($tidakUnik == 2){
-            $response = array('success'=>2,'msg'=>'Tempat Kursus harus Unik');
-        }else{
-            Diklat::create($request->all());
-            $response = array('success'=>1,'msg'=>'Berhasil menambah data');
-        }
-        return $response;
+    //     $riwayat_diklats = RiwayatDiklat::all();
+    //     $tidakUnik = 0;
+    //     foreach ($riwayat_diklats as $riwayat_diklat) {
+    //         if($diklat->nama_kursus==$request->input('nama_kursus')){
+    //             $tidakUnik = 1;
+    //         }
+    //         if($diklat->tempat==$request->input('tempat')){
+    //             $tidakUnik = 2;
+    //         }
+    //     }
+    //     if($tidakUnik == 1){
+    //         $response = array('success'=>2,'msg'=>'Nama Kursus harus Unik');
+    //     }elseif($tidakUnik == 2){
+    //         $response = array('success'=>2,'msg'=>'Tempat Kursus harus Unik');
+    //     }else{
+    //         Diklat::create($request->all());
+    //         $response = array('success'=>1,'msg'=>'Berhasil menambah data');
+    //     }
+    //     return $response;
     }
 
     public function update(Request $request, $id){

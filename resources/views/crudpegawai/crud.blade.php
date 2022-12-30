@@ -55,7 +55,7 @@
                     <table id="{{$table_id}}" class="table table-striped table-bordered nowrap" style="width:100%">
                         <thead style="color:#526484; font-size:11px;">
                             
-                            <th width="1%">No.</th>
+                            <th width="1%">No</th>
                             <th width="10%">No. Induk</th>
                             <th width="10%">Nama</th>
                             <th width="10%">Status Pegawai</th>

@@ -16,7 +16,7 @@
 <div class="nk-fmg-body-head d-none d-lg-flex">
     <div class="nk-fmg-search">
     <a href="{{ route('pegawai.list') }}"><button type="button" class="btn btn-info"><em class="icon fas fa-arrow-left"></em> <span>Pegawai</span></button></a>  &nbsp;&nbsp;
-        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle.": Riwayat Diklat ".$pegawai->nama)}}</h4>
+        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle.": ".$pegawai->nama)}}</h4>
     </div>
     <div class="nk-fmg-actions">
         <div class="btn-group">
@@ -98,7 +98,7 @@ $(document).ready(function() {
         serverSide: true,
         dom: '<"row justify-between g-2 "<"col-7 col-sm-4 text-left"f><"col-5 col-sm-8 text-right"<"datatable-filter"<"d-flex justify-content-end g-2" l>>>><" my-3"t><"row align-items-center"<"col-5 col-sm-12 col-md-6 text-left text-md-left"i><"col-5 col-sm-12 col-md-6 text-md-right"<"d-flex justify-content-end "p>>>',
         ajax: {
-            url: '{{ route("riwayatDiklat.listData", $id) }}',
+            url: '{{ route("riwayatDiklat.listData", $pegawai_id) }}',
             type:"POST",
             data: function(params) {
                 params._token = "{{ csrf_token() }}";
