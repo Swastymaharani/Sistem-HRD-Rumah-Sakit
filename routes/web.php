@@ -38,6 +38,8 @@ Route::get('/pegawai/{id}/edit',[PegawaiController::class,'edit'])->name('pegawa
 Route::delete('/pegawai/{id}',[PegawaiController::class,'deleteData'])->name('pegawai.delete');
 Route::post('/pegawai/save', [PegawaiController::class,'save'])->name('pegawai.save');
 Route::post('/pegawai/{id}/update',[PegawaiController::class,'update'])->name('pegawai.update');
+Route::get('/pegawai/{id}/detail',[PegawaiController::class,'detail'])->name('pegawai.detail');
+Route::post('/pegawai/listDetail',[PegawaiController::class,'listDetail'])->name('pegawai.listDetail');
 
 // Route CRUD Jenis Diklat
 Route::get('/jenisdiklat',[JenisDiklatController::class,'index'])->name('jenisDiklat.list');

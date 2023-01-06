@@ -35,6 +35,31 @@ class PegawaiController extends Controller
         return view('crudpegawai.crud',compact('subtitle','table_id','icon'));
     }
 
+    public function detail(Request $request, $id){
+        $icon = 'ni ni-dashlite';
+        $subtitle = 'Pegawai';
+        $table_id = 'm_pegawai';
+        $pegawai_id = $id;
+        return view('crudpegawai.detail',compact('subtitle','table_id','icon', 'pegawai_id'));
+    }
+
+    public function listDetail(Request $request, $pegawai_id){
+        $id = $pegawai_id;
+        $data = Pegawai::find($pegawai_id);
+        $datatables = DataTables::of($data);
+        return $datatables
+        ->addIndexColumn()
+        // ->addColumn('status_pegawai', function($id){
+        //     $nama_status = Pegawai::find($id);
+        //     return $nama_status->statusPegawai->nama;
+        // })
+        // ->addColumn('jenis_profesi', function($id){
+        //     $jenis_profesi = Pegawai::find($id);  
+        //     return $jenis_profesi->jenisProfesi->nama_profesi;
+        // })
+        ->make(true);
+    }
+
     public function listData(Request $request){
         $data = Pegawai::all();
         $datatables = DataTables::of($data);
@@ -51,6 +76,7 @@ class PegawaiController extends Controller
         ->addColumn('aksi', function($data){
             $aksi = "";
             $aksi .= "<a title='Riwayat Diklat' href='/".$data->id."/riwayatdiklat' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
+            $aksi .= "<a title='Detail Pegawai' href='/pegawai/".$data->id."/detail' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-loop' ></i></a>";
             $aksi .= "<a title='Edit Data' href='/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
             $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->nama}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-kode='{$data->kode}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
             return $aksi;
