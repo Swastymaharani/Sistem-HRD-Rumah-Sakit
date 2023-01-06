@@ -254,15 +254,15 @@ function store(){
         document.forms["formPendaftaran"]["is_valid"].focus();
         return false;
     }
-    if (document.forms["formPendaftaran"]["keterangan"].value == "") {
-        CustomSwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Keterangan Tidak Boleh Kosong',
-        })
-        document.forms["formPendaftaran"]["keterangan"].focus();
-        return false;
-    }
+    // if (document.forms["formPendaftaran"]["keterangan"].value == "") {
+    //     CustomSwal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: 'Keterangan Tidak Boleh Kosong',
+    //     })
+    //     document.forms["formPendaftaran"]["keterangan"].focus();
+    //     return false;
+    // }
     if (document.forms["formPendaftaran"]["file_sertifikat"].value == "") {
         CustomSwal.fire({
             icon: 'error',
@@ -276,7 +276,7 @@ function store(){
     // buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
-        text: 'Apakah Data Sudah Benar, '+document.forms["formPendaftaran"]["nama_kursus"].value+' ?',
+        text: 'Apakah data yang diinput sudah benar?',
         showCancelButton: true,
         confirmButtonText: 'Submit',
         cancelButtonText: 'Batal',
