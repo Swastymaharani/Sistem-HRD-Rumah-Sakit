@@ -35,12 +35,14 @@ class PegawaiController extends Controller
         return view('crudpegawai.crud',compact('subtitle','table_id','icon'));
     }
 
-    public function detail(Request $request, $id){
+    public function detail(Request $request, $pegawai_id){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Pegawai';
         $table_id = 'm_pegawai';
-        $pegawai_id = $id;
-        return view('crudpegawai.detail',compact('subtitle','table_id','icon', 'pegawai_id'));
+        $data = Pegawai::find($pegawai_id);
+
+        // $pegawai_id = $id;
+        return view('crudpegawai.detail',compact('subtitle','table_id','icon', 'data'));
     }
 
     public function listDetail(Request $request, $pegawai_id){
