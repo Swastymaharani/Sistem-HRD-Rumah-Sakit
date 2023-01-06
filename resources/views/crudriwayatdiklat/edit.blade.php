@@ -135,6 +135,7 @@
                     <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
                         <input type="file" class="form-control" name='file_sertifikat' value="{{ $data->file_sertifikat }}" id="file_sertifikat" >
+                        <label for="notebook" class="col-sm-5 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
                     </div>
 
                     <div class="mb-3 row">
