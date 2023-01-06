@@ -26,7 +26,7 @@ class Pegawai extends Model
     }
 
     public function jabatanFungsional(){
-        return $this->belongsTo(JabatanStruktural::class, 'jabatan_fungsional_terakhir', 'jabatan_fungsional_id');
+        return $this->belongsTo(JabatanStruktural::class, 'jabatan_fungsional_terakhir');
     }
 
     public function jabatanStruktural(){
@@ -34,7 +34,7 @@ class Pegawai extends Model
     }
 
     public function jenisKelamin(){
-        return $this->belongsTo(JenisKelamin::class, 'jenis_kelamin_id');
+        return $this->belongsTo(JenisKelamin::class, 'jeniskelamin_id');
     }
 
     public function jenisProfesi(){
@@ -50,11 +50,11 @@ class Pegawai extends Model
     } 
 
     public function kualifikasi(){
-        return $this->belongsTo(Kualifikasi::class);
+        return $this->belongsTo(Kualifikasi::class, 'qualifikasi_id');
     } 
 
     public function pendidikan(){
-        return $this->belongsTo(Pendidikan::class);
+        return $this->belongsTo(Pendidikan::class, 'pendidikan_terakhir_id');
     }
 
     public function provinsi(){
@@ -78,7 +78,7 @@ class Pegawai extends Model
     }
 
     public function subSpesialisasi(){
-        return $this->belongsTo(SubSpesialisasi::class, 'subspesialisasi_id');
+        return $this->belongsTo(SubSpesialisasi::class, 'sub_spesialisasi_id');
     }
 
     public function subUnit(){

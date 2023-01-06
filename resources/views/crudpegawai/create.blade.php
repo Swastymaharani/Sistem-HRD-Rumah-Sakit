@@ -239,27 +239,12 @@
                         </select>
                     </div>
 
-                    <div class="mb-3 row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="alamat" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="dusun" class="col-sm-2 col-form-label">Dusun</label>
-                        <input type="text" class="form-control" name='dusun' value="{{ old('dusun') }}" id="dusun" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
-                        <input type="text" class="form-control" name='desa_id' value="{{ old('desa_id') }}" id="desa_id" >
-                    </div>
-
                     <div class="mb-3 row"> 
-                        <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
-                        <select type="text" class="form-control" name='kecamatan_id' id="kecamatan_id">
-                            <option value="{{ old('kecamatan_id') }}">Pilih Kecamatan</option>
-                            @foreach ($kecamatan as $kec)
-                                <option value= {{ $kec->id }} >{{ $kec->nama_kecamatan }}</option>
+                        <label for="provinsi_id" class="col-sm-2 col-form-label">Provinsi</label>
+                        <select type="text" class="form-control" name='provinsi_id' id="provinsi_id">
+                            <option value="{{ old('provinsi_id') }}">Pilih Provinsi</option>
+                            @foreach ($provinsi as $prov)
+                                <option value= {{ $prov->id }} >{{ $prov->nama_provinsi }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -275,13 +260,29 @@
                     </div>
 
                     <div class="mb-3 row"> 
-                        <label for="provinsi_id" class="col-sm-2 col-form-label">Provinsi</label>
-                        <select type="text" class="form-control" name='provinsi_id' id="provinsi_id">
-                            <option value="{{ old('provinsi_id') }}">Pilih Provinsi</option>
-                            @foreach ($provinsi as $prov)
-                                <option value= {{ $prov->id }} >{{ $prov->nama_provinsi }}</option>
+                        <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
+                        <select type="text" class="form-control" name='kecamatan_id' id="kecamatan_id">
+                            <option value="{{ old('kecamatan_id') }}">Pilih Kecamatan</option>
+                            @foreach ($kecamatan as $kec)
+                                <option value= {{ $kec->id }} >{{ $kec->nama_kecamatan }}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
+                        <input type="text" class="form-control" name='desa_id' value="{{ old('desa_id') }}" id="desa_id" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="dusun" class="col-sm-2 col-form-label">Dusun</label>
+                        <input type="text" class="form-control" name='dusun' value="{{ old('dusun') }}" id="dusun" >
+                    </div>
+
+
+                    <div class="mb-3 row">
+                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <input type="text" class="form-control" name='alamat' value="{{ old('alamat') }}" id="alamat" >
                     </div>
 
                     <div class="mb-3 row">
@@ -560,40 +561,14 @@ function store(){
             document.forms["formPendaftaran"]["bahasa_aktif_id"].focus();
             return false;
         }
-        if (document.forms["formPendaftaran"]["alamat"].value == "") {
+                
+        if (document.forms["formPendaftaran"]["provinsi_id"].value == "") {
             CustomSwal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Alamat Tidak Boleh Kosong',
+                text: 'Provinsi Tidak Boleh Kosong',
             })
-            document.forms["formPendaftaran"]["alamat"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["dusun"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Dusun Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["dusun"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["desa_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Desa Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["desa_id"].focus();
-            return false;
-        }
-        if (document.forms["formPendaftaran"]["kecamatan_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Kecamatan Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["kecamatan_id"].focus();
+            document.forms["formPendaftaran"]["provinsi_id"].focus();
             return false;
         }
         if (document.forms["formPendaftaran"]["kabupaten_id"].value == "") {
@@ -605,14 +580,40 @@ function store(){
             document.forms["formPendaftaran"]["kabupaten_id"].focus();
             return false;
         }
-        
-        if (document.forms["formPendaftaran"]["provinsi_id"].value == "") {
+        if (document.forms["formPendaftaran"]["kecamatan_id"].value == "") {
             CustomSwal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Provinsi Tidak Boleh Kosong',
+                text: 'Kecamatan Tidak Boleh Kosong',
             })
-            document.forms["formPendaftaran"]["provinsi_id"].focus();
+            document.forms["formPendaftaran"]["kecamatan_id"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["desa_id"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Desa Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["desa_id"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["dusun"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Dusun Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["dusun"].focus();
+            return false;
+        }
+        if (document.forms["formPendaftaran"]["alamat"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Alamat Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["alamat"].focus();
             return false;
         }
         if (document.forms["formPendaftaran"]["kodepos"].value == "") {

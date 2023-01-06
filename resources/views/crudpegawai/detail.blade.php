@@ -108,101 +108,45 @@
                     <input type="text" class="form-control" name='jenis_profesi_id' id="jenis_profesi_id" readonly value="{{ $data->jenisProfesi->nama_profesi }}">
                 </div>
 
-                {{-- <div class="mb-3 row">
+                <div class="mb-3 row">
                     <label for="spesialisasi_id" class="col-sm-2 col-form-label">Spesialisasi</label>
-                    <input type="text" class="form-control" name='spesialisasi_id' id="spesialisasi_id" readonly>
-                        <option value="{{ $data->spesialisasi_id }}">Pilih Spesialisasi</option>
-                        @foreach ($spesialisasi as $sp)
-                            <option value= {{ $sp->id }} 
-                                @if ($data->spesialisasi_id === $sp->id)
-                                    SELECTED
-                                @endif>{{ $sp->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='spesialisasi_id' id="spesialisasi_id" value="{{ $data->spesialisasi->nama }}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="sub_spesialisasi_id" class="col-sm-2 col-form-label">Sub Spesialisasi</label>
-                    <input type="text" class="form-control" name='sub_spesialisasi_id' id="sub_spesialisasi_id" readonly>
-                        <option value="{{ $data->sub_spesialisasi_id }}">Pilih Sub Spesialisasi</option>
-                        @foreach ($subSpesialisasi as $sS)
-                            <option value= {{ $sS->id }} 
-                                @if ($data->sub_spesialisasi_id === $sS->id)
-                                    SELECTED
-                                @endif>{{ $sS->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='sub_spesialisasi_id' id="sub_spesialisasi_id" value="{{ $data->subSpesialisasi->nama }}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="qualifikasi_id" class="col-sm-2 col-form-label">Qualifikasi</label>
-                    <input type="text" class="form-control" name='qualifikasi_id' id="qualifikasi_id" readonly>
-                        <option value="{{ $data->qualifikasi_id }}">Pilih Qualifikasi</option>
-                        @foreach ($kualifikasi as $ku)
-                            <option value= {{ $ku->id }}
-                                @if ($data->qualifikasi_id === $ku->id)
-                                    SELECTED
-                                @endif >{{ $ku->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='qualifikasi_id' id="qualifikasi_id" value="{{ $data->kualifikasi->nama }}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="pendidikan_terakhir_id" class="col-sm-5 col-form-label">Pendidikan Terakhir</label>
-                    <input type="text" class="form-control" name='pendidikan_terakhir_id' id="pendidikan_terakhir_id" readonly>
-                        <option value="{{ $data->pendidikan_terakhir_id }}">Pilih Pendidikan Terakhir</option>
-                        @foreach ($pendidikan as $pe)
-                            <option value= {{ $pe->id }} 
-                                @if ($data->pendidikan_terakhir_id === $pe->id)
-                                    SELECTED
-                                @endif>{{ $pe->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='pendidikan_terakhir_id' id="pendidikan_terakhir_id" value="{{ $data->pendidikan->nama }}" readonly>
                 </div>
 
-                <div class="mb-3 row"> <!--ada tabel relasinya ato gmna ni-->
+                <div class="mb-3 row"> 
                     <label for="jabatan_fungsional_terakhir" class="col-sm-5 col-form-label">Jabatan Fungsional Terakhir</label>
-                    <input type="text" class="form-control" name='jabatan_fungsional_terakhir' id="jabatan_fungsional_terakhir" readonly> 
-                        <option value="{{ $data->jabatan_fungsional_terakhir }}">Pilih Jabatan Fungsional</option>
-                        @foreach ($jabatanFungsional as $jF)
-                            <option value= {{ $jF->jabatan_fungsional_id }} 
-                                @if ($data->jabatan_fungsional_terakhir === $jF->jabatan_fungsional_id)
-                                    SELECTED
-                                @endif>{{ $jF->jabatan_kum}}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='jabatan_fungsional_terakhir' id="jabatan_fungsional_terakhir" value="{{ $data->jabatanFungsional->jabatan_kum }}" readonly> 
                 </div> 
 
                 <div class="mb-3 row">
                     <label for="jabatan_struktural_id" class="col-sm-2 col-form-label">Jabatan Struktural</label>
-                    <input type="text" class="form-control" name='jabatan_struktural_id' id="jabatan_struktural_id" readonly>
-                        <option value="{{ $data->jabatan_struktural_id }}">Pilih Jabatan Struktural</option>
-                        @foreach ($jabatanStruktural as $jS)
-                            <option value= {{ $jS->jabatan_id }} 
-                                @if ($data->jabatan_struktural_id === $jS->jabatan_id)
-                                    SELECTED
-                                @endif>{{ $jS->nama_jabatan_singkat }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='jabatan_struktural_id' id="jabatan_struktural_id" value="{{ $data->jabatanStruktural->nama_jabatan_singkat}}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="unit_id" class="col-sm-2 col-form-label">Unit</label>
-                    <input type="text" class="form-control" name='unit_id' id="unit_id" readonly>
-                        <option value="{{ $data->unit_id }}">Pilih Unit</option>
-                        @foreach ($unit as $un)
-                            <option value= {{ $un->id }} 
-                                @if ($data->unit_id === $un->id)
-                                    SELECTED
-                                @endif>{{ $un->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='unit_id' id="unit_id" value="{{ $data->unit->nama }}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="subunit_id" class="col-sm-2 col-form-label">Sub Unit</label>
-                    <input type="text" class="form-control" name='subunit_id' id="subunit_id" readonly>
-                        <option value="{{ $data->subunit_id }}">Pilih Sub Unit</option>
-                        @foreach ($subUnit as $sU)
-                            <option value= {{ $sU->id }} 
-                                @if ($data->subunit_id === $sU->id)
-                                    SELECTED
-                                @endif>{{ $sU->nama_subunit }}</option>
-                        @endforeach
-                </div> --}}
+                    <input type="text" class="form-control" name='subunit_id' id="subunit_id" value="{{ $data->subUnit->nama_subunit }}" readonly>
+                </div>
 
                 <div class="mb-3 row">
                     <label for="tempat_lahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
@@ -214,41 +158,20 @@
                     <input type="date" class="form-control" name='tanggal_lahir' value="{{ $data->tanggal_lahir }}" id="tanggal_lahir" readonly>
                 </div>
 
-                {{-- <div class="mb-3 row">
+                <div class="mb-3 row">
                     <label for="jeniskelamin_id" class="col-sm-2 col-form-label">Jenis Kelamin</label>
-                    <input type="text" class="form-control" name='jeniskelamin_id' id="jeniskelamin_id" readonly>
-                        <option value="{{ $data->jeniskelamin_id }}">Pilih Jenis Kelamin</option>
-                        @foreach ($jenisKelamin as $jK)
-                            <option value= {{ $jK->id }} 
-                                @if ($data->jeniskelamin_id ===  $jK->id)
-                                    SELECTED
-                                @endif>{{ $jK->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='jeniskelamin_id' id="jeniskelamin_id" value="{{ $data->jenisKelamin->nama }}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="agama_id" class="col-sm-2 col-form-label">Agama</label>
-                    <input type="text" class="form-control" name='agama_id' id="agama_id" readonly>
-                        <option value="{{ $data->agama_id }}">Pilih Agama</option>
-                        @foreach ($agama as $ag)
-                            <option value= {{ $ag->id }} 
-                                @if ($data->agama_id ===  $ag->id)
-                                    SELECTED
-                                @endif>{{ $ag->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='agama_id' id="agama_id" value="{{ $data->agama->nama }}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="bahasa_aktif_id" class="col-sm-2 col-form-label">Bahasa Aktif</label>
-                    <input type="text" class="form-control" name='bahasa_aktif_id' id="bahasa_aktif_id" readonly>
-                        <option value="{{ $data->bahasa_aktif_id }}">Pilih Bahasa Aktif</option>
-                        @foreach ($bahasaAktif as $bA)
-                            <option value= {{ $bA->id }} 
-                                @if ($data->bahasa_aktif_id ===  $bA->id)
-                                    SELECTED
-                                @endif>{{ $bA->nama }}</option>
-                        @endforeach
-                </div> --}}
+                    <input type="text" class="form-control" name='bahasa_aktif_id' id="bahasa_aktif_id"  value="{{ $data->bahasaAktif->nama }}" readonly>
+                </div>
 
                 <div class="mb-3 row">
                     <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
@@ -265,38 +188,20 @@
                     <input type="text" class="form-control" name='desa_id' value="{{ $data->desa_id }}" id="desa_id" readonly>
                 </div>
 
-                {{-- <div class="mb-3 row"> 
+                <div class="mb-3 row"> 
                     <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
-                    <input type="text" class="form-control" name='kecamatan_id' id="kecamatan_id" readonly>
-                        <option value="{{ $data->kecamatan_id }}">Pilih Kecamatan</option>
-                        @foreach ($kecamatan as $kec)
-                            <option value= {{ $kec->id }} 
-                                @if ($data->kecamatan_id ===  $kec->id)
-                                    SELECTED
-                                @endif>{{ $kec->nama_kecamatan }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='kecamatan_id' id="kecamatan_id" value="{{ $data->kecamatan->nama_kecamatan }}" readonly>
                 </div>
 
                 <div class="mb-3 row"> 
                     <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
-                    <input type="text" class="form-control" name='kabupaten_id' id="kabupaten_id" readonly>
-                        <option value="{{ $data->kabupaten_id }}">Pilih Kabupaten</option>
-                        @foreach ($kabupaten as $kab)
-                            <option value= {{ $kab->id }} >{{ $kab->nama_kabupaten }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='kabupaten_id' id="kabupaten_id" value="{{ $data->kabupaten->nama_kabupaten }}" readonly>
                 </div>
 
                 <div class="mb-3 row"> 
                     <label for="provinsi_id" class="col-sm-2 col-form-label">Provinsi</label>
-                    <input type="text" class="form-control" name='provinsi_id' id="provinsi_id" readonly>
-                        <option value="{{ $data->provinsi_id }}">Pilih Provinsi</option>
-                        @foreach ($provinsi as $prov)
-                            <option value= {{ $prov->id }} 
-                                @if ($data->provinsi_id ===  $prov->id)
-                                    SELECTED
-                                @endif>{{ $prov->nama_provinsi }}</option>
-                        @endforeach
-                </div> --}}
+                    <input type="text" class="form-control" name='provinsi_id' id="provinsi_id" value="{{ $data->provinsi->nama_provinsi }}" readonly>
+                </div>
 
                 <div class="mb-3 row">
                     <label for="kodepos" class="col-sm-2 col-form-label">Kode Pos</label>
@@ -334,29 +239,15 @@
                     
                 </div>
 
-                {{-- <div class="mb-3 row"> 
+                <div class="mb-3 row"> 
                     <label for="status_nikah_id" class="col-sm-2 col-form-label">Status Nikah</label>
-                    <input type="text" class="form-control" name='status_nikah_id' id="status_nikah_id" readonly>
-                        <option value="{{ $data->status_nikah_id }}">Pilih Status Nikah</option>
-                        @foreach ($statusNikah as $sN)
-                            <option value= {{ $sN->id }} 
-                                @if ($data->status_nikah_id ===  $sN->id)
-                                    SELECTED
-                                @endif>{{ $sN->nama }}</option>
-                        @endforeach
+                    <input type="text" class="form-control" name='status_nikah_id' id="status_nikah_id" value="{{ $data->statusNikah->nama }}" readonly>
                 </div>
 
                 <div class="mb-3 row">
                     <label for="status_daftar_id" class="col-sm-2 col-form-label">Status Daftar</label>
-                    <input type="text" class="form-control" name='status_daftar_id' id="status_daftar_id" readonly>
-                        <option value="{{ $data->status_daftar_id }}">Pilih Status Daftar</option>
-                        @foreach ($statusDaftar as $sD)
-                            <option value= {{ $sD->id }} 
-                                @if ($data->status_daftar_id ===  $sD->id )
-                                    SELECTED
-                                @endif>{{ $sD->status }}</option>
-                        @endforeach
-                </div>  --}}
+                    <input type="text" class="form-control" name='status_daftar_id' id="status_daftar_id" value="{{ $data->statusDaftar->status }}" readonly>
+                </div> 
             </div>
         </div>
     </div>
