@@ -350,21 +350,25 @@
                     <div class="mb-3 row">
                         <label for="file_photo" class="col-sm-2 col-form-label">File Foto</label>
                         <input type="file" class="form-control" name='file_photo' value="{{ $data->file_photo }}" id="file_photo" >
+                        <label for="notebook" class="col-sm-5 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="file_ktp" class="col-sm-2 col-form-label">File KTP</label>
                         <input type="file" class="form-control" name='file_ktp' value="{{ $data->file_ktp }}" id="file_ktp" >
+                        <label for="notebook" class="col-sm-5 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="file_kk" class="col-sm-2 col-form-label">File KK</label>
                         <input type="file" class="form-control" name='file_kk' value="{{ $data->file_kk }}" id="file_kk" >
+                        <label for="notebook" class="col-sm-5 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="file_npwp" class="col-sm-2 col-form-label">File NPWP</label>
                         <input type="file" class="form-control" name='file_npwp' value="{{ $data->file_npwp }}" id="file_npwp" >
+                        <label for="notebook" class="col-sm-5 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
                     </div>
 
                     <div class="mb-3 row"> 
