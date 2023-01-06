@@ -74,27 +74,27 @@
                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                 <div class="user-card">
                                     <div class="user-avatar">
-                                        <span>substr(auth()->user()->name, 0, 1)</span>
+                                        {{-- <span>substr(auth()->user()->name, 0, 1)</span> --}}
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">auth()->user()->name</span>
-                                        <span class="sub-text">auth()->user()->email</span>
+                                        <span class="lead-text">{{ auth()->user()->name }}</span>
+                                        <span class="sub-text">{{ auth()->user()->email }}</span>
                                     </div>
                                     <div class="user-action">
                                         <a class="btn btn-icon mr-n2" href="html/user-profile-setting.html"><em class="icon ni ni-setting"></em></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="dropdown-inner user-account-info">
+                            {{-- <div class="dropdown-inner user-account-info">
                                 <h6 class="overline-title-alt">Role Active</h6>
                                 <div class="form-group">
                                     <select class="form-control select2" name="user_role" id="user_role">
-                                        {{-- @foreach (session('roles') as $role)
+                                        @foreach (session('roles') as $role)
                                             <option value="{{$role['role_id']}}" {{(session('role_active')['role_id'] == $role['role_id'] ? 'selected':'')}}>{{$role['role_name']}}</option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 </div>    
-                            </div>
+                            </div> --}}
                             <div class="dropdown-inner">
                                 <ul class="link-list">
                                     <li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
@@ -102,16 +102,16 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li>
+                                    {{-- <li>
                                         <a href="#">
                                             <em class="icon ni ni-dashboard"></em><span>Dashboard SSO</span>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     <li>
-                                        <a href="route('logout')"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            <em class="icon ni ni-signout"></em><span>Sign out</span>
+                                        <a href="{{ route('user-logout') }}"  onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <em class="icon ni ni-signout"></em><span>Log out</span>
                                         </a>
-                                        <form id="logout-form" action="route('logout')" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('user-logout') }}" class="d-none">
                                             @csrf
                                         </form>
                                     </li>
