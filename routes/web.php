@@ -7,6 +7,8 @@ use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\RiwayatDiklatController;
 use App\Http\Controllers\CrudController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\LogInController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +32,14 @@ Route::post('/crud/listData',[CrudController::class,'listData'])->name('crud.lis
 
 //Route CRUD pegawai biasa
 Route::get('/',function(){
-    return redirect('/pegawai');
+    return redirect('/login');
 });
+Route::get('/logout', [LogInController::class, 'logout'])->name('user-logout');
+Route::get('/login', [LogInController::class, 'index'])->name('user-login')->middleware('guest');
+Route::post('/authlogin', [LogInController::class, 'authenticate'])->name('user-auth-login');
+Route::get('/signup', [SignUpController::class, 'index'])->name('user-signup')->middleware('guest');
+Route::post('/savesignup', [SignUpController::class, 'savesignup'])->name('user-simpan-tamu');
+
 Route::get('/pegawai',[PegawaiController::class,'index'])->name('pegawai.list');
 Route::post('/pegawai/listData',[PegawaiController::class,'listData'])->name('pegawai.listData');
 Route::get('/pegawai/create',[PegawaiController::class,'create'])->name('pegawai.create');
@@ -40,7 +48,6 @@ Route::delete('/pegawai/{id}',[PegawaiController::class,'deleteData'])->name('pe
 Route::post('/pegawai/save', [PegawaiController::class,'save'])->name('pegawai.save');
 Route::post('/pegawai/{id}/update',[PegawaiController::class,'update'])->name('pegawai.update');
 Route::get('/pegawai/{id}/detail',[PegawaiController::class,'detail'])->name('pegawai.detail');
-// Route::get('/pegawai/{id}/listDetail',[PegawaiController::class,'listDetail'])->name('pegawai.listDetail');
 
 // Auth::prefix('/admin')->middleware('auth')->group(function(){
 
