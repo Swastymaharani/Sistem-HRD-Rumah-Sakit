@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Unit;
 use App\Models\Agama;
+use App\Models\AuthPegawai;
 use App\Models\Pegawai;
 use App\Models\SubUnit;
 use App\Models\Provinsi;
@@ -30,97 +31,28 @@ class UserController extends Controller
 {
     public function index(){
         $icon = 'ni ni-dashlite';
-        $subtitle = 'Pegawai';
+        $subtitle = 'Beranda';
         $table_id = 'm_pegawai';
         return view('crudauthpegawai.authcrud',compact('subtitle','table_id','icon'));
     }
 
     public function detail(Request $request, $pegawai_id){
         $icon = 'ni ni-dashlite';
-        $subtitle = 'Pegawai';
+        $subtitle = 'Detail Data Pegawai';
         $table_id = 'm_pegawai';
-        $data = Pegawai::find($pegawai_id);
+        $data = AuthPegawai::find($pegawai_id);
 
-        // $pegawai_id = $id;
-        return view('crudpegawai.detail',compact('subtitle','table_id','icon', 'data'));
+        return view('crudauthpegawai.authdetail',compact('subtitle','table_id','icon', 'data'));
     }
 
-    public function listDetail(Request $request, $pegawai_id){
-        $id = $pegawai_id;
-        $data = Pegawai::find($pegawai_id);
-        $datatables = DataTables::of($data);
-        return $datatables
-        ->addIndexColumn()
-        // ->addColumn('status_pegawai', function($id){
-        //     $nama_status = Pegawai::find($id);
-        //     return $nama_status->statusPegawai->nama;
-        // })
-        // ->addColumn('jenis_profesi', function($id){
-        //     $jenis_profesi = Pegawai::find($id);  
-        //     return $jenis_profesi->jenisProfesi->nama_profesi;
-        // })
-        ->make(true);
-    }
-
-    public function listData(Request $request){
-        $data = Pegawai::all();
-        $datatables = DataTables::of($data);
-        return $datatables
-        ->addIndexColumn()
-        ->addColumn('status_pegawai', function($data){
-            $nama_status = Pegawai::find($data->id);
-            return $nama_status->statusPegawai->nama;
-        })
-        ->addColumn('jenis_profesi', function($data){
-            $jenis_profesi = Pegawai::find($data->id);  
-            return $jenis_profesi->jenisProfesi->nama_profesi;
-        })
-        ->addColumn('aksi', function($data){
-            $aksi = "";
-            $aksi .= "<a title='Riwayat Diklat' href='/".$data->id."/riwayatdiklat' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
-            $aksi .= "<a title='Detail Pegawai' href='/pegawai/".$data->id."/detail' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-loop' ></i></a>";
-            $aksi .= "<a title='Edit Data' href='/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
-            $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->nama}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-kode='{$data->kode}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
-            return $aksi;
-        })
-        ->rawColumns(['aksi'])
-        ->make(true);
-    }
-
-    public function deleteData(Request $request){
-        if(Pegawai::destroy($request->id)){
-            $response = array('success'=>1,'msg'=>'Berhasil hapus data');
-        }else{
-            $response = array('success'=>2,'msg'=>'Gagal menghapus data');
-        }
-        return $response;
-    }
-
-    public function create(){
-        $agama = Agama::all();
-        $bahasaAktif = BahasaAktif::all();
-        $jabatanFungsional = JabatanFungsional::all();
-        $jabatanStruktural = JabatanStruktural::all();
-        $jenisKelamin = JenisKelamin::all();
-        $jenisProfesi = JenisProfesi::all();
-        $kabupaten = Kabupaten::all();
-        $kecamatan = Kecamatan::all();
-        $kualifikasi = Kualifikasi::all();
-        $pendidikan = Pendidikan::all();
-        $provinsi = Provinsi::all();
-        $spesialisasi = Spesialisasi::all();
-        $statusDaftar = StatusDaftar::all();
-        $statusNikah = StatusNikah::all();
-        $statusPegawai = StatusPegawai::all();
-        $jenisProfesi = JenisProfesi::all();
-        $subSpesialisasi = SubSpesialisasi::all();
-        $subUnit = SubUnit::all();
-        $unit = Unit::all();
-
-        $icon = 'ni ni-dashlite';
-        $subtitle = 'Tambah Data Pegawai';
-        return view('crudpegawai.create',compact('subtitle','icon','statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kabupaten','kecamatan','kualifikasi','pendidikan','provinsi','spesialisasi','statusNikah','statusDaftar','statusPegawai','subSpesialisasi','subUnit','unit'));
-    }
+    // public function deleteData(Request $request){
+    //     if(Pegawai::destroy($request->id)){
+    //         $response = array('success'=>1,'msg'=>'Berhasil hapus data');
+    //     }else{
+    //         $response = array('success'=>2,'msg'=>'Gagal menghapus data');
+    //     }
+    //     return $response;
+    // }
 
     public function edit(Request $request, $id){
         $agama = Agama::all();
@@ -142,93 +74,14 @@ class UserController extends Controller
         $subSpesialisasi = SubSpesialisasi::all();
         $subUnit = SubUnit::all();
         $unit = Unit::all();
-        $data = Pegawai::find($request->id);
+        $data = AuthPegawai::find($id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Data Pegawai';
-        return view('crudpegawai.edit',compact('subtitle','icon','data', 'statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kecamatan','kabupaten','kualifikasi','pendidikan','provinsi','spesialisasi','statusDaftar','statusNikah','statusPegawai','subSpesialisasi','subUnit','unit'));
-    }
-
-    public function save(Request $request){
-       
-        $pegawai = new Pegawai;
-        $pegawai->kode = $request-> input('kode');
-        $pegawai->no_induk = $request-> input('no_induk');
-        $pegawai-> absen_id = $request-> input('absen_id');
-        $pegawai-> kode_bpjs = $request-> input('kode_bpjs');
-        $pegawai-> nama = $request-> input('nama');
-        $pegawai-> nama_tercetak = $request-> input('nama_tercetak');
-        $pegawai-> gelar_depan = $request-> input('gelar_depan');
-        $pegawai->gelar_belakang = $request-> input('gelar_belakang');
-        $pegawai-> status_pegawai_id = $request-> input('status_pegawai_id');
-        $pegawai-> jenis_profesi_id = $request-> input('jenis_profesi_id');
-        $pegawai-> spesialisasi_id  = $request-> input('spesialisasi_id');
-        $pegawai-> sub_spesialisasi_id = $request-> input('sub_spesialisasi_id');
-        $pegawai-> qualifikasi_id = $request-> input('qualifikasi_id');
-        $pegawai-> pendidikan_terakhir_id = $request-> input('pendidikan_terakhir_id');
-        $pegawai-> jabatan_fungsional_terakhir = $request-> input('jabatan_fungsional_terakhir');
-        $pegawai-> jabatan_struktural_id = $request-> input('jabatan_struktural_id');
-        $pegawai-> unit_id = $request-> input('unit_id');
-        $pegawai->subunit_id = $request-> input('subunit_id');
-        $pegawai-> tempat_lahir = $request-> input('tempat_lahir');
-        $pegawai-> tanggal_lahir= $request-> input('tanggal_lahir');
-        $pegawai-> jeniskelamin_id = $request-> input('jeniskelamin_id');
-        $pegawai-> agama_id= $request-> input('agama_id');
-        $pegawai-> bahasa_aktif_id = $request-> input('bahasa_aktif_id');
-        $pegawai-> alamat = $request-> input('alamat');
-        $pegawai-> dusun = $request-> input('dusun');
-        $pegawai-> desa_id = $request-> input('desa_id');
-        $pegawai-> kecamatan_id = $request-> input('kecamatan_id');
-        $pegawai-> kabupaten_id = $request-> input('kabupaten_id');
-        $pegawai->provinsi_id  = $request-> input('provinsi_id');
-        $pegawai-> kodepos = $request-> input('kodepos');
-        $pegawai-> nik= $request-> input('nik');
-        $pegawai-> npwp = $request-> input('npwp');
-        $pegawai-> status_nikah_id = $request-> input('status_nikah_id');
-        $pegawai-> status_daftar_id  = $request-> input('status_daftar_id');
-        
-        if($request->hasFile('file_photo')){
-            $file = $request->file('file_photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads/pegawai/photo/', $filename);
-            $pegawai->file_photo = $filename;
-        }
-
-        if($request->hasFile('file_ktp')){
-            $file = $request->file('file_ktp');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads/pegawai/ktp/', $filename);
-            $pegawai->file_ktp = $filename;
-        }
-
-        if($request->hasFile('file_kk')){
-            $file = $request->file('file_kk');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads/pegawai/kk/', $filename);
-            $pegawai->file_kk = $filename;
-        }
-
-        if($request->hasFile('file_npwp')){
-            $file = $request->file('file_npwp');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time().'.'.$extension;
-            $file->move('uploads/pegawai/npwp/', $filename);
-            $pegawai->file_npwp = $filename;
-        }
-        $pegawai->save();
-
-        if($pegawai){
-             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
-        }else{
-            $response = array('success'=>2,'msg'=>'Gagal menambah data');
-        }
-        return $response;
+        return view('crudauthpegawai.authedit',compact('subtitle','icon','data', 'statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kecamatan','kabupaten','kualifikasi','pendidikan','provinsi','spesialisasi','statusDaftar','statusNikah','statusPegawai','subSpesialisasi','subUnit','unit'));
     }
 
     public function update(Request $request, $id){
-        $data = Pegawai::find($id);
+        $data = AuthPegawai::find($id);
         $data->kode = $request-> input('kode');
         $data->no_induk = $request-> input('no_induk');
         $data-> absen_id = $request-> input('absen_id');

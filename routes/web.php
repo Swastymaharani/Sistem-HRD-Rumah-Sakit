@@ -43,19 +43,16 @@ Route::get('/signup', [SignUpController::class, 'index'])->name('user-signup')->
 Route::post('/savesignup', [SignUpController::class, 'savesignup'])->name('user-simpan-tamu')->middleware('guest');
 
 Route::group(['middleware' =>'auth'], function(){
-    Route::get('/pegawai',[UserController::class,'index'])->name('pegawai.list');
+    Route::get('/pegawai',[UserController::class,'index'])->name('authpegawai.list');
 
     // Route Detail & Edit
-    Route::post('/pegawai/listData',[UserController::class,'listData'])->name('pegawai.listData');
-    // Route::get('/pegawai/create',[UserController::class,'create'])->name('pegawai.create');
-    Route::get('/pegawai/{id}/edit',[UserController::class,'edit'])->name('pegawai.edit');
-    Route::delete('/pegawai/{id}',[UserController::class,'deleteData'])->name('pegawai.delete');
-    // Route::post('/pegawai/save', [UserController::class,'save'])->name('pegawai.save');
-    Route::post('/pegawai/{id}/update',[UserController::class,'update'])->name('pegawai.update');
-    Route::get('/pegawai/{id}/detail',[UserController::class,'detail'])->name('pegawai.detail');
+    Route::get('/pegawai/{id}/detail',[UserController::class,'detail'])->name('authpegawai.detail');
+    Route::get('/pegawai/{id}/edit',[UserController::class,'edit'])->name('authpegawai.edit');
+    // Route::delete('/pegawai/{id}',[UserController::class,'deleteData'])->name('authpegawai.delete');
+    Route::post('/pegawai/{id}/update',[UserController::class,'update'])->name('authpegawai.update');
 
     // Route CRUD RiwayatDiklat
-    Route::get('/riwayatdiklat',[UserRiwayatDiklatController::class,'index'])->name('riwayatDiklat.list');
+    Route::get('/authriwayatdiklat',[UserRiwayatDiklatController::class,'index'])->name('riwayatDiklat.list');
     Route::get('/{id}/riwayatdiklat',[UserRiwayatDiklatController::class,'riwayatdiklatDetail'])->name('riwayatdiklatDetail.list');
     Route::post('/{id}/riwayatdiklat/listdata',[UserRiwayatDiklatController::class,'listData'])->name('riwayatDiklat.listData');
     Route::get('/{id}/riwayatdiklat/create',[UserRiwayatDiklatController::class,'create'])->name('riwayatDiklat.create');

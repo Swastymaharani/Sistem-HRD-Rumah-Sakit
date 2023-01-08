@@ -36,13 +36,35 @@ class SignUpController extends Controller
         $key['password'] = bcrypt($key['password']);
         $hashedpass = $key['password'];
 
+        $request->validate([
+            'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
+        ]);
+
+        $generatedID = $this->generateUserID();
+
         User::create([
+            'id' => $generatedID,
             'name' => $request-> input('name'),
             'email' => $request-> input('email'),
             'password' => $hashedpass,
         ]);
 
+        Pegawai::create([
+            'sso_user_id' => $generatedID,
+        ]);
+
         return redirect()->route('user-login')->with('success', 'Sign Up Success! Please Log In');
     }
 
+    public function generateUserID(){
+        $generateID = mt_rand(100000, 999999);
+        foreach(User::all() as $userID){
+            if($generateID==$userID->id){
+                $generateID = mt_rand(100000, 999999);
+            }
+            else{
+                return $generateID;
+            }     
+        }
+    }
 }

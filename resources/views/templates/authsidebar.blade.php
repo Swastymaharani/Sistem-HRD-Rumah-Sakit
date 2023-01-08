@@ -26,15 +26,16 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/detail')}}" class="nk-menu-link">
+                                    {{-- "{{url('/admin/riwayatdiklat')}}/"+id_t_diklat --}}
+                                    <a href="{{URL('/pegawai/'.Auth::user()->id.'/detail')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
                                         <span class="nk-menu-text">Detail & Edit</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/riwayatdiklat')}}" class="nk-menu-link">
+                                    <a href="{{URL('/authriwayatdiklat')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-linux-server"></em></span>
-                                        <span class="nk-menu-text">Add Riwayat Diklat</span>
+                                        <span class="nk-menu-text">Riwayat Diklat</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
