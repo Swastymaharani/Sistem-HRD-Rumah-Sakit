@@ -15,4 +15,8 @@ class Diklat extends Model
     public function jenisdiklat(){
         return $this->belongsTo(JenisDiklat::class, 'jenis_diklat_id', 'jenis_diklat_id');
     }
+
+    public function riwayatdiklat(){
+        return $this->hasMany(RiwayatDiklat::class, 'id_diklat');
+    }
 }

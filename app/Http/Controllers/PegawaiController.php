@@ -40,27 +40,25 @@ class PegawaiController extends Controller
         $subtitle = 'Pegawai';
         $table_id = 'm_pegawai';
         $data = Pegawai::find($pegawai_id);
-
-        // $pegawai_id = $id;
         return view('crudpegawai.detail',compact('subtitle','table_id','icon', 'data'));
     }
 
-    public function listDetail(Request $request, $pegawai_id){
-        $id = $pegawai_id;
-        $data = Pegawai::find($pegawai_id);
-        $datatables = DataTables::of($data);
-        return $datatables
-        ->addIndexColumn()
-        // ->addColumn('status_pegawai', function($id){
-        //     $nama_status = Pegawai::find($id);
-        //     return $nama_status->statusPegawai->nama;
-        // })
-        // ->addColumn('jenis_profesi', function($id){
-        //     $jenis_profesi = Pegawai::find($id);  
-        //     return $jenis_profesi->jenisProfesi->nama_profesi;
-        // })
-        ->make(true);
-    }
+    // public function listDetail(Request $request, $pegawai_id){
+    //     $id = $pegawai_id;
+    //     $data = Pegawai::find($pegawai_id);
+    //     $datatables = DataTables::of($data);
+    //     return $datatables
+    //     ->addIndexColumn()
+    //     // ->addColumn('status_pegawai', function($id){
+    //     //     $nama_status = Pegawai::find($id);
+    //     //     return $nama_status->statusPegawai->nama;
+    //     // })
+    //     // ->addColumn('jenis_profesi', function($id){
+    //     //     $jenis_profesi = Pegawai::find($id);  
+    //     //     return $jenis_profesi->jenisProfesi->nama_profesi;
+    //     // })
+    //     ->make(true);
+    // }
 
     public function listData(Request $request){
         $data = Pegawai::all();

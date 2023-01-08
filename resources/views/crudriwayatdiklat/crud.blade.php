@@ -71,7 +71,7 @@
                             <!-- <th>Riwayat Aktif</th> -->
                             <!-- <th>Riwayat Validasi</th> -->
                             <!-- <th>Keterangan</th> -->
-                            <th>File Sertifikat</th>
+                            {{-- <th>File Sertifikat</th> --}}
                             <th>Aksi</th>
                             
                         </thead>
@@ -190,13 +190,13 @@ $(document).ready(function() {
             //     searchable: true,
             //     class: 'text-left'
             // },
-            {
-                data: 'file_sertifikats',
-                name: 'file_sertifikats',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
+            // {
+            //     data: 'file_sertifikats',
+            //     name: 'file_sertifikats',
+            //     orderable: true,
+            //     searchable: true,
+            //     class: 'text-left'
+            // },
             {
                 data: 'aksi',
                 name: 'aksi',

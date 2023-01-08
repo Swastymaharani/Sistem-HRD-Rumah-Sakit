@@ -15,4 +15,8 @@ class RiwayatDiklat extends Model
     public function pegawai(){
         return $this->belongsTo(Pegawai::class);
     }
+
+    public function diklat(){
+        return $this->belongsTo(Diklat::class, 'diklat_id');
+    }
 }

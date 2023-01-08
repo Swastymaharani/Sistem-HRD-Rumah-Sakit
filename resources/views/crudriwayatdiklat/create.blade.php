@@ -115,7 +115,7 @@
 
                     <div class="mb-3 row">
                         <label for="is_aktif" class="col-sm-2 col-form-label">Status aktif</label>
-                        <select class="form-control" aria-label="Default select example" name="is_aktif" value="{{ old('is_aktif') }}" id="is_aktif">
+                        <select type="text" class="form-control" name="is_aktif" value="{{ old('is_aktif') }}" id="is_aktif">
                             <option value="#">Pilih Status Aktif</option>
                             <option value="0">Tidak Aktif</option>
                             <option value="1">Aktif</option>
@@ -124,7 +124,7 @@
                     
                     <div class="mb-3 row">
                         <label for="is_valid" class="col-sm-2 col-form-label">Status Valid</label>
-                        <select class="form-control" aria-label="Default select example" name="is_valid" value="{{ old('is_valid') }}" id="is_valid>
+                        <select type="text" class="form-control" name="is_valid" value="{{ old('is_valid') }}" id="is_valid">
                             <option value="#">Pilih Status Valid</option>
                             <option value="0">Tidak Valid</option>
                             <option value="1">Valid</option>
@@ -136,10 +136,10 @@
                         <input type="text" class="form-control" name='keterangan' value="{{ old('keterangan') }}" id="keterangan" >
                     </div>
 
-                    {{-- <div class="mb-3 row">
+                    <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
                         <input type="file" class="form-control" name='file_sertifikat' value="{{ old('file_sertifikat') }}" id="file_sertifikat" >
-                    </div> --}}
+                    </div>
                     
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='store()' class='btn btn-primary'>Simpan</a></div>
