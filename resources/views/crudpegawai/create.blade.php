@@ -121,7 +121,7 @@
 
                     <div class="mb-3 row">
                         <label for="spesialisasi_id" class="col-sm-2 col-form-label">Spesialisasi</label>
-                        <select type="text" class="form-control" name='spesialisasi_id' id="spesialisasi_id">
+                        <select type="text" class="form-control formselect required" name='spesialisasi_id' id="spesialisasi_id">
                             <option value="{{ old('spesialisasi_id') }}">Pilih Spesialisasi</option>
                             @foreach ($spesialisasi as $sp)
                                 <option value= {{ $sp->id }} >{{ $sp->nama }}</option>
@@ -131,11 +131,11 @@
 
                     <div class="mb-3 row">
                         <label for="sub_spesialisasi_id" class="col-sm-2 col-form-label">Sub Spesialisasi</label>
-                        <select type="text" class="form-control" name='sub_spesialisasi_id' id="sub_spesialisasi_id">
-                            <option value="{{ old('sub_spesialisasi_id') }}">Pilih Sub Spesialisasi</option>
-                            @foreach ($subSpesialisasi as $sS)
+                        <select type="text" class="form-control formselect required" name='sub_spesialisasi_id' id="sub_spesialisasi_id">
+                            <option value="{{ old('sub_spesialisasi_id') }}">Pilih Spesialisasi Dulu</option>
+                            {{-- @foreach ($subSpesialisasi as $sS)
                                 <option value= {{ $sS->id }} >{{ $sS->nama }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -352,6 +352,26 @@
 @push('script')
 <script>
 
+$(document).ready(function () {
+    $('#spesialisasi_id').on('change', function () {
+    let spesialisasi_id = $(this).val();
+    $('#sub_spesialisasi_id').empty();
+    $('#sub_spesialisasi_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getSubspesialisasi/' + spesialisasi_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#sub_spesialisasi_id').empty();
+            $('#sub_spesialisasi_id').append(`<option value="0" disabled selected>Pilih Sub Spesialisasi</option>`);
+            response.forEach(element => {
+                $('#sub_spesialisasi_id').append(`<option value="${element['id']}">${element['nama']}</option>`);
+                });
+            }
+        });
+    });
+});
 
 function store(){
     if (document.forms["formPendaftaran"]["kode"].value == "") {

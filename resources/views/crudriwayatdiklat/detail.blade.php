@@ -108,23 +108,13 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="is_aktif" class="col-sm-2 col-form-label">Riwayat aktif</label>
-                        <input type="text" class="form-control" name='is_aktif' value="{{ $data->is_aktif }}" id="is_aktif" >
-                    </div>
-                    
-                    <div class="mb-3 row">
-                        <label for="is_valid" class="col-sm-2 col-form-label">Riwayat Valid</label>
-                        <input type="text" class="form-control" name="is_valid" value="{{ $data->is_valid }}" id="is_valid" >
-                    </div>
-
-                    <div class="mb-3 row">
                         <label for="is_aktif" class="col-sm-2 col-form-label">Status aktif</label>
-                        <input type="text" class="form-control" name='is_aktif' id="is_aktif" value="{{ $data->is_aktif }}" readonly>       
+                        <input type="text" class="form-control" name='is_aktif' id="is_aktif" value="@if($data->is_aktif==1)<?php echo"aktif"?>@else<?php echo"tidak aktif"?>@endif" readonly>       
                     </div>
                     
                     <div class="mb-3 row">
                         <label for="is_valid" class="col-sm-2 col-form-label">Status Valid</label>
-                        <input type="text" class="form-control" name='is_valid' id="is_valid" value="{{ $data->is_valid }}" readonly>       
+                        <input type="text" class="form-control" name='is_valid' id="is_valid" value="@if($data->is_valid==1)<?php echo"valid"?>@else<?php echo"tidak valid"?>@endif" readonly>       
                     </div>
                    
                     <div class="mb-3 row">

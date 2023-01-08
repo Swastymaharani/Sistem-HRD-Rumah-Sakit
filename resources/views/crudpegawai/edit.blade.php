@@ -408,6 +408,26 @@
 @endsection
 @push('script')
 <script>
+$(document).ready(function () {
+    $('#spesialisasi_id').on('change', function () {
+    let spesialisasi_id = $(this).val();
+    $('#sub_spesialisasi_id').empty();
+    $('#sub_spesialisasi_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getSubspesialisasi/' + spesialisasi_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#sub_spesialisasi_id').empty();
+            $('#sub_spesialisasi_id').append(`<option value="0" disabled selected>Pilih Sub Spesialisasi</option>`);
+            response.forEach(element => {
+                $('#sub_spesialisasi_id').append(`<option value="${element['id']}">${element['nama']}</option>`);
+                });
+            }
+        });
+    });
+});
 
 function update(){
     if (document.forms["formPendaftaran"]["kode"].value == "") {

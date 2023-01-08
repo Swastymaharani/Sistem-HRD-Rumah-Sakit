@@ -44,10 +44,10 @@ Route::post('/savesignup', [SignUpController::class, 'savesignup'])->name('user-
 Route::group(['middleware' =>'auth'], function(){
     Route::get('/pegawai',[UserController::class,'index'])->name('pegawai.list');
     Route::post('/pegawai/listData',[UserController::class,'listData'])->name('pegawai.listData');
-    Route::get('/pegawai/create',[UserController::class,'create'])->name('pegawai.create');
+    // Route::get('/pegawai/create',[UserController::class,'create'])->name('pegawai.create');
     Route::get('/pegawai/{id}/edit',[UserController::class,'edit'])->name('pegawai.edit');
     Route::delete('/pegawai/{id}',[UserController::class,'deleteData'])->name('pegawai.delete');
-    Route::post('/pegawai/save', [UserController::class,'save'])->name('pegawai.save');
+    // Route::post('/pegawai/save', [UserController::class,'save'])->name('pegawai.save');
     Route::post('/pegawai/{id}/update',[UserController::class,'update'])->name('pegawai.update');
     Route::get('/pegawai/{id}/detail',[UserController::class,'detail'])->name('pegawai.detail');
 });
@@ -63,6 +63,7 @@ Route::group(['middleware' =>['admin', 'auth']], function(){
         Route::post('/pegawai/save', [PegawaiController::class,'save'])->name('pegawai.save');
         Route::post('/pegawai/{id}/update',[PegawaiController::class,'update'])->name('pegawai.update');
         Route::get('/pegawai/{id}/detail',[PegawaiController::class,'detail'])->name('pegawai.detail');
+        Route::get('/getSubspesialisasi/{id}',[PegawaiController::class,'getSubspesialisasi']);
 
         // Route CRUD Jenis Diklat
         Route::get('/jenisdiklat',[JenisDiklatController::class,'index'])->name('jenisDiklat.list');

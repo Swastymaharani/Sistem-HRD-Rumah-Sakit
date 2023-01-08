@@ -23,6 +23,7 @@ use App\Models\SubSpesialisasi;
 use App\Models\JabatanFungsional;
 use App\Models\JabatanStruktural;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use Symfony\Component\Console\Input\Input;
 
@@ -118,6 +119,10 @@ class PegawaiController extends Controller
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Data Pegawai';
         return view('crudpegawai.create',compact('subtitle','icon','statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kabupaten','kecamatan','kualifikasi','pendidikan','provinsi','spesialisasi','statusNikah','statusDaftar','statusPegawai','subSpesialisasi','subUnit','unit'));
+    }
+    
+    public function getSubspesialisasi($spesialisasi_id){
+        echo json_encode(DB::table('m_subspesialisasi')->where('spesialisasi_id', $spesialisasi_id)->get());
     }
 
     public function edit(Request $request, $id){
