@@ -281,44 +281,6 @@
                         </select>
                     </div>
 
-                    <div class="mb-3 row">
-                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <input type="text" class="form-control" name='alamat' value="{{ $data->alamat }}" id="alamat" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="dusun" class="col-sm-2 col-form-label">Dusun</label>
-                        <input type="text" class="form-control" name='dusun' value="{{ $data->dusun }}" id="dusun" >
-                    </div>
-
-                    <div class="mb-3 row">
-                        <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
-                        <input type="text" class="form-control" name='desa_id' value="{{ $data->desa_id }}" id="desa_id" >
-                    </div>
-
-                    <div class="mb-3 row"> 
-                        <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
-                        <select type="text" class="form-control" name='kecamatan_id' id="kecamatan_id">
-                            <option value="{{ $data->kecamatan_id }}">Pilih Kecamatan</option>
-                            @foreach ($kecamatan as $kec)
-                                <option value= {{ $kec->id }} 
-                                    @if ($data->kecamatan_id ===  $kec->id)
-                                        SELECTED
-                                    @endif>{{ $kec->nama_kecamatan }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3 row"> 
-                        <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
-                        <select type="text" class="form-control" name='kabupaten_id' id="kabupaten_id">
-                            <option value="{{ $data->kabupaten_id }}">Pilih Kabupaten</option>
-                            @foreach ($kabupaten as $kab)
-                                <option value= {{ $kab->id }} >{{ $kab->nama_kabupaten }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
                     <div class="mb-3 row"> 
                         <label for="provinsi_id" class="col-sm-2 col-form-label">Provinsi</label>
                         <select type="text" class="form-control" name='provinsi_id' id="provinsi_id">
@@ -330,6 +292,47 @@
                                     @endif>{{ $prov->nama_provinsi }}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="mb-3 row"> 
+                        <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
+                        <select type="text" class="form-control" name='kabupaten_id' id="kabupaten_id">
+                            <option disabled>Pilih Provinsi Dulu</option>
+                            {{-- @foreach ($kabupaten as $kab)
+                                <option value= {{ $kab->id }} 
+                                    @if ($data->kabupaten_id ===  $kab->id)
+                                        SELECTED
+                                    @endif>{{ $kab->nama_kabupaten }}</option>
+                            @endforeach --}}
+                        </select>
+                    </div>
+
+                    <div class="mb-3 row"> 
+                        <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
+                        <select type="text" class="form-control" name='kecamatan_id' id="kecamatan_id">
+                            <option disabled>Pilih Kabupaten Dulu</option>
+                            {{-- @foreach ($kecamatan as $kec)
+                                <option value= {{ $kec->id }} 
+                                    @if ($data->kecamatan_id ===  $kec->id)
+                                        SELECTED
+                                    @endif>{{ $kec->nama_kecamatan }}</option>
+                            @endforeach --}}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3 row">
+                        <label for="desa_id" class="col-sm-2 col-form-label">Desa</label>
+                        <input type="text" class="form-control" name='desa_id' value="{{ $data->desa_id }}" id="desa_id" >
+                    </div>
+                    
+                    <div class="mb-3 row">
+                        <label for="dusun" class="col-sm-2 col-form-label">Dusun</label>
+                        <input type="text" class="form-control" name='dusun' value="{{ $data->dusun }}" id="dusun" >
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <input type="text" class="form-control" name='alamat' value="{{ $data->alamat }}" id="alamat" >
                     </div>
 
                     <div class="mb-3 row">
@@ -428,6 +431,70 @@ $(document).ready(function () {
         });
     });
 });
+
+$(document).ready(function () {
+    $('#unit_id').on('change', function () {
+    let unit_id = $(this).val();
+    $('#subunit_id').empty();
+    $('#subunit_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getSubunit/' + unit_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#subunit_id').empty();
+            $('#subunit_id').append(`<option value="0" disabled selected>Pilih Sub Unit</option>`);
+            response.forEach(element => {
+                $('#subunit_id').append(`<option value="${element['id']}">${element['nama_subunit']}</option>`);
+                });
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    $('#provinsi_id').on('change', function () {
+    let provinsi_id = $(this).val();
+    $('#kabupaten_id').empty();
+    $('#kabupaten_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getKabupaten/' + provinsi_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#kabupaten_id').empty();
+            $('#kabupaten_id').append(`<option value="0" enabled selected>Pilih Kabupaten</option>`);
+            response.forEach(element => {
+                $('#kabupaten_id').append(`<option value="${element['id']}">${element['nama_kabupaten']}</option>`);
+                });
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    $('#kabupaten_id').on('change', function () {
+    let kabupaten_id = $(this).val();
+    $('#kecamatan_id').empty();
+    $('#kecamatan_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getKecamatan/' + kabupaten_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#kecamatan_id').empty();
+            $('#kecamatan_id').append(`<option value="0" enabled selected>Pilih Kecamatan</option>`);
+            response.forEach(element => {
+                $('#kecamatan_id').append(`<option value="${element['id']}">${element['nama_kecamatan']}</option>`);
+                });
+            }
+        });
+    });
+});
+
 
 function update(){
     if (document.forms["formPendaftaran"]["kode"].value == "") {
@@ -664,6 +731,27 @@ function update(){
             document.forms["formPendaftaran"]["desa_id"].focus();
             return false;
         }
+
+        if (document.forms["formPendaftaran"]["provinsi_id"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Provinsi Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["provinsi_id"].focus();
+            return false;
+        }
+
+        if (document.forms["formPendaftaran"]["kabupaten_id"].value == "") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Kabupaten Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["kabupaten_id"].focus();
+            return false;
+        }
+        
         if (document.forms["formPendaftaran"]["kecamatan_id"].value == "") {
             CustomSwal.fire({
                 icon: 'error',
@@ -674,25 +762,6 @@ function update(){
             return false;
         }
 
-        // if (document.forms["formPendaftaran"]["kabupaten_id"].value == "") {
-        //     CustomSwal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Kabupaten Tidak Boleh Kosong',
-        //     })
-        //     document.forms["formPendaftaran"]["kabupaten_id"].focus();
-        //     return false;
-        // }
-        
-        if (document.forms["formPendaftaran"]["provinsi_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Provinsi Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["provinsi_id"].focus();
-            return false;
-        }
         if (document.forms["formPendaftaran"]["kodepos"].value == "") {
             CustomSwal.fire({
                 icon: 'error',

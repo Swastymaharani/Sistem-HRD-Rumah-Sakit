@@ -181,7 +181,7 @@
 
                     <div class="mb-3 row">
                         <label for="unit_id" class="col-sm-2 col-form-label">Unit</label>
-                        <select type="text" class="form-control" name='unit_id' id="unit_id">
+                        <select type="text" class="form-control formselect required" name='unit_id' id="unit_id">
                             <option value="{{ old('unit_id') }}">Pilih Unit</option>
                             @foreach ($unit as $un)
                                 <option value= {{ $un->id }} >{{ $un->nama }}</option>
@@ -191,11 +191,11 @@
 
                     <div class="mb-3 row">
                         <label for="subunit_id" class="col-sm-2 col-form-label">Sub Unit</label>
-                        <select type="text" class="form-control" name='subunit_id' id="subunit_id">
+                        <select type="text" class="form-control formselect required" name='subunit_id' id="subunit_id">
                             <option value="{{ old('subunit_id') }}">Pilih Sub Unit</option>
-                            @foreach ($subUnit as $sU)
+                            {{-- @foreach ($subUnit as $sU)
                                 <option value= {{ $sU->id }} >{{ $sU->nama_subunit }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -241,7 +241,7 @@
 
                     <div class="mb-3 row"> 
                         <label for="provinsi_id" class="col-sm-2 col-form-label">Provinsi</label>
-                        <select type="text" class="form-control" name='provinsi_id' id="provinsi_id">
+                        <select type="text" class="form-control formselect required" name='provinsi_id' id="provinsi_id">
                             <option value="{{ old('provinsi_id') }}">Pilih Provinsi</option>
                             @foreach ($provinsi as $prov)
                                 <option value= {{ $prov->id }} >{{ $prov->nama_provinsi }}</option>
@@ -251,21 +251,21 @@
 
                     <div class="mb-3 row"> 
                         <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
-                        <select type="text" class="form-control" name='kabupaten_id' id="kabupaten_id">
+                        <select type="text" class="form-control formselect required" name='kabupaten_id' id="kabupaten_id">
                             <option value="{{ old('kabupaten_id') }}">Pilih Kabupaten</option>
-                            @foreach ($kabupaten as $kab)
+                            {{-- @foreach ($kabupaten as $kab)
                                 <option value= {{ $kab->id }} >{{ $kab->nama_kabupaten }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
                     <div class="mb-3 row"> 
                         <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
-                        <select type="text" class="form-control" name='kecamatan_id' id="kecamatan_id">
+                        <select type="text" class="form-control formselect required" name='kecamatan_id' id="kecamatan_id">
                             <option value="{{ old('kecamatan_id') }}">Pilih Kecamatan</option>
-                            @foreach ($kecamatan as $kec)
+                            {{-- @foreach ($kecamatan as $kec)
                                 <option value= {{ $kec->id }} >{{ $kec->nama_kecamatan }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -367,6 +367,69 @@ $(document).ready(function () {
             $('#sub_spesialisasi_id').append(`<option value="0" disabled selected>Pilih Sub Spesialisasi</option>`);
             response.forEach(element => {
                 $('#sub_spesialisasi_id').append(`<option value="${element['id']}">${element['nama']}</option>`);
+                });
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    $('#unit_id').on('change', function () {
+    let unit_id = $(this).val();
+    $('#subunit_id').empty();
+    $('#subunit_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getSubunit/' + unit_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#subunit_id').empty();
+            $('#subunit_id').append(`<option value="0" disabled selected>Pilih Sub Unit</option>`);
+            response.forEach(element => {
+                $('#subunit_id').append(`<option value="${element['id']}">${element['nama_subunit']}</option>`);
+                });
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    $('#provinsi_id').on('change', function () {
+    let provinsi_id = $(this).val();
+    $('#kabupaten_id').empty();
+    $('#kabupaten_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getKabupaten/' + provinsi_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#kabupaten_id').empty();
+            $('#kabupaten_id').append(`<option value="0" disabled selected>Pilih Kabupaten</option>`);
+            response.forEach(element => {
+                $('#kabupaten_id').append(`<option value="${element['id']}">${element['nama_kabupaten']}</option>`);
+                });
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+    $('#kabupaten_id').on('change', function () {
+    let kabupaten_id = $(this).val();
+    $('#kecamatan_id').empty();
+    $('#kecamatan_id').append('<option value="0" disabled selected>Processing...</option>');
+    $.ajax({
+        type: 'GET',
+        url: '/admin/getKecamatan/' + kabupaten_id,
+        success: function (response) {
+            var response = JSON.parse(response);
+            console.log(response);   
+            $('#kecamatan_id').empty();
+            $('#kecamatan_id').append(`<option value="0" disabled selected>Pilih Kecamatan</option>`);
+            response.forEach(element => {
+                $('#kecamatan_id').append(`<option value="${element['id']}">${element['nama_kecamatan']}</option>`);
                 });
             }
         });
@@ -731,7 +794,7 @@ function store(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{url('/pegawai/save')}}",
+                url:"{{url('admin/pegawai/save')}}",
                 data:formData,
                 contentType: false,
                 processData: false,

@@ -77,7 +77,7 @@ class PegawaiController extends Controller
         ->addColumn('aksi', function($data){
             $aksi = "";
             $aksi .= "<a title='Riwayat Diklat' href='/admin/".$data->id."/riwayatdiklat' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
-            $aksi .= "<a title='Detail Pegawai' href='/admin/pegawai/".$data->id."/detail' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-loop' ></i></a>";
+            $aksi .= "<a title='Detail Pegawai' href='/admin/pegawai/".$data->id."/detail' class='btn btn-md btn-success' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-eye' ></i></a>";
             $aksi .= "<a title='Edit Data' href='/admin/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
             $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->nama}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-kode='{$data->kode}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
             return $aksi;
@@ -113,9 +113,9 @@ class PegawaiController extends Controller
         $statusPegawai = StatusPegawai::all();
         $jenisProfesi = JenisProfesi::all();
         $subSpesialisasi = SubSpesialisasi::all();
-        $subUnit = SubUnit::all();
         $unit = Unit::all();
-
+        $subUnit = SubUnit::all();
+        
         $icon = 'ni ni-dashlite';
         $subtitle = 'Tambah Data Pegawai';
         return view('crudpegawai.create',compact('subtitle','icon','statusPegawai','agama','bahasaAktif','jabatanFungsional','jabatanStruktural','jenisKelamin','jenisProfesi','kabupaten','kecamatan','kualifikasi','pendidikan','provinsi','spesialisasi','statusNikah','statusDaftar','statusPegawai','subSpesialisasi','subUnit','unit'));
@@ -123,6 +123,18 @@ class PegawaiController extends Controller
     
     public function getSubspesialisasi($spesialisasi_id){
         echo json_encode(DB::table('m_subspesialisasi')->where('spesialisasi_id', $spesialisasi_id)->get());
+    }
+
+    public function getKabupaten($provinsi_id){
+        echo json_encode(DB::table('m_kabupaten')->where('provinsi_id', $provinsi_id)->get());
+    }
+
+    public function getKecamatan($kabupaten_id){
+        echo json_encode(DB::table('m_kecamatan')->where('kabupaten_id', $kabupaten_id)->get());
+    }
+
+    public function getSubunit($unit_id){
+        echo json_encode(DB::table('m_subunit_medik')->where('unit_id', $unit_id)->get());
     }
 
     public function edit(Request $request, $id){
@@ -143,8 +155,8 @@ class PegawaiController extends Controller
         $statusPegawai = StatusPegawai::all();
         $jenisProfesi = JenisProfesi::all();
         $subSpesialisasi = SubSpesialisasi::all();
-        $subUnit = SubUnit::all();
         $unit = Unit::all();
+        $subUnit = SubUnit::all();
         $data = Pegawai::find($request->id);
         $icon = 'ni ni-dashlite';
         $subtitle = 'Edit Data Pegawai';
@@ -177,12 +189,12 @@ class PegawaiController extends Controller
         $pegawai-> jeniskelamin_id = $request-> input('jeniskelamin_id');
         $pegawai-> agama_id= $request-> input('agama_id');
         $pegawai-> bahasa_aktif_id = $request-> input('bahasa_aktif_id');
-        $pegawai-> alamat = $request-> input('alamat');
-        $pegawai-> dusun = $request-> input('dusun');
-        $pegawai-> desa_id = $request-> input('desa_id');
-        $pegawai-> kecamatan_id = $request-> input('kecamatan_id');
-        $pegawai-> kabupaten_id = $request-> input('kabupaten_id');
         $pegawai->provinsi_id  = $request-> input('provinsi_id');
+        $pegawai-> kabupaten_id = $request-> input('kabupaten_id');
+        $pegawai-> kecamatan_id = $request-> input('kecamatan_id');
+        $pegawai-> desa_id = $request-> input('desa_id');
+        $pegawai-> dusun = $request-> input('dusun');
+        $pegawai-> alamat = $request-> input('alamat');
         $pegawai-> kodepos = $request-> input('kodepos');
         $pegawai-> nik= $request-> input('nik');
         $pegawai-> npwp = $request-> input('npwp');
@@ -255,12 +267,12 @@ class PegawaiController extends Controller
         $data-> jeniskelamin_id = $request-> input('jeniskelamin_id');
         $data-> agama_id= $request-> input('agama_id');
         $data-> bahasa_aktif_id = $request-> input('bahasa_aktif_id');
-        $data-> alamat = $request-> input('alamat');
-        $data-> dusun = $request-> input('dusun');
-        $data-> desa_id = $request-> input('desa_id');
-        $data-> kecamatan_id = $request-> input('kecamatan_id');
-        $data-> kabupaten_id = $request-> input('kabupaten_id');
         $data->provinsi_id  = $request-> input('provinsi_id');
+        $data-> kabupaten_id = $request-> input('kabupaten_id');
+        $data-> kecamatan_id = $request-> input('kecamatan_id');
+        $data-> desa_id = $request-> input('desa_id');
+        $data-> dusun = $request-> input('dusun');
+        $data-> alamat = $request-> input('alamat');
         $data-> kodepos = $request-> input('kodepos');
         $data-> nik= $request-> input('nik');
         $data-> npwp = $request-> input('npwp');

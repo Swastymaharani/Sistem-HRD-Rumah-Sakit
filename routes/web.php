@@ -78,6 +78,9 @@ Route::group(['middleware' =>['admin', 'auth']], function(){
         Route::post('/pegawai/{id}/update',[PegawaiController::class,'update'])->name('pegawai.update');
         Route::get('/pegawai/{id}/detail',[PegawaiController::class,'detail'])->name('pegawai.detail');
         Route::get('/getSubspesialisasi/{id}',[PegawaiController::class,'getSubspesialisasi']);
+        Route::get('/getKabupaten/{id}',[PegawaiController::class,'getKabupaten']);
+        Route::get('/getKecamatan/{id}',[PegawaiController::class,'getKecamatan']);
+        Route::get('/getSubunit/{id}',[PegawaiController::class,'getSubunit']);
 
         // Route CRUD Jenis Diklat
         Route::get('/jenisdiklat',[JenisDiklatController::class,'index'])->name('jenisDiklat.list');

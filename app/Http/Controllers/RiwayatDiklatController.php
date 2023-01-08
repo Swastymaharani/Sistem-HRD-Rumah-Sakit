@@ -146,7 +146,7 @@ class RiwayatDiklatController extends Controller
 
     public function detail(Request $request, $id){
     $icon = 'ni ni-dashlite';
-        $subtitle = 'Riwayat Diklat';
+        $subtitle = 'Detail Riwayat Diklat';
         $table_id = 't_riwayat_diklat';
         $data = RiwayatDiklat::find($id);
         return view('crudriwayatdiklat.detail',compact('subtitle','table_id','icon', 'data'));
