@@ -1,6 +1,6 @@
 {{-- https://www.positronx.io/laravel-datatables-example/ --}}
 
-@extends('layouts.app')
+@extends('layouts.authapp')
 @section('action')
 @endsection
 @section('content')
@@ -57,7 +57,7 @@
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
         {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" id="formPendaftaran" action="{{ route('riwayatDiklat.update', $data->id_t_diklat)}}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ route('authriwayatDiklat.update', $data->id_t_diklat)}}" method="POST" enctype="multipart/form-data">
             @csrf
             {{-- @method('PUT') --}}
             <div class="card">
@@ -150,11 +150,11 @@
                         <input type="text" class="form-control" name='keterangan' value="{{ $data->keterangan }}" id="keterangan" >
                     </div>
 
-                    {{-- <div class="mb-3 row">
+                    <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
                         <input type="file" class="form-control" name='file_sertifikat' value="{{ $data->file_sertifikat }}" id="file_sertifikat" >
                         <label for="notebook" class="col-sm-5 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
-                    </div> --}}
+                    </div>
 
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update("","")' class='btn btn-primary'>Simpan</a></div>
@@ -299,7 +299,7 @@ function update(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{route('riwayatDiklat.update', $data->id_t_diklat)}}/",
+                url:"{{route('authriwayatDiklat.update', $data->id_t_diklat)}}/",
                 data: formData,
                 contentType: false,
                 processData: false,

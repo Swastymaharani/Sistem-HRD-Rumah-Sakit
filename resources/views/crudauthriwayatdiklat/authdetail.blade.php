@@ -1,6 +1,6 @@
 {{-- https://www.positronx.io/laravel-datatables-example/ --}}
 
-@extends('layouts.app')
+@extends('layouts.authapp')
 @section('action')
 @endsection
 @section('content')
@@ -124,7 +124,7 @@
 
                     <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
-                        <img src=<?php echo "uploads/filesertifikat/".$data->file_sertifikat ?> style="width: 300px; height: 200px; align: center">
+                        <img src=<?php echo "uploads/riwayatdiklat/filesertifikat/".$data->file_sertifikat ?> style="width: 300px; height: 200px; align: center">
                     </div>
 
                 </div>

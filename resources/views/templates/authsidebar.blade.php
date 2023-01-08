@@ -33,7 +33,7 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/authriwayatdiklat')}}" class="nk-menu-link">
+                                    <a href="{{URL('/authriwayatdiklat/'.Auth::user()->id)}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-linux-server"></em></span>
                                         <span class="nk-menu-text">Riwayat Diklat</span>
                                     </a>

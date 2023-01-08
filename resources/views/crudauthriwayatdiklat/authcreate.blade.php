@@ -1,6 +1,6 @@
 {{-- https://www.positronx.io/laravel-datatables-example/ --}}
 
-@extends('layouts.app')
+@extends('layouts.authapp')
 @section('action')
 @endsection
 @section('content')
@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" id="formPendaftaran" action="{{route('riwayatDiklat.save', $id_pegawai)}}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{route('authriwayatDiklat.save', $id_pegawai)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -293,7 +293,7 @@ function store(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{route('riwayatDiklat.save', $id_pegawai)}}/",
+                url:"{{route('authriwayatDiklat.save', $id_pegawai)}}/",
                 data:formData,
                 contentType: false,
                 processData: false,
