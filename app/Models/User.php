@@ -10,7 +10,9 @@ class User extends Authenticatable
 {
     use HasFactory;
     protected $table='users';
-    protected $fillable = array('name', 'email', 'password', 'admin');
+    protected $fillable = array('id', 'name', 'email', 'password', 'admin');
 
-    //
+    public function pegawaiID(){
+        return $this->hasOne(Pegawai::class, 'id', 'sso_user_id');
+    }
 }

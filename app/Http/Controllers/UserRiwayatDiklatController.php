@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Diklat;
-use App\Models\Pegawai;
+use App\Models\AuthPegawai;
 use Illuminate\Http\Request;
 use App\Models\RiwayatDiklat;
 use Illuminate\Support\Facades\File;
@@ -10,20 +10,22 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UserRiwayatDiklatController extends Controller
 {
-    public function index(){
+    public function index($id){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Riwayat Diklat';
         $table_id = 't_riwayat_diklat';
-        return view('crudriwayatdiklat.crud',compact('subtitle','table_id','icon'));
+        $pegawai = AuthPegawai::find($id);
+        $pegawai_id = $pegawai->id;
+        return view('crudauthriwayatdiklat.authcrud',compact('subtitle','table_id','icon', 'pegawai_id', 'pegawai'));
     }
 
     public function riwayatdiklatDetail($id){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Riwayat Diklat';
         $table_id = 't_riwayat_diklat';
-        $pegawai = Pegawai::find($id);
-        $pegawai_id = $id;
-        return view('crudriwayatdiklat.crud',compact('subtitle','table_id','icon', 'pegawai_id', 'pegawai'));
+        $pegawai = AuthPegawai::find($id);
+        $pegawai_id = $pegawai->id;
+        return view('crudauthriwayatdiklat.authcrud',compact('subtitle','table_id','icon', 'pegawai_id', 'pegawai'));
     }
 
     public function listData(Request $request, $pegawai_id){
@@ -31,17 +33,13 @@ class UserRiwayatDiklatController extends Controller
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
-                // ->addColumn('file_sertifikats', function($data){
-                //         $url= asset('uploads/riwayatdiklat/filesertifikat/'.$data->file_sertifikat);
-                //         return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
-                // })
                 ->addColumn('aksi', function($data){
-                    $aksi = "<a title='Detail Riwayat Diklat' href='/admin/riwayatdiklat/".$data->id_t_diklat."/detail' class='btn btn-md btn-success' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-eye' ></i></a>";
-                    $aksi .= "<a title='Edit Data' href='/admin/riwayatdiklat/".$data->id_t_diklat."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+                    $aksi = "<a title='Detail Riwayat Diklat' href='/authriwayatdiklat/".$data->id_t_diklat."/detail' class='btn btn-md btn-success' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-eye' ></i></a>";
+                    $aksi .= "<a title='Edit Data' href='/authriwayatdiklat/".$data->id_t_diklat."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id_t_diklat}\",\"{$data->nama_kursus}\",this)' class='btn btn-md btn-danger' data-id_t_diklat='{$data->id_t_diklat}' data-nama_kursus='{$data->nama_kursus}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;
                 })
-                ->rawColumns(['file_sertifikats', 'aksi'])
+                ->rawColumns(['aksi'])
                 ->make(true);
     }
 
@@ -59,7 +57,7 @@ class UserRiwayatDiklatController extends Controller
         $subtitle = 'Tambah Riwayat Diklat Pegawai';
         $diklats = Diklat::all();
         $id_pegawai = $id;
-        return view('crudriwayatdiklat.create',compact('subtitle','icon','diklats', 'id_pegawai'));
+        return view('crudauthriwayatdiklat.authcreate',compact('subtitle','icon','diklats', 'id_pegawai'));
     }
 
     public function edit(Request $request){
@@ -68,7 +66,7 @@ class UserRiwayatDiklatController extends Controller
         $subtitle = 'Edit Riwayat Diklat Pegawai';
         $diklats = Diklat::all();
 
-        return view('crudriwayatdiklat.edit',compact('subtitle','icon','data','diklats'));
+        return view('crudauthriwayatdiklat.authedit',compact('subtitle','icon','data','diklats'));
     }
 
     public function save(Request $request, $id_pegawai){
@@ -149,6 +147,6 @@ class UserRiwayatDiklatController extends Controller
         $subtitle = 'Riwayat Diklat';
         $table_id = 't_riwayat_diklat';
         $data = RiwayatDiklat::find($id);
-        return view('crudriwayatdiklat.detail',compact('subtitle','table_id','icon', 'data'));
+        return view('crudauthriwayatdiklat.authdetail',compact('subtitle','table_id','icon', 'data'));
     }
 }
