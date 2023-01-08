@@ -31,12 +31,12 @@ class RiwayatDiklatController extends Controller
         $datatables = DataTables::of($data);
         return $datatables
                 ->addIndexColumn()
-                ->addColumn('file_sertifikats', function($data){
-                        $url= asset('uploads/riwayatdiklat/filesertifikat/'.$data->file_sertifikat);
-                        return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
-                })
+                // ->addColumn('file_sertifikats', function($data){
+                //         $url= asset('uploads/riwayatdiklat/filesertifikat/'.$data->file_sertifikat);
+                //         return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
+                // })
                 ->addColumn('aksi', function($data){
-                    $aksi = "<a title='Detail Riwayat Diklat' href='/riwayatdiklat/".$data->id_t_diklat."/detail' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-loop' ></i></a>";
+                    $aksi = "<a title='Detail Riwayat Diklat' href='/riwayatdiklat/".$data->id_t_diklat."/detail' class='btn btn-md btn-success' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-eye' ></i></a>";
                     $aksi .= "<a title='Edit Data' href='/riwayatdiklat/".$data->id_t_diklat."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id_t_diklat}\",\"{$data->nama_kursus}\",this)' class='btn btn-md btn-danger' data-id_t_diklat='{$data->id_t_diklat}' data-nama_kursus='{$data->nama_kursus}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;

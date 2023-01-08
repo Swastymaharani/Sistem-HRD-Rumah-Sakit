@@ -56,15 +56,11 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        {{-- Elemen form edit data mahasiswa "{{ $data->nama }}" --}}
-        <form name="formPendaftaran" id="formPendaftaran" action="{{ route('riwayatDiklat.update', $data->id_t_diklat)}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            {{-- @method('PUT') --}}
             <div class="card">
                 <div class="card-body">
                     <div class="mb-3 row">
                         <label for="diklat_id" class="col-sm-2 col-form-label">Nama Diklat</label>
-                        <input type="text" class="form-control" name='diklat_id' id="diklat_id" value="{{ $data->diklats->nama_diklat }}" readonly>
+                        <input type="text" class="form-control" name='diklat_id' id="diklat_id" value="{{ $data->diklat->nama_diklat }}" readonly>
                     </div>
 
                     <div class="mb-3 row">
@@ -111,7 +107,7 @@
                         <input type="text" class="form-control" name='jabatan_ttd_sertifikat' value="{{ $data->jabatan_ttd_sertifikat }}" id="jabatan_ttd_sertifikat" readonly>
                     </div>
 
-                    {{-- <div class="mb-3 row">
+                    <div class="mb-3 row">
                         <label for="is_aktif" class="col-sm-2 col-form-label">Riwayat aktif</label>
                         <input type="text" class="form-control" name='is_aktif' value="{{ $data->is_aktif }}" id="is_aktif" >
                     </div>
@@ -119,7 +115,7 @@
                     <div class="mb-3 row">
                         <label for="is_valid" class="col-sm-2 col-form-label">Riwayat Valid</label>
                         <input type="text" class="form-control" name="is_valid" value="{{ $data->is_valid }}" id="is_valid" >
-                    </div> --}}
+                    </div>
 
                     <div class="mb-3 row">
                         <label for="is_aktif" class="col-sm-2 col-form-label">Status aktif</label>
@@ -143,7 +139,5 @@
 
                 </div>
             </div>
-        </form>
     </div>
-    <!-- </div> -->
 @endsection

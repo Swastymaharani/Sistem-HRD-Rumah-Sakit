@@ -26,7 +26,7 @@ class Pegawai extends Model
     }
 
     public function jabatanFungsional(){
-        return $this->belongsTo(JabatanStruktural::class, 'jabatan_fungsional_terakhir');
+        return $this->belongsTo(JabatanFungsional::class, 'jabatan_fungsional_terakhir');
     }
 
     public function jabatanStruktural(){

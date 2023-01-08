@@ -9,7 +9,8 @@ class JabatanFungsional extends Model
 {
     use HasFactory;
     protected $table = 'm_jabatan_fungsional';
-    protected $fillable = ['jabatan_fungsional_id', 'jabatan_kum'];
+    protected $primaryKey = 'jabatan_fungsional_id';
+    protected $fillable = ['jabatan_kum'];
 
     public function pegawai(){
         return $this->hasMany(Pegawai::class);
