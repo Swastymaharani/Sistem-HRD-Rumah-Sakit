@@ -24,7 +24,7 @@ class LogInController extends Controller
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/pegawai');
+            return redirect()->intended('/admin/pegawai');
         }
         return back()->with('fail', 'Login Failed!');
     }

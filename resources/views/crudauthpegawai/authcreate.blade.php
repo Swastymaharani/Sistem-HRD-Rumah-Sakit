@@ -721,7 +721,7 @@ function store(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('/admin/pegawai') }}");
+                                window.location.replace("{{ url('pegawai') }}");
                             }
                         });
                     }

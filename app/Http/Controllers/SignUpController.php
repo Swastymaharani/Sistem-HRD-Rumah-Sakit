@@ -40,7 +40,6 @@ class SignUpController extends Controller
             'name' => $request-> input('name'),
             'email' => $request-> input('email'),
             'password' => $hashedpass,
-            'repassword' => $request-> input('repassword'),
         ]);
 
         return redirect()->route('user-login')->with('success', 'Sign Up Success! Please Log In');

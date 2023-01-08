@@ -1,10 +1,19 @@
 {{-- https://www.positronx.io/laravel-datatables-example/ --}}
 
-@extends('layouts.app')
-@section('action')
+@extends('layouts.authapp')
+{{-- @section('action')
 
-@endsection
-@section('content')
+@endsection --}}
+{{-- @section('content') --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tes tampilan auth</title>
+</head>
+<body>
 
 @if(session()->has('success'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -15,12 +24,11 @@
 
 <div class="nk-fmg-body-head d-none d-lg-flex">
     <div class="nk-fmg-search">
-    <a href="{{ route('pegawai.list') }}"><button type="button" class="btn btn-info"><em class="icon fas fa-arrow-left"></em> <span>Pegawai</span></button></a>  &nbsp;&nbsp;
-        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle.": ".$pegawai->nama)}}</h4>
+        <h4 class="card-title text-primary"><i class='{{$icon}}' data-toggle='tooltip' data-placement='bottom' title='Data {{$subtitle}}'></i>  {{strtoupper("Data ".$subtitle)}}</h4>
     </div>
     <div class="nk-fmg-actions">
         <div class="btn-group">
-            <a href="{{ route('riwayatDiklat.create', $pegawai_id) }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Riwayat diklat</span></a>
+            <a href="{{ route('pegawai.create') }}" class="btn btn-sm btn-primary" onclick="buttondisable(this)"><em class="icon fas fa-plus"></em> <span>Add Pegawai</span></a>
         </div>
     </div>
 </div>
@@ -53,27 +61,16 @@
             <div class="card-body">
                 {{-- <div class="table-responsive"> --}}
                 <div>
-                    <table id="{{$table_id}}" class="display nowrap" style="width:100%">
+                    <table id="{{$table_id}}" class="table table-striped table-bordered nowrap" style="width:100%">
                         <thead style="color:#526484; font-size:11px;">
                             
-                            <th>No.</th>
-                            <!-- <th>Id Pegawai</th> -->
-                            <!-- <th>Id Diklat</th> -->
-                            <th>Nama Kursus</th>
-                            <th>Tempat</th>
-                            <th>Jumlah Jam</th>
-                            <th>Tanggal Kursus</th>
-                            <th>Institusi Penyelenggara</th>
-                            <!-- <th>Nomor Sertifikat</th> -->
-                            <!-- <th>Tanggal Sertifikat</th> -->
-                            <th>Tanggal Selesai Kursus</th>
-                            <!-- <th>Jabatan TTD Sertifikat</th> -->
-                            <!-- <th>Riwayat Aktif</th> -->
-                            <!-- <th>Riwayat Validasi</th> -->
-                            <!-- <th>Keterangan</th> -->
-                            <th>File Sertifikat</th>
-                            <th>Aksi</th>
-                            
+                            <th width="1%">No</th>
+                            <th width="10%">No. Induk</th>
+                            <th width="10%">Nama</th>
+                            <th width="10%">Status Pegawai</th>
+                            <th width="10%">Profesi</th>
+                            <th width="10%">Alamat</th>
+                            <th width="10%">Aksi</th>
                         </thead>
                         
                     </table>
@@ -83,14 +80,14 @@
     </div>
 
 
-@endsection
+{{-- @endsection --}}
 @push('script')
 <script>
-var table;
-
-
-$(document).ready(function() {
-    table = $('#{{$table_id}}').DataTable({
+    var table;
+    
+    
+    $(document).ready(function() {
+        table = $('#{{$table_id}}').DataTable({
         scrollX: true,
         processing:true,
         autoWidth: true,
@@ -98,7 +95,7 @@ $(document).ready(function() {
         serverSide: true,
         dom: '<"row justify-between g-2 "<"col-7 col-sm-4 text-left"f><"col-5 col-sm-8 text-right"<"datatable-filter"<"d-flex justify-content-end g-2" l>>>><" my-3"t><"row align-items-center"<"col-5 col-sm-12 col-md-6 text-left text-md-left"i><"col-5 col-sm-12 col-md-6 text-md-right"<"d-flex justify-content-end "p>>>',
         ajax: {
-            url: '{{ route("riwayatDiklat.listData", $pegawai_id) }}',
+            url: '{{ route("pegawai.listData") }}',
             type:"POST",
             data: function(params) {
                 params._token = "{{ csrf_token() }}";
@@ -107,92 +104,36 @@ $(document).ready(function() {
         columns: [
             { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },         
             {
-                data: 'nama_kursus',
-                name: 'nama_kursus',
+                data: 'no_induk',
+                name: 'no_induk',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
             },
             {
-                data: 'tempat',
-                name: 'tempat',
+                data: 'nama',
+                name: 'nama',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
             },
             {
-                data: 'jumlah_jam',
-                name: 'jumlah_jam',
+                data: 'status_pegawai',
+                name: 'status_pegawai',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
             },
             {
-                data: 'tanggal_kursus',
-                name: 'tanggal_kursus',
+                data: 'jenis_profesi',
+                name: 'jenis_profesi',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
             },
             {
-                data: 'institusi_penyelenggara',
-                name: 'institusi_penyelenggara',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            // {
-            //     data: 'nomor_sertifikat',
-            //     name: 'nomor_sertifikat',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            // {
-            //     data: 'tgl_sertifikat',
-            //     name: 'tgl_sertifikat',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            {
-                data: 'tanggal_selesai_kursus',
-                name: 'tanggal_selesai_kursus',
-                orderable: true,
-                searchable: true,
-                class: 'text-left'
-            },
-            // {
-            //     data: 'jabatan_ttd_sertifikat',
-            //     name: 'jabatan_ttd_sertifikat',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            // {
-            //     data: 'is_aktif',
-            //     name: 'is_aktif',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            // {
-            //     data: 'is_valid',
-            //     name: 'is_valid',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            // {
-            //     data: 'keterangan',
-            //     name: 'keterangan',
-            //     orderable: true,
-            //     searchable: true,
-            //     class: 'text-left'
-            // },
-            {
-                data: 'file_sertifikats',
-                name: 'file_sertifikats',
+                data: 'alamat',
+                name: 'alamat',
                 orderable: true,
                 searchable: true,
                 class: 'text-left'
@@ -211,7 +152,7 @@ $(document).ready(function() {
 });
 
 
-function deleteData(id_t_diklat,name,elm){
+function deleteData(id,name,elm){
     buttonsmdisable(elm);
     CustomSwal.fire({
         icon:'question',
@@ -223,7 +164,7 @@ function deleteData(id_t_diklat,name,elm){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/admin/riwayatdiklat')}}/"+id_t_diklat,
+                url:"{{url('pegawai')}}/"+id,
                 data:{
                     _method:"DELETE",
                     _token:"{{csrf_token()}}"
@@ -258,4 +199,7 @@ function deleteData(id_t_diklat,name,elm){
 
 
 </script>
-@endpush
+{{-- @endpush --}}
+    
+</body>
+</html>

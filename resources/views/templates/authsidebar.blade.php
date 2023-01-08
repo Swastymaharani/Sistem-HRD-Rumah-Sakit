@@ -17,16 +17,16 @@
                         <div class="nk-sidebar-menu" data-simplebar>
                             <ul class="nk-menu">
                                 <li class="nk-menu-heading">
-                                    <h6 class="overline-title text-primary-alt">Master Data</h6>
+                                    <h6 class="overline-title text-primary-alt">Data Kamu</h6>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/admin/pegawai')}}" class="nk-menu-link">
+                                    <a href="{{URL('/pegawai')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
                                         <span class="nk-menu-text">CRUD Pegawai</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/admin/jenisdiklat')}}" class="nk-menu-link">
+                                    <a href="{{URL('/jenisdiklat')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
                                         <span class="nk-menu-text">CRUD Jenis Diklat</span>
                                     </a>

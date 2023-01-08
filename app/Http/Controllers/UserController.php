@@ -26,13 +26,13 @@ use Illuminate\Support\Facades\File;
 use Yajra\DataTables\Facades\DataTables;
 use Symfony\Component\Console\Input\Input;
 
-class PegawaiController extends Controller
+class UserController extends Controller
 {
     public function index(){
         $icon = 'ni ni-dashlite';
         $subtitle = 'Pegawai';
         $table_id = 'm_pegawai';
-        return view('crudpegawai.crud',compact('subtitle','table_id','icon'));
+        return view('crudauthpegawai.authcrud',compact('subtitle','table_id','icon'));
     }
 
     public function detail(Request $request, $pegawai_id){
@@ -77,9 +77,9 @@ class PegawaiController extends Controller
         })
         ->addColumn('aksi', function($data){
             $aksi = "";
-            $aksi .= "<a title='Riwayat Diklat' href='/admin/".$data->id."/riwayatdiklat' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
-            $aksi .= "<a title='Detail Pegawai' href='/admin/pegawai/".$data->id."/detail' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-loop' ></i></a>";
-            $aksi .= "<a title='Edit Data' href='/admin/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
+            $aksi .= "<a title='Riwayat Diklat' href='/".$data->id."/riwayatdiklat' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-book' ></i></a>";
+            $aksi .= "<a title='Detail Pegawai' href='/pegawai/".$data->id."/detail' class='btn btn-md btn-info' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-loop' ></i></a>";
+            $aksi .= "<a title='Edit Data' href='/pegawai/".$data->id."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
             $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id}\",\"{$data->nama}\",this)' class='btn btn-md btn-danger' data-id='{$data->id}' data-kode='{$data->kode}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
             return $aksi;
         })
