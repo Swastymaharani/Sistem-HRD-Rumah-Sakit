@@ -36,7 +36,7 @@ class RiwayatDiklatController extends Controller
                         return '<img src="'.$url.'" border="0" width="100" class="img-rounded" align="center" />';
                 })
                 ->addColumn('aksi', function($data){
-                    $aksi = "";
+                    $aksi = "<a title='Detail Riwayat Diklat' href='/riwayatdiklat/".$data->id_t_diklat."/detail' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-loop' ></i></a>";
                     $aksi .= "<a title='Edit Data' href='/riwayatdiklat/".$data->id_t_diklat."/edit' class='btn btn-md btn-primary' data-toggle='tooltip' data-placement='bottom' onclick='buttonsmdisable(this)'><i class='ti-pencil' ></i></a>";
                     $aksi .= "<a title='Delete Data' href='javascript:void(0)' onclick='deleteData(\"{$data->id_t_diklat}\",\"{$data->nama_kursus}\",this)' class='btn btn-md btn-danger' data-id_t_diklat='{$data->id_t_diklat}' data-nama_kursus='{$data->nama_kursus}'><i class='ti-trash' data-toggle='tooltip' data-placement='bottom' ></i></a> ";
                     return $aksi;
@@ -142,5 +142,13 @@ class RiwayatDiklatController extends Controller
             $response = array('success'=>2,'msg'=>'Gagal mengedit data');
         }
         return $response;
+    }
+
+    public function detail(Request $request, $id){
+    $icon = 'ni ni-dashlite';
+        $subtitle = 'Riwayat Diklat';
+        $table_id = 't_riwayat_diklat';
+        $data = RiwayatDiklat::find($id);
+        return view('crudriwayatdiklat.detail',compact('subtitle','table_id','icon', 'data'));
     }
 }

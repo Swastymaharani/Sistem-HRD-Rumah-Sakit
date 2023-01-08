@@ -52,6 +52,7 @@ Route::get('/pegawai/{id}/detail',[PegawaiController::class,'detail'])->name('pe
 // Auth::prefix('/admin')->middleware('auth')->group(function(){
 
     //Route CRUD pegawai admin
+
     Route::get('/pegawai',[PegawaiController::class,'index'])->name('pegawai.list');
     Route::post('/pegawai/listData',[PegawaiController::class,'listData'])->name('pegawai.listData');
     Route::get('/pegawai/create',[PegawaiController::class,'create'])->name('pegawai.create');
@@ -90,4 +91,5 @@ Route::get('/pegawai/{id}/detail',[PegawaiController::class,'detail'])->name('pe
     Route::delete('/riwayatdiklat/{id}',[RiwayatDiklatController::class,'deleteData'])->name('riwayatDiklat.delete');
     Route::post('/riwayatdiklat/save/{id}', [RiwayatDiklatController::class,'save'])->name('riwayatDiklat.save');
     Route::post('/riwayatdiklat/{id}/update',[RiwayatDiklatController::class,'update'])->name('riwayatDiklat.update');
+    Route::get('/riwayatdiklat/{id}/detail',[RiwayatDiklatController::class,'detail'])->name('riwayatDiklat.detail');
 // });

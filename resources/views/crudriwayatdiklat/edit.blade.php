@@ -117,7 +117,7 @@
                         <input type="text" class="form-control" name='jabatan_ttd_sertifikat' value="{{ $data->jabatan_ttd_sertifikat }}" id="jabatan_ttd_sertifikat" >
                     </div>
 
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="is_aktif" class="col-sm-2 col-form-label">Riwayat aktif</label>
                         <input type="text" class="form-control" name='is_aktif' value="{{ $data->is_aktif }}" id="is_aktif" >
                     </div>
@@ -125,6 +125,24 @@
                     <div class="mb-3 row">
                         <label for="is_valid" class="col-sm-2 col-form-label">Riwayat Valid</label>
                         <input type="text" class="form-control" name="is_valid" value="{{ $data->is_valid }}" id="is_valid" >
+                    </div> --}}
+
+                    <div class="mb-3 row">
+                        <label for="is_aktif" class="col-sm-2 col-form-label">Status aktif</label>
+                        <select class="form-control" aria-label="Default select example" name="is_aktif" value="{{ $data->is_aktif }}" id="is_aktif >
+                            <option value="#">Pilih Status Aktif</option>
+                            <option value="0">Tidak Aktif</option>
+                            <option value="1">Aktif</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3 row">
+                        <label for="is_valid" class="col-sm-2 col-form-label">Status Valid</label>
+                        <select class="form-control" aria-label="Default select example" name="is_valid" value="{{ $data->is_valid }}" id="is_valid>
+                            <option value="#">Pilih Status Valid</option>
+                            <option value="0">Tidak Valid</option>
+                            <option value="1">Valid</option>
+                        </select>
                     </div>
                    
                     <div class="mb-3 row">
@@ -132,11 +150,11 @@
                         <input type="text" class="form-control" name='keterangan' value="{{ $data->keterangan }}" id="keterangan" >
                     </div>
 
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
                         <input type="file" class="form-control" name='file_sertifikat' value="{{ $data->file_sertifikat }}" id="file_sertifikat" >
                         <label for="notebook" class="col-sm-5 col-form-label" style="color: red">* : Biarkan kosong jika tidak ingin mengganti gambar</label>
-                    </div>
+                    </div> --}}
 
                     <div class="mb-3 row">
                         <div class="col-sm-5"><a title='Tambah Data' href='javascript:void(0)' onclick='update("","")' class='btn btn-primary'>Simpan</a></div>
