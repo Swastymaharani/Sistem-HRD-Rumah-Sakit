@@ -17,24 +17,24 @@
                         <div class="nk-sidebar-menu" data-simplebar>
                             <ul class="nk-menu">
                                 <li class="nk-menu-heading">
-                                    <h6 class="overline-title text-primary-alt">Data Kamu</h6>
+                                    <h6 class="overline-title text-primary-alt">Navigasi</h6>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
                                     <a href="{{URL('/pegawai')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span>
-                                        <span class="nk-menu-text">CRUD Pegawai</span>
+                                        <span class="nk-menu-text">Beranda</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/jenisdiklat')}}" class="nk-menu-link">
+                                    <a href="{{URL('/detail')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
-                                        <span class="nk-menu-text">CRUD Jenis Diklat</span>
+                                        <span class="nk-menu-text">Detail & Edit</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    <a href="{{URL('/#')}}" class="nk-menu-link">
+                                    <a href="{{URL('/riwayatdiklat')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-linux-server"></em></span>
-                                        <span class="nk-menu-text">Example 3</span>
+                                        <span class="nk-menu-text">Add Riwayat Diklat</span>
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">

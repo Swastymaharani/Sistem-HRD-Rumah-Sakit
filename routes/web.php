@@ -5,6 +5,7 @@ use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\JenisDiklatController;
 use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\RiwayatDiklatController;
+use App\Http\Controllers\UserRiwayatDiklatController;
 use App\Http\Controllers\CrudController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,8 @@ Route::post('/savesignup', [SignUpController::class, 'savesignup'])->name('user-
 
 Route::group(['middleware' =>'auth'], function(){
     Route::get('/pegawai',[UserController::class,'index'])->name('pegawai.list');
+
+    // Route Detail & Edit
     Route::post('/pegawai/listData',[UserController::class,'listData'])->name('pegawai.listData');
     // Route::get('/pegawai/create',[UserController::class,'create'])->name('pegawai.create');
     Route::get('/pegawai/{id}/edit',[UserController::class,'edit'])->name('pegawai.edit');
@@ -50,6 +53,17 @@ Route::group(['middleware' =>'auth'], function(){
     // Route::post('/pegawai/save', [UserController::class,'save'])->name('pegawai.save');
     Route::post('/pegawai/{id}/update',[UserController::class,'update'])->name('pegawai.update');
     Route::get('/pegawai/{id}/detail',[UserController::class,'detail'])->name('pegawai.detail');
+
+    // Route CRUD RiwayatDiklat
+    Route::get('/riwayatdiklat',[UserRiwayatDiklatController::class,'index'])->name('riwayatDiklat.list');
+    Route::get('/{id}/riwayatdiklat',[UserRiwayatDiklatController::class,'riwayatdiklatDetail'])->name('riwayatdiklatDetail.list');
+    Route::post('/{id}/riwayatdiklat/listdata',[UserRiwayatDiklatController::class,'listData'])->name('riwayatDiklat.listData');
+    Route::get('/{id}/riwayatdiklat/create',[UserRiwayatDiklatController::class,'create'])->name('riwayatDiklat.create');
+    Route::get('/riwayatdiklat/{id}/edit',[UserRiwayatDiklatController::class,'edit'])->name('riwayatDiklat.edit');
+    Route::delete('/riwayatdiklat/{id}',[UserRiwayatDiklatController::class,'deleteData'])->name('riwayatDiklat.delete');
+    Route::post('/riwayatdiklat/save/{id}', [UserRiwayatDiklatController::class,'save'])->name('riwayatDiklat.save');
+    Route::post('/riwayatdiklat/{id}/update',[UserRiwayatDiklatController::class,'update'])->name('riwayatDiklat.update');
+    Route::get('/riwayatdiklat/{id}/detail',[UserRiwayatDiklatController::class,'detail'])->name('riwayatDiklat.detail');
 });
 
 Route::group(['middleware' =>['admin', 'auth']], function(){
