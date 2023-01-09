@@ -68,11 +68,11 @@ class PegawaiController extends Controller
         ->addIndexColumn()
         ->addColumn('status_pegawai', function($data){
             $nama_status = Pegawai::find($data->id);
-            return $nama_status->statusPegawai->nama;
+            return $nama_status?->statusPegawai?->nama;
         })
         ->addColumn('jenis_profesi', function($data){
             $jenis_profesi = Pegawai::find($data->id);  
-            return $jenis_profesi->jenisProfesi->nama_profesi;
+            return $jenis_profesi?->jenisProfesi?->nama_profesi;
         })
         ->addColumn('aksi', function($data){
             $aksi = "";
