@@ -113,7 +113,7 @@
                         <input type="text" class="form-control" name='jabatan_ttd_sertifikat' value="{{ old('jabatan_ttd_sertifikat') }}" id="jabatan_ttd_sertifikat" >
                     </div>
 
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="is_aktif" class="col-sm-2 col-form-label">Status aktif</label>
                         <select type="text" class="form-control" name="is_aktif" value="{{ old('is_aktif') }}" id="is_aktif">
                             <option value="#">Pilih Status Aktif</option>
@@ -129,7 +129,7 @@
                             <option value="0">Tidak Valid</option>
                             <option value="1">Valid</option>
                         </select>
-                    </div>
+                    </div> --}}
                    
                     <div class="mb-3 row">
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
@@ -244,24 +244,24 @@ function store(){
         document.forms["formPendaftaran"]["jabatan_ttd_sertifikat"].focus();
         return false;
     }
-    if (document.forms["formPendaftaran"]["is_aktif"].value == "") {
-        CustomSwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Riwayat Aktif Sertifikat Tidak Boleh Kosong',
-        })
-        document.forms["formPendaftaran"]["is_aktif"].focus();
-        return false;
-    }
-    if (document.forms["formPendaftaran"]["is_valid"].value == "") {
-        CustomSwal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Riwayat Valid Sertifikat Tidak Boleh Kosong',
-        })
-        document.forms["formPendaftaran"]["is_valid"].focus();
-        return false;
-    }
+    // if (document.forms["formPendaftaran"]["is_aktif"].value == "") {
+    //     CustomSwal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: 'Riwayat Aktif Sertifikat Tidak Boleh Kosong',
+    //     })
+    //     document.forms["formPendaftaran"]["is_aktif"].focus();
+    //     return false;
+    // }
+    // if (document.forms["formPendaftaran"]["is_valid"].value == "") {
+    //     CustomSwal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: 'Riwayat Valid Sertifikat Tidak Boleh Kosong',
+    //     })
+    //     document.forms["formPendaftaran"]["is_valid"].focus();
+    //     return false;
+    // }
     // if (document.forms["formPendaftaran"]["keterangan"].value == "") {
     //     CustomSwal.fire({
     //         icon: 'error',

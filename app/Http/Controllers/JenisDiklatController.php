@@ -63,9 +63,9 @@ class JenisDiklatController extends Controller
 
     public function save(Request $request){
         $tidakUnik = 0;
-        $request->validate([
-            'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
-        ]);
+        // $request->validate([
+        //     'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
+        // ]);
 
         $jenisDiklat = JenisDiklat::all();
         foreach (JenisDiklat::all() as $jenisDiklat) {
@@ -78,13 +78,13 @@ class JenisDiklatController extends Controller
         }else{
             $jenisDiklat = new JenisDiklat;
             $jenisDiklat->nama_jenis_diklat = $request-> input('nama_jenis_diklat');
-            if($request->hasFile('gambar1')){
-                $file = $request->file('gambar1');
-                $extension = $file->getClientOriginalExtension();
-                $filename = time().'.'.$extension;
-                $file->move('uploads/jenisdiklat/', $filename);
-                $jenisDiklat->gambar1 = $filename;
-            }
+            // if($request->hasFile('gambar1')){
+            //     $file = $request->file('gambar1');
+            //     $extension = $file->getClientOriginalExtension();
+            //     $filename = time().'.'.$extension;
+            //     $file->move('uploads/jenisdiklat/', $filename);
+            //     $jenisDiklat->gambar1 = $filename;
+            // }
             $jenisDiklat->save();
 
             $response = array('success'=>1,'msg'=>'Berhasil menambah data');
@@ -94,9 +94,9 @@ class JenisDiklatController extends Controller
 
     public function update(Request $request, $jenis_diklat_id){
         $tidakUnik = 0;
-        $request->validate([
-            'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
-        ]);
+        // $request->validate([
+        //     'gambar1' => 'image|max:2048|mimes:jpg,jpeg,png'
+        // ]);
 
         $jenisDiklats = JenisDiklat::all();
         foreach ($jenisDiklats as $jenisDiklat) {

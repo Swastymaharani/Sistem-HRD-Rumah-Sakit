@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/pegawai/save') }}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/admin/pegawai/save') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -192,7 +192,7 @@
                     <div class="mb-3 row">
                         <label for="subunit_id" class="col-sm-2 col-form-label">Sub Unit</label>
                         <select type="text" class="form-control formselect required" name='subunit_id' id="subunit_id">
-                            <option value="{{ old('subunit_id') }}">Pilih Sub Unit</option>
+                            <option value="{{ old('subunit_id') }}">Pilih Unit Dulu</option>
                             {{-- @foreach ($subUnit as $sU)
                                 <option value= {{ $sU->id }} >{{ $sU->nama_subunit }}</option>
                             @endforeach --}}
@@ -252,7 +252,7 @@
                     <div class="mb-3 row"> 
                         <label for="kabupaten_id" class="col-sm-2 col-form-label">Kabupaten</label>
                         <select type="text" class="form-control formselect required" name='kabupaten_id' id="kabupaten_id">
-                            <option value="{{ old('kabupaten_id') }}">Pilih Kabupaten</option>
+                            <option value="{{ old('kabupaten_id') }}">Pilih Provinsi Dulu</option>
                             {{-- @foreach ($kabupaten as $kab)
                                 <option value= {{ $kab->id }} >{{ $kab->nama_kabupaten }}</option>
                             @endforeach --}}
@@ -262,7 +262,7 @@
                     <div class="mb-3 row"> 
                         <label for="kecamatan_id" class="col-sm-2 col-form-label">Kecamatan</label>
                         <select type="text" class="form-control formselect required" name='kecamatan_id' id="kecamatan_id">
-                            <option value="{{ old('kecamatan_id') }}">Pilih Kecamatan</option>
+                            <option value="{{ old('kecamatan_id') }}">Pilih Kabupaten Dulu</option>
                             {{-- @foreach ($kecamatan as $kec)
                                 <option value= {{ $kec->id }} >{{ $kec->nama_kecamatan }}</option>
                             @endforeach --}}
@@ -794,7 +794,7 @@ function store(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{url('admin/pegawai/save')}}",
+                url:"{{url('/admin/pegawai/save')}}",
                 data:formData,
                 contentType: false,
                 processData: false,

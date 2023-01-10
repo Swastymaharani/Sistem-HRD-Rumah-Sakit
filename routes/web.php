@@ -50,6 +50,10 @@ Route::group(['middleware' =>'auth'], function(){
     Route::get('/pegawai/{id}/edit',[UserController::class,'edit'])->name('authpegawai.edit');
     // Route::delete('/pegawai/{id}',[UserController::class,'deleteData'])->name('authpegawai.delete');
     Route::post('/pegawai/{id}/update',[UserController::class,'update'])->name('authpegawai.update');
+    Route::get('/getSubspesialisasi/{id}',[UserController::class,'getSubspesialisasi']);
+    Route::get('/getKabupaten/{id}',[UserController::class,'getKabupaten']);
+    Route::get('/getKecamatan/{id}',[UserController::class,'getKecamatan']);
+    Route::get('/getSubunit/{id}',[UserController::class,'getSubunit']);
 
     // Route CRUD RiwayatDiklat
     Route::get('/authriwayatdiklat/{id}',[UserRiwayatDiklatController::class,'index'])->name('authriwayatDiklat.list');

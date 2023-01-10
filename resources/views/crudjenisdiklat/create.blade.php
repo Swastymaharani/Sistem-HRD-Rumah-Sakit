@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/jenisdiklat/save') }}" method="POST" enctype="multipart/form-data">
+        <form name="formPendaftaran" id="formPendaftaran" action="{{ url('/admin/jenisdiklat/save') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -101,7 +101,7 @@ function store(){
         if (result.isConfirmed) {
             let formData = new FormData($('#formPendaftaran')[0]);
             $.ajax({
-                url:"{{url('/jenisdiklat/save')}}",
+                url:"{{url('/admin/jenisdiklat/save')}}",
                 data:formData,
                 contentType: false,
                 processData: false,
@@ -111,7 +111,7 @@ function store(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('jenisdiklat') }}");
+                                window.location.replace("{{ url('/admin/jenisdiklat') }}");
                             }
                         });
                     }

@@ -24,6 +24,7 @@ use App\Models\SubSpesialisasi;
 use App\Models\JabatanFungsional;
 use App\Models\JabatanStruktural;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 use Symfony\Component\Console\Input\Input;
 
@@ -172,5 +173,21 @@ class UserController extends Controller
             $response = array('success'=>2,'msg'=>'Gagal mengedit data');
         }
         return $response;
+    }
+
+    public function getSubspesialisasi($spesialisasi_id){
+        echo json_encode(DB::table('m_subspesialisasi')->where('spesialisasi_id', $spesialisasi_id)->get());
+    }
+
+    public function getKabupaten($provinsi_id){
+        echo json_encode(DB::table('m_kabupaten')->where('provinsi_id', $provinsi_id)->get());
+    }
+
+    public function getKecamatan($kabupaten_id){
+        echo json_encode(DB::table('m_kecamatan')->where('kabupaten_id', $kabupaten_id)->get());
+    }
+
+    public function getSubunit($unit_id){
+        echo json_encode(DB::table('m_subunit_medik')->where('unit_id', $unit_id)->get());
     }
 }

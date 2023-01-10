@@ -144,13 +144,13 @@
                     <div class="mb-3 row">
                         <label for="sub_spesialisasi_id" class="col-sm-2 col-form-label">Sub Spesialisasi</label>
                         <select type="text" class="form-control" name='sub_spesialisasi_id' id="sub_spesialisasi_id">
-                            <option value="{{ $data->sub_spesialisasi_id }}">Pilih Sub Spesialisasi</option>
-                            @foreach ($subSpesialisasi as $sS)
+                            <option disabled value="{{ $data->sub_spesialisasi_id }}">Pilih Spesialisasi Dulu</option>
+                            {{-- @foreach ($subSpesialisasi as $sS)
                                 <option value= {{ $sS->id }} 
                                     @if ($data->sub_spesialisasi_id === $sS->id)
                                         SELECTED
                                     @endif>{{ $sS->nama }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -222,13 +222,13 @@
                     <div class="mb-3 row">
                         <label for="subunit_id" class="col-sm-2 col-form-label">Sub Unit</label>
                         <select type="text" class="form-control" name='subunit_id' id="subunit_id">
-                            <option value="{{ $data->subunit_id }}">Pilih Sub Unit</option>
-                            @foreach ($subUnit as $sU)
+                            <option disabled value="{{ $data->subunit_id }}">Pilih Unit Dulu</option>
+                            {{-- @foreach ($subUnit as $sU)
                                 <option value= {{ $sU->id }} 
                                     @if ($data->subunit_id === $sU->id)
                                         SELECTED
                                     @endif>{{ $sU->nama_subunit }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -423,7 +423,7 @@ $(document).ready(function () {
             var response = JSON.parse(response);
             console.log(response);   
             $('#sub_spesialisasi_id').empty();
-            $('#sub_spesialisasi_id').append(`<option value="0" disabled selected>Pilih Sub Spesialisasi</option>`);
+            $('#sub_spesialisasi_id').append(`<option value="0" enabled selected>Pilih Sub Spesialisasi</option>`);
             response.forEach(element => {
                 $('#sub_spesialisasi_id').append(`<option value="${element['id']}">${element['nama']}</option>`);
                 });
@@ -444,7 +444,7 @@ $(document).ready(function () {
             var response = JSON.parse(response);
             console.log(response);   
             $('#subunit_id').empty();
-            $('#subunit_id').append(`<option value="0" disabled selected>Pilih Sub Unit</option>`);
+            $('#subunit_id').append(`<option value="0" enabled selected>Pilih Sub Unit</option>`);
             response.forEach(element => {
                 $('#subunit_id').append(`<option value="${element['id']}">${element['nama_subunit']}</option>`);
                 });

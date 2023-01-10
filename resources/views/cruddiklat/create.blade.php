@@ -55,7 +55,7 @@
 
     <!-- <div class="nk-fmg-body-content"> -->
     <div class="nk-fmg-quick-list nk-block">
-        <form name="formPendaftaran" action="{{ url('/diklat/save') }}" method="POST">
+        <form name="formPendaftaran" action="{{ url('/admin/diklat/save') }}" method="POST">
             @csrf
             <div class="card">
                 <div class="card-body">
@@ -93,6 +93,15 @@
 
 
 function store(){
+    if (document.forms["formPendaftaran"]["jenis_diklat_id"].value =="") {
+            CustomSwal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Jenis Diklat Tidak Boleh Kosong',
+            })
+            document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
+            return false;
+    }  
     if (document.forms["formPendaftaran"]["no_urut"].value =="") {
             CustomSwal.fire({
                 icon: 'error',
@@ -111,15 +120,6 @@ function store(){
             document.forms["formPendaftaran"]["nama_diklat"].focus();
             return false;
         }
-        if (document.forms["formPendaftaran"]["jenis_diklat_id"].value == "") {
-            CustomSwal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Jenis Diklat Tidak Boleh Kosong',
-            })
-            document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
-            return false;
-        }
 
     // buttonsmdisable(elm);
     CustomSwal.fire({
@@ -132,7 +132,7 @@ function store(){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                url:"{{url('/diklat/save')}}",
+                url:"{{url('/admin/diklat/save')}}",
                 data:{
                     _method:"POST",
                     _token:"{{csrf_token()}}",

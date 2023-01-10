@@ -26,7 +26,6 @@
                                     </a>
                                 </li><!-- .nk-menu-item -->
                                 <li class="nk-menu-item">
-                                    {{-- "{{url('/admin/riwayatdiklat')}}/"+id_t_diklat --}}
                                     <a href="{{URL('/pegawai/'.Auth::user()->id.'/detail')}}" class="nk-menu-link">
                                         <span class="nk-menu-icon"><em class="icon ni ni-layers-fill"></em></span>
                                         <span class="nk-menu-text">Detail & Edit</span>

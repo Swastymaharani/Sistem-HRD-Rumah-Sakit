@@ -112,7 +112,7 @@ function update(){
                     if(data.success == 1){
                         CustomSwal.fire('Sukses', data.msg, 'success').then((result) => {
                             if (result.isConfirmed) {
-                                window.location.replace("{{ url('jenisdiklat') }}");
+                                window.location.replace("{{ url('/admin/jenisdiklat') }}");
                             }
                         });
                     }else{

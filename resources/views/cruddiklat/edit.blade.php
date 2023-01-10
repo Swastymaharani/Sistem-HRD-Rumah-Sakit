@@ -100,6 +100,15 @@
 <script>
 
 function update(){
+        if (document.forms["formPendaftaran"]["jenis_diklat_id"].value == "") {
+                CustomSwal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Jenis Diklat Tidak Boleh Kosong',
+                })
+                document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
+                return false;
+            }
         if (document.forms["formPendaftaran"]["no_urut"].value =="") {
                 CustomSwal.fire({
                     icon: 'error',
@@ -116,15 +125,6 @@ function update(){
                     text: 'Nama Diklat Tidak Boleh Kosong',
                 })
                 document.forms["formPendaftaran"]["nama_diklat"].focus();
-                return false;
-            }
-            if (document.forms["formPendaftaran"]["jenis_diklat_id"].value == "") {
-                CustomSwal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Jenis Diklat Tidak Boleh Kosong',
-                })
-                document.forms["formPendaftaran"]["jenis_diklat_id"].focus();
                 return false;
             }
 

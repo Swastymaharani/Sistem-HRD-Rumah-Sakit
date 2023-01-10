@@ -119,12 +119,12 @@
                    
                     <div class="mb-3 row">
                         <label for="keterangan" class="col-sm-2 col-form-label">Keterangan</label>
-                        <input type="text" class="form-control" name='keterangan' value="{{ $data->keterangan }}" id="keterangan" readonly>
+                        <input type="text" class="form-control" name='keterangan' value="{{ $data?->keterangan }}" id="keterangan" readonly>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="file_sertifikat" class="col-sm-2 col-form-label">File Sertifikat</label>
-                        <img src=<?php echo "uploads/riwayatdiklat/filesertifikat/".$data->file_sertifikat ?> style="width: 300px; height: 200px; align: center">
+                        <img src=<?php echo "uploads/riwayatdiklat/filesertifikat/".$data?->file_sertifikat ?> style="width: 300px; height: 200px; align: center">
                     </div>
 
                 </div>
